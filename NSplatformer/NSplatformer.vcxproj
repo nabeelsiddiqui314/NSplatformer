@@ -155,12 +155,14 @@
     <ClInclude Include="Data.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntryPoint.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="NSplatformer.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

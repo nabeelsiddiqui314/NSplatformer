@@ -3,7 +3,7 @@
 
 
 EntryPoint::EntryPoint() {
-	m_window.create(sf::VideoMode(Data::tileSize * Data::tileNumX, Data::tileSize * Data::tileNumY), "NSP");
+	m_window.create(sf::VideoMode(1000, 600), "NSP");
 }
 
 void EntryPoint::runloop() {

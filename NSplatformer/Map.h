@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <fstream>
+#include <sstream>
 #include "Data.h"
 #include <iostream>
 
@@ -8,8 +9,7 @@ class Map
 {
 private:
 	struct Tile {
-		sf::Vector2f pos;
-		int id;
+		sf::Vector2f texPos;
 	};
 public:
 	Map();
@@ -18,7 +18,7 @@ public:
 	void importTileset(const std::string& tilesetPath);
 	void importLevel(const std::string& levelPath);
 	void load();
-	void render();
+	void render(sf::RenderWindow& window);
 private:
 	sf::VertexArray m_map;
 	sf::Texture m_tileset;

@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Data.h"
+#include "Map.h"
 
 class EntryPoint
 {
@@ -13,4 +14,5 @@ private:
 	sf::Clock        m_clock;
 	sf::Time         m_accumulator = sf::Time::Zero;
 	sf::Time         m_ups = sf::seconds(1.f / 60.f);
+	Map m;
 };

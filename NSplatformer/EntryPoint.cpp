@@ -4,6 +4,9 @@
 
 EntryPoint::EntryPoint() {
 	m_window.create(sf::VideoMode(1000, 600), "NSP");
+	m.importTileset("Tileset1");
+	m.importLevel("Level1");
+	m.load();
 }
 
 void EntryPoint::runloop() {
@@ -18,6 +21,7 @@ void EntryPoint::runloop() {
 		while (m_accumulator > m_ups) {
 			m_accumulator -= m_ups;
 		}
+		m.render(m_window);
 		m_accumulator += m_clock.restart();
 		m_window.display();
 	}

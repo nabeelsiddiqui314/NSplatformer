@@ -7,9 +7,7 @@ Map::Map() {
 }
 
 void Map::importTileset(const std::string& tilesetPath) {
-	if (!m_tileset.loadFromFile("./Tilesets/" + tilesetPath + ".png")) {
-		m_tileset.loadFromFile("./Tilesets/NotDefined.png");
-	}
+	m_tileset.loadFromFile("./Tilesets/" + tilesetPath + ".png");
 
 	int tileNumX = m_tileset.getSize().x / Data::tileSize;
 	int tileNumY = m_tileset.getSize().y / Data::tileSize;
@@ -35,7 +33,14 @@ void Map::importLevel(const std::string& levelPath) {
 	for (int i = 0; i < temp.length(); i++) {
 		if (isdigit(temp[i])) {
 			int tileid = temp[i] - '0';
+			if (tileid < 1 || tileid > m_tiles.size() - 1)  // checks whether the id is valid
+				tileid = 0;
 			m_lvl.emplace_back(tileid);
+		}
+	}
+	if (m_lvl.size() < m_mapDims.x * m_mapDims.y) {
+		for (int i = m_lvl.size(); i < m_mapDims.x * m_mapDims.y; i++) { //fills in tiles if less tiles are given
+			m_lvl.emplace_back(0);
 		}
 	}
 }

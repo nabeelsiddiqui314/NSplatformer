@@ -29,18 +29,19 @@ void Map::importLevel(const std::string& levelPath) {
 	m_mapDims.x = std::stoi(temp, nullptr);
 	std::getline(m_levelFl, temp);
 	m_mapDims.y = std::stoi(temp, nullptr);
-	std::getline(m_levelFl, temp);
-	for (int i = 0; i < temp.length(); i++) {
-		if (isdigit(temp[i])) {
-			int tileid = temp[i] - '0';
-			if (tileid < 1 || tileid > m_tiles.size() - 1)  // checks whether the id is valid
-				tileid = 0;
-			m_lvl.emplace_back(tileid);
+	while (std::getline(m_levelFl, temp)) {
+		for (int i = 0; i < temp.length(); i++) {
+			if (isdigit(temp[i])) {
+				int tileid = temp[i] - '0';
+				if (tileid < 1 || tileid > m_tiles.size() - 1)  // checks whether the id is valid
+					tileid = 0;
+				m_lvl.emplace_back(tileid);
+			}
 		}
-	}
-	if (m_lvl.size() < m_mapDims.x * m_mapDims.y) {
-		for (int i = m_lvl.size(); i < m_mapDims.x * m_mapDims.y; i++) { //fills in tiles if less tiles are given
-			m_lvl.emplace_back(0);
+		if (m_lvl.size() < m_mapDims.x * m_mapDims.y) {
+			for (int i = m_lvl.size(); i < m_mapDims.x * m_mapDims.y; i++) { //fills in tiles if less tiles are given
+				m_lvl.emplace_back(0);
+			}
 		}
 	}
 }

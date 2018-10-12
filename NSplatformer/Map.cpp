@@ -72,6 +72,24 @@ void Map::render(sf::RenderWindow& window) {
 	window.draw(m_map, &m_tileset);
 }
 
+void Map::handleCollisions(Entity* entity) {
+	int column = floor(entity->getPos().x / Data::tileSize);
+	int row = floor(entity->getPos().y / Data::tileSize);
+	int tile = m_lvl[column + row * m_mapDims.x];
+	Collider::Collide(entity, tile, row, column);
+
+	column = floor(entity->getPos().x + entity->getSize().x / Data::tileSize);
+	tile = m_lvl[column + row * m_mapDims.x];
+	Collider::Collide(entity, tile, row, column);
+
+	column = floor(entity->getPos().x / Data::tileSize);
+	row = floor(entity->getPos().y + entity->getSize().y / Data::tileSize);
+	Collider::Collide(entity, tile, row, column);
+
+	column = floor(entity->getPos().x + entity->getSize().x / Data::tileSize);
+	Collider::Collide(entity, tile, row, column);
+}
+
 Map::~Map() {
 	m_levelFl.close();
 }

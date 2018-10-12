@@ -3,7 +3,7 @@
 
 
 EntryPoint::EntryPoint() {
-	m_window.create(sf::VideoMode(1000, 600), "NSP");
+	m_window.create(sf::VideoMode(992, 576), "NSP");
 	m.importTileset("tileset");
 	m.importLevel("Level1");
 	m.load();

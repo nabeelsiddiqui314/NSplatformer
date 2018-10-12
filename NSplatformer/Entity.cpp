@@ -19,6 +19,10 @@ const sf::Vector2f& Entity::getPos() const {
 	return m_body.getPosition();
 }
 
+const sf::Vector2f& Entity::getOldPos() const {
+	return m_oldPos;
+}
+
 const sf::Vector2f& Entity::getSize() const {
 	return m_body.getSize();
 }
@@ -29,12 +33,22 @@ void Entity::stopFall(float yPos) {
 	m_isJumping = false;
 }
 
+void Entity::stopJump() {
+	m_velocity.y = 0;
+}
+
+void Entity::stopLateral(float xPos) {
+	m_velocity.x = 0;
+	m_body.setPosition(xPos, m_body.getPosition().y);
+}
+
 void Entity::update() {
 	m_body.move(m_velocity);
 	m_velocity.x *= m_friction;
 	if (m_isJumping) {
 		m_velocity.y += Data::gravity;
 	}
+	m_oldPos = m_body.getPosition();
 }
 
 void Entity::render(sf::RenderWindow& window) {

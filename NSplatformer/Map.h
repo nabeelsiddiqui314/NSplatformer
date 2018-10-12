@@ -2,8 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include <fstream>
 #include <sstream>
-#include "Data.h"
 #include <iostream>
+#include "Data.h"
+#include "Collider.h"
 
 class Map
 {
@@ -19,6 +20,8 @@ public:
 	void importLevel(const std::string& levelPath);
 	void load();
 	void render(sf::RenderWindow& window);
+
+	void handleCollisions(Entity* entity);
 private:
 	sf::VertexArray m_map;
 	sf::Texture m_tileset;

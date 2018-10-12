@@ -9,8 +9,11 @@ public:
 public:
 	void setPos(const sf::Vector2f& pos);
 	const sf::Vector2f& getPos() const;
+	const sf::Vector2f& getOldPos() const;
 	const sf::Vector2f& getSize() const;
 	void stopFall(float yPos);
+	void stopJump();
+	void stopLateral(float xPos);
 	void update();
 	void render(sf::RenderWindow& window);
 protected:
@@ -21,6 +24,7 @@ protected:
 private:
 	sf::RectangleShape m_body;
 	sf::Vector2f m_velocity;
+	sf::Vector2f m_oldPos;
 	bool m_isJumping;
 	double m_acceleration;
 	double m_friction;

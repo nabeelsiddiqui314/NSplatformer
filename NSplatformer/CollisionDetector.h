@@ -15,7 +15,7 @@ public:
 public:
 	CollisionDetector() = delete;
 public:
-	static void isCollidingWall(Type type, Entity* body, const sf::Vector2f& origin, float offset);
+	static void isCollidingWall(Type type, Entity* body, const sf::Vector2i& origin, float offset);
 	static void isCollidingSlopeTop(Entity* body, int row, int column, float slope);
 
 };

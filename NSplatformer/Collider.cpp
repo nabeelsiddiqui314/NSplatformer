@@ -2,7 +2,7 @@
 #include "Collider.h"
 
 void Collider::Collide(Entity* entity, const int tile, const int row, const int column) {
-	sf::Vector2f origin = {column * Data::tileSize, row * Data::tileSize};
+	sf::Vector2i origin = { column * Data::tileSize, row * Data::tileSize };
 	switch (tile) {
 	case 1:
 		CollisionDetector::isCollidingWall(CollisionDetector::Top, entity, origin, 0);
@@ -11,7 +11,7 @@ void Collider::Collide(Entity* entity, const int tile, const int row, const int 
 		CollisionDetector::isCollidingWall(CollisionDetector::Bottom, entity, origin, Data::tileSize);
 		break;
 	case 2:
-		CollisionDetector::isCollidingWall(CollisionDetector::Top, entity, origin, Data::tileSize);
+		//CollisionDetector::isCollidingWall(CollisionDetector::Top, entity, origin, Data::tileSize - 1);
 		break;
 	}
 }

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CollisionDetector.h"
 
-void CollisionDetector::isCollidingWall(Type type, Entity* body, const sf::Vector2f& origin, float offset) {
+void CollisionDetector::isCollidingWall(Type type, Entity* body, const sf::Vector2i& origin, float offset) {
 	switch (type) {
 	case Type::Top:
 	{
@@ -20,7 +20,7 @@ void CollisionDetector::isCollidingWall(Type type, Entity* body, const sf::Vecto
 		float oldY = body->getOldPos().y - origin.y;
 
 		if (y < offset && oldY > offset) {
-			body->stopJump();
+			body->stopJump(origin.y + offset);
 		}
 	}
 		break;

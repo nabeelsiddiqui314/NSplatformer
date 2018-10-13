@@ -5,8 +5,8 @@
 Entity::Entity() 
 	: m_velocity({0,0})
 	, m_isJumping(true)
-	, m_acceleration(0.8)
-	, m_friction(0.3)
+	, m_acceleration(4.8)
+	, m_friction(0.5)
 	, m_jumpPower(20) {
 	m_body.setFillColor(sf::Color::Red);
 }
@@ -33,8 +33,9 @@ void Entity::stopFall(float yPos) {
 	m_isJumping = false;
 }
 
-void Entity::stopJump() {
+void Entity::stopJump(float yPos) {
 	m_velocity.y = 0;
+	m_body.setPosition(m_body.getPosition().x, yPos);
 }
 
 void Entity::stopLateral(float xPos) {
@@ -42,13 +43,17 @@ void Entity::stopLateral(float xPos) {
 	m_body.setPosition(xPos, m_body.getPosition().y);
 }
 
+void Entity::fall() {
+	m_isJumping = true;
+}
+
 void Entity::update() {
+	m_oldPos = m_body.getPosition();
 	m_body.move(m_velocity);
 	m_velocity.x *= m_friction;
 	if (m_isJumping) {
 		m_velocity.y += Data::gravity;
 	}
-	m_oldPos = m_body.getPosition();
 }
 
 void Entity::render(sf::RenderWindow& window) {

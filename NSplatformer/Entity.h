@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Data.h"
+#include <iostream>
 
 class Entity
 {
@@ -12,11 +13,12 @@ public:
 	const sf::Vector2f& getOldPos() const;
 	const sf::Vector2f& getSize() const;
 	void stopFall(float yPos);
-	void stopJump();
+	void stopJump(float yPos);
 	void stopLateral(float xPos);
+	void fall();
 	void update();
 	void render(sf::RenderWindow& window);
-protected:
+//protected:
 	void setSize(const sf::Vector2f& size);
 	void walkRight();
 	void walkLeft();

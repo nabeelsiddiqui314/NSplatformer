@@ -73,21 +73,40 @@ void Map::render(sf::RenderWindow& window) {
 }
 
 void Map::handleCollisions(Entity* entity) {
+	if (entity->getPos().y + entity->getSize().y > Data::tileSize * m_mapDims.y) {
+		return;
+	}
+
+	int zeroCounter = 0;
+
 	int column = floor(entity->getPos().x / Data::tileSize);
 	int row = floor(entity->getPos().y / Data::tileSize);
 	int tile = m_lvl[column + row * m_mapDims.x];
-	Collider::Collide(entity, tile, row, column);
+	if (tile != 0)
+		Collider::Collide(entity, tile, row, column);
+	else zeroCounter++;
 
-	column = floor(entity->getPos().x + entity->getSize().x / Data::tileSize);
+	column = floor((entity->getPos().x + entity->getSize().x) / Data::tileSize);
 	tile = m_lvl[column + row * m_mapDims.x];
-	Collider::Collide(entity, tile, row, column);
+	if (tile != 0) 
+		Collider::Collide(entity, tile, row, column);
+	else zeroCounter++;
 
 	column = floor(entity->getPos().x / Data::tileSize);
-	row = floor(entity->getPos().y + entity->getSize().y / Data::tileSize);
-	Collider::Collide(entity, tile, row, column);
+	row = floor((entity->getPos().y + entity->getSize().y) / Data::tileSize);
+	tile = m_lvl[column + row * m_mapDims.x];
+	if (tile != 0)
+		Collider::Collide(entity, tile, row, column);
+	else zeroCounter++;
 
-	column = floor(entity->getPos().x + entity->getSize().x / Data::tileSize);
-	Collider::Collide(entity, tile, row, column);
+	column = floor((entity->getPos().x + entity->getSize().x) / Data::tileSize);
+	tile = m_lvl[column + row * m_mapDims.x];
+	if (tile != 0)
+		Collider::Collide(entity, tile, row, column);
+	else zeroCounter++;
+
+	if (zeroCounter == 4)
+		entity->fall();
 }
 
 Map::~Map() {

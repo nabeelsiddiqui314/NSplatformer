@@ -7,6 +7,8 @@ EntryPoint::EntryPoint() {
 	m.importTileset("tileset");
 	m.importLevel("Level1");
 	m.load();
+	e.setPos({0,0});
+	e.setSize({30, 30});
 }
 
 void EntryPoint::runloop() {
@@ -20,8 +22,20 @@ void EntryPoint::runloop() {
 		m_window.clear();
 		while (m_accumulator > m_ups) {
 			m_accumulator -= m_ups;
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+				e.jump();
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+				e.walkLeft();
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+				e.walkRight();
+			}
+			e.update();
+			m.handleCollisions(&e);
 		}
 		m.render(m_window);
+		e.render(m_window);
 		m_accumulator += m_clock.restart();
 		m_window.display();
 	}

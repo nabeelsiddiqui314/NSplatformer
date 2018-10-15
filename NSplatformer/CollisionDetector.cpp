@@ -31,7 +31,7 @@ void CollisionDetector::isCollidingWall(Type type, Entity* body, const sf::Vecto
 		float oldX = body->getOldPos().x + body->getSize().x - origin.x;
 
 		if (x > offset && oldX < offset) {
-			body->stopLateral(origin.x + offset - body->getSize().x);
+			body->stopLateral(origin.x + offset - body->getSize().x - 1);
 		}
 	}
 		break;
@@ -42,7 +42,7 @@ void CollisionDetector::isCollidingWall(Type type, Entity* body, const sf::Vecto
 		float oldX = body->getOldPos().x - origin.x;
 
 		if (x < offset && oldX > offset) {
-			body->stopLateral(origin.x + offset);
+			body->stopLateral(origin.x + offset + 1);
 		}
 	}
 		break;

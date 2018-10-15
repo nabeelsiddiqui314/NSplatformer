@@ -8,7 +8,7 @@ EntryPoint::EntryPoint() {
 	m.importLevel("Level1");
 	m.load();
 	e.setPos({0,0});
-	e.setSize({32, 32});
+	e.setSize({16, 30});
 }
 
 void EntryPoint::runloop() {

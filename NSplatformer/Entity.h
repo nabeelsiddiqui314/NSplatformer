@@ -15,7 +15,6 @@ public:
 	void stopFall(float yPos);
 	void stopJump(float yPos);
 	void stopLateral(float xPos);
-	void fall();
 	void update();
 	void render(sf::RenderWindow& window);
 //protected:

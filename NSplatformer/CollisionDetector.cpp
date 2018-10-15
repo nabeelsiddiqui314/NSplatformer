@@ -9,7 +9,7 @@ void CollisionDetector::isCollidingWall(Type type, Entity* body, const sf::Vecto
 		float oldY = body->getOldPos().y + body->getSize().y - origin.y;
 
 		if (y > offset && oldY < offset) {
-			body->stopFall(origin.y + offset - body->getSize().y);
+			body->stopFall(origin.y + offset - body->getSize().y - 1); // -1 is pushes he tile up so it falls back
 		}
 	}
 		break;

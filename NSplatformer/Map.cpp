@@ -31,7 +31,7 @@ void Map::importLevel(const std::string& levelPath) {
 	m_mapDims.y = std::stoi(temp, nullptr);
 	while (std::getline(m_levelFl, temp)) {
 		for (int i = 0; i < temp.length(); i++) {
-			int tileid;
+			int tileid = 0;
 			if (isdigit(temp[i])) {
 				if (i + 1 != temp.length()) {
 					if (isdigit(temp[i + 1])) {
@@ -43,7 +43,6 @@ void Map::importLevel(const std::string& levelPath) {
 						tileid = temp[i] - '0';
 					i++;
 				}
-				std::cout << tileid << std::endl;
 				if (tileid < 1 || tileid > m_tiles.size() - 1)  // checks whether the id is valid
 					tileid = 0;
 				m_lvl.emplace_back(tileid);

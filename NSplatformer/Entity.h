@@ -16,7 +16,7 @@ public:
 	void stopLateral(float xPos);
 	void update();
 	void render(sf::RenderWindow& window);
-//protected:
+protected:
 	void setSize(const sf::Vector2f& size);
 	void walkRight();
 	void walkLeft();

@@ -83,7 +83,10 @@ void Map::render(sf::RenderWindow& window) {
 }
 
 void Map::handleCollisions(Entity* entity) {
-	if (entity->getPos().y + entity->getSize().y > Data::tileSize * m_mapDims.y) {
+	if (entity->getPos().y + entity->getSize().y > Data::tileSize * m_mapDims.y
+		|| entity->getPos().x + entity->getSize().x > Data::tileSize * m_mapDims.x
+		|| entity->getPos().y < 0
+		|| entity->getPos().x < 0) {
 		return;
 	}
 

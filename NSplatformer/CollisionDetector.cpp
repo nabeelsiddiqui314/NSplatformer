@@ -20,7 +20,7 @@ void CollisionDetector::CollideWall(Type type, Entity* body, const sf::Vector2i&
 		float oldY = body->getOldPos().y - origin.y;
 
 		if (y < offset && oldY > offset) {
-			body->stopJump(origin.y + offset);
+			body->stopJump(origin.y + offset + 1);
 		}
 	}
 		break;

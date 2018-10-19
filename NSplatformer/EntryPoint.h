@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Data.h"
-#include "Map.h"
+#include "StateManager.h"
 
 class EntryPoint
 {

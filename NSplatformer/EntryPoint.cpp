@@ -4,6 +4,7 @@
 
 EntryPoint::EntryPoint() {
 	m_window.create(sf::VideoMode(992, 576), "NSP");
+	stateManager.setWindow(m_window);
 }
 
 void EntryPoint::runloop() {
@@ -17,8 +18,11 @@ void EntryPoint::runloop() {
 		m_window.clear();
 		while (m_accumulator > m_ups) {
 			m_accumulator -= m_ups;
+			stateManager.update();
 		}
 		m_accumulator += m_clock.restart();
+
+		stateManager.render();
 		m_window.display();
 	}
 }

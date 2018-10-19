@@ -157,6 +157,7 @@
     <ClInclude Include="Data.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntryPoint.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
@@ -168,6 +169,7 @@
     <ClCompile Include="CollisionDetector.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="NSplatformer.cpp" />
     <ClCompile Include="StateManager.cpp" />

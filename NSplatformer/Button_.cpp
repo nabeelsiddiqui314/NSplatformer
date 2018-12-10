@@ -30,7 +30,7 @@ void Button_::update(const sf::RenderWindow& window) {
 	switch (isHovering) {
 	case true:
 		m_button.setFillColor(sf::Color(224, 98, 35));
-		if (InputManager::isPressed(InputManager::MouseLeft) || InputManager::isPressed(InputManager::Enter)) {
+		if (InputManager::isReleased(InputManager::MouseLeft) || InputManager::isClicked(InputManager::Enter)) {
 			m_slot();
 		}
 			break;

@@ -3,6 +3,9 @@
 #include "Data.h"
 #include "StateManager.h"
 
+#include "InputManager.h"
+#include <iostream>
+
 class EntryPoint
 {
 public:

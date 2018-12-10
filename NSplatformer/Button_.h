@@ -6,6 +6,8 @@
 class Button_
 {
 public:
+	Button_();
+public:
 	void setPos(const sf::Vector2f& pos);
 	const sf::Vector2f& getPos() const;
 

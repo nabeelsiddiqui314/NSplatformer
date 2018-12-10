@@ -3,6 +3,7 @@
 
 class InputManager
 {
+	InputManager() = delete;
 public:
 	enum Button {
 		Enter = 0,
@@ -13,15 +14,15 @@ public:
 		ArrowLeft,
 		ArrowRight
 	};
-private:
-	InputManager();
 public:
-	static void getCurrentInput();
-	static void getOldInput();
-	static bool isPressed(Button button);
+	static void init();
+	static void getInput();
+	static void updateOldInput();
+	static bool isClicked(const Button& button);
+	static bool isReleased(const Button& button);
 private:
-	static void currentInputHandler(Button, bool condition);
-	static void oldInputHandler(Button button, bool condition);
+	static void detectCurrentInput(const Button&, bool condition);
+	static void updateInputFor(const Button& button);
 private:
 	static std::vector<bool> s_oldInput;
 	static std::vector<bool> s_currentInput;

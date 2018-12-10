@@ -1,7 +1,10 @@
 #include "stdafx.h"
 #include "InputManager.h"
 
-InputManager::InputManager() {
+std::vector<bool> InputManager::s_oldInput;
+std::vector<bool> InputManager::s_currentInput;
+
+void InputManager::init() {
 	int buttons = 7;
 	for (int i = 0; i < buttons; i++) {
 		s_oldInput.emplace_back(false);
@@ -9,34 +12,38 @@ InputManager::InputManager() {
 	}
 }
 
-void InputManager::getCurrentInput() {
-	currentInputHandler(Enter, sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
-	currentInputHandler(MouseLeft, sf::Mouse::isButtonPressed(sf::Mouse::Left));
-	currentInputHandler(MouseRight, sf::Mouse::isButtonPressed(sf::Mouse::Right));
-	currentInputHandler(ArrowUp, sf::Keyboard::isKeyPressed(sf::Keyboard::Up));
-	currentInputHandler(ArrowDown, sf::Keyboard::isKeyPressed(sf::Keyboard::Down));
-	currentInputHandler(ArrowLeft, sf::Keyboard::isKeyPressed(sf::Keyboard::Left));
-	currentInputHandler(ArrowRight, sf::Keyboard::isKeyPressed(sf::Keyboard::Right));
+void InputManager::getInput() {
+	detectCurrentInput(Enter, sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
+	detectCurrentInput(MouseLeft, sf::Mouse::isButtonPressed(sf::Mouse::Left));
+	detectCurrentInput(MouseRight, sf::Mouse::isButtonPressed(sf::Mouse::Right));
+	detectCurrentInput(ArrowUp, sf::Keyboard::isKeyPressed(sf::Keyboard::Up));
+	detectCurrentInput(ArrowDown, sf::Keyboard::isKeyPressed(sf::Keyboard::Down));
+	detectCurrentInput(ArrowLeft, sf::Keyboard::isKeyPressed(sf::Keyboard::Left));
+	detectCurrentInput(ArrowRight, sf::Keyboard::isKeyPressed(sf::Keyboard::Right));
 }
 
-void InputManager::getOldInput() {
-	oldInputHandler(Enter, sf::Keyboard::isKeyPressed(sf::Keyboard::Return));
-	oldInputHandler(MouseLeft, sf::Mouse::isButtonPressed(sf::Mouse::Left));
-	oldInputHandler(MouseRight, sf::Mouse::isButtonPressed(sf::Mouse::Right));
-	oldInputHandler(ArrowUp, sf::Keyboard::isKeyPressed(sf::Keyboard::Up));
-	oldInputHandler(ArrowDown, sf::Keyboard::isKeyPressed(sf::Keyboard::Down));
-	oldInputHandler(ArrowLeft, sf::Keyboard::isKeyPressed(sf::Keyboard::Left));
-	oldInputHandler(ArrowRight, sf::Keyboard::isKeyPressed(sf::Keyboard::Right));
+void InputManager::updateOldInput() {
+	updateInputFor(Enter);
+	updateInputFor(MouseLeft);
+	updateInputFor(MouseRight);
+	updateInputFor(ArrowUp);
+	updateInputFor(ArrowDown);
+	updateInputFor(ArrowLeft);
+	updateInputFor(ArrowRight);
 }
 
-bool InputManager::isPressed(Button button) {
+bool InputManager::isClicked(const Button& button) {
+	return !s_oldInput[static_cast<int>(button)] && s_currentInput[static_cast<int>(button)];
+}
+
+bool InputManager::isReleased(const Button& button) {
 	return s_oldInput[static_cast<int>(button)] && !s_currentInput[static_cast<int>(button)];
 }
 
-void InputManager::currentInputHandler(Button button, bool condition) {
+void InputManager::detectCurrentInput(const Button& button, bool condition) {
 	s_currentInput[static_cast<int>(button)] = condition;
 }
 
-void InputManager::oldInputHandler(Button button, bool condition) {
-	s_oldInput[static_cast<int>(button)] = condition;
+void InputManager::updateInputFor(const Button& button) {
+	s_oldInput[static_cast<int>(button)] = s_currentInput[static_cast<int>(button)];
 }

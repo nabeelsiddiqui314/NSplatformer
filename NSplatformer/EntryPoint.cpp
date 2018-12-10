@@ -4,7 +4,8 @@
 
 EntryPoint::EntryPoint() {
 	m_window.create(sf::VideoMode(992, 576), "NSP");
-	stateManager.setWindow(m_window);
+	InputManager::init();
+	//stateManager.setWindow(m_window);
 }
 
 void EntryPoint::runloop() {
@@ -18,11 +19,16 @@ void EntryPoint::runloop() {
 		m_window.clear();
 		while (m_accumulator > m_ups) {
 			m_accumulator -= m_ups;
-			stateManager.update();
+			InputManager::getInput();
+			//stateManager.update();
+			if (InputManager::isClicked(InputManager::ArrowUp)) {
+				std::cout << "gg ";
+			}
+			InputManager::updateOldInput();
 		}
 		m_accumulator += m_clock.restart();
 
-		stateManager.render();
+		//stateManager.render();
 		m_window.display();
 	}
 }

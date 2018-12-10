@@ -54,6 +54,9 @@
     <ClInclude Include="Button_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Gui_obj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -87,6 +90,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Button_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui_obj.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

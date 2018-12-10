@@ -21,9 +21,6 @@ void EntryPoint::runloop() {
 			m_accumulator -= m_ups;
 			InputManager::getInput();
 			//stateManager.update();
-			if (InputManager::isClicked(InputManager::ArrowUp)) {
-				std::cout << "gg ";
-			}
 			InputManager::updateOldInput();
 		}
 		m_accumulator += m_clock.restart();

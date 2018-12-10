@@ -2,22 +2,17 @@
 #include <SFML/Graphics.hpp>
 #include <functional>
 #include "InputManager.h"
+#include "Gui_obj.h"
 
-class Button_
+class Button_ : Gui_obj
 {
 public:
 	Button_();
 public:
-	void setPos(const sf::Vector2f& pos);
-	const sf::Vector2f& getPos() const;
-
 	void setLabel(const std::string& label);
 	void setSlot(std::function<void()> slot);
-
-	void update(const sf::RenderWindow& window);
-	void render(sf::RenderWindow& window);
+	void update(const sf::RenderWindow& window) override;
 private:
-	sf::Text m_button;
 	std::function<void()> m_slot;
 };
 

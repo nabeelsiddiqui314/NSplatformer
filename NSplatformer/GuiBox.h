@@ -12,7 +12,7 @@ public:
 
 	void setTitle(const std::string& text);
 	void addButton(const std::string& text);
-	void addSwapper(const std::string& text);
+	void addToggler(const std::string& text);
 private:
 	sf::RectangleShape m_body;
 	sf::Font m_font;

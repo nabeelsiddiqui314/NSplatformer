@@ -7,14 +7,22 @@ public:
 	void setPos(const sf::Vector2f& pos);
 	const sf::Vector2f& getPos() const;
 
-	virtual void update(const sf::RenderWindow& window) {}
-	void render(sf::RenderWindow& window);
+	void select();
+	void deselect();
+
+	bool isHovering(const sf::RenderWindow& window);
+
+	virtual void update() {}
+	virtual void render(sf::RenderWindow& window);
+
+	virtual ~Gui_obj() {}
 protected:
 	void init();
 	void setString(const std::string& string);
 	void setColor(const sf::Color& color);
-	bool isHovered(const sf::RenderWindow& window);
+	bool isSelected();
 private:
 	sf::Text m_text;
+	bool m_selected = false;
 };
 

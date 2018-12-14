@@ -14,8 +14,8 @@ void Button_::setSlot(std::function<void()> slot) {
 	m_slot = slot;
 }
 
-void Button_::update(const sf::RenderWindow& window) {
-	switch (isHovered(window)/* other condition to be added*/) {
+void Button_::update() {
+	switch (isSelected()) {
 	case true:
 		setColor(sf::Color(224, 98, 35));
 		if (InputManager::isReleased(InputManager::MouseLeft) || InputManager::isReleased(InputManager::Enter)) {

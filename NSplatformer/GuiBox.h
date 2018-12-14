@@ -1,7 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <memory>
 #include "InputManager.h"
+#include "Button_.h"
 
 class GuiBox
 {
@@ -16,5 +18,6 @@ public:
 private:
 	sf::RectangleShape m_body;
 	sf::Font m_font;
+	std::vector<std::shared_ptr<Gui_obj>> m_components;
 };
 

@@ -16,7 +16,19 @@ const sf::Vector2f& Gui_obj::getPos() const {
 	return m_text.getPosition();
 }
 
-void Gui_obj::render(sf::RenderWindow & window) {
+void Gui_obj::select() {
+	m_selected = true;
+}
+
+void Gui_obj::deselect() {
+	m_selected = false;
+}
+
+bool Gui_obj::isHovering(const sf::RenderWindow& window) {
+	return m_text.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
+}
+
+void Gui_obj::render(sf::RenderWindow& window) {
 	window.draw(m_text);
 }
 
@@ -28,6 +40,6 @@ void Gui_obj::setColor(const sf::Color& color) {
 	m_text.setFillColor(color);
 }
 
-bool Gui_obj::isHovered(const sf::RenderWindow& window) {
-	return m_text.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
+bool Gui_obj::isSelected() {
+	return m_selected;
 }

@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "EntryPoint.h"
 
-
 EntryPoint::EntryPoint() {
 	m_window.create(sf::VideoMode(992, 576), "NSP");
 	InputManager::init();
+	Resources::init();
 	//stateManager.setWindow(m_window);
 }
 

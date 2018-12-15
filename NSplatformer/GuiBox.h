@@ -1,7 +1,5 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include <memory>
+#include "Resources.h"
 #include "InputManager.h"
 #include "Button_.h"
 
@@ -13,11 +11,13 @@ public:
 	void setPos(const sf::Vector2f& pos);
 
 	void setTitle(const std::string& text);
-	void addButton(const std::string& text);
+	void addButton(const std::string& text, std::function<void()> slot);
 	void addToggler(const std::string& text);
+
+	void update(const sf::RenderWindow& window);
+	void render(sf::RenderWindow& window);
 private:
 	sf::RectangleShape m_body;
-	sf::Font m_font;
 	std::vector<std::shared_ptr<Gui_obj>> m_components;
 };
 

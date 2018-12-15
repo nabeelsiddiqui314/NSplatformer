@@ -15,11 +15,31 @@ void GuiBox::setTitle(const std::string& text) {
 
 }
 
-void GuiBox::addButton(const std::string& text) {
-	
-
+void GuiBox::addButton(const std::string& text, std::function<void()> slot) {
+	auto button = std::make_shared<Button_>();
+	button->setLabel(text);
+	button->setSlot(slot);
+	m_components.push_back(button);
 }
 
 void GuiBox::addToggler(const std::string& text) {
 
+}
+
+void GuiBox::update(const sf::RenderWindow& window) {
+	for (auto& component : m_components) {
+		if (component->isHovering(window)) {
+			component->select();
+		}
+		else {
+			component->deselect();
+		}
+		component->update();
+	}
+}
+
+void GuiBox::render(sf::RenderWindow& window) {
+	for (auto& component : m_components) {
+		component->render(window);
+	}
 }

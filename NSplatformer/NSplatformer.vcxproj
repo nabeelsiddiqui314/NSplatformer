@@ -162,6 +162,8 @@
     <ClInclude Include="Gui_obj.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="ResourceLoader.h" />
+    <ClInclude Include="Resources.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="stdafx.h" />
@@ -178,6 +180,7 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="NSplatformer.cpp" />
+    <ClCompile Include="Resources.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

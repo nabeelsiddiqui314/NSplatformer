@@ -1,8 +1,8 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include "Data.h"
 #include "StateManager.h"
 #include "InputManager.h"
+#include "Resources.h"
 
 class EntryPoint
 {

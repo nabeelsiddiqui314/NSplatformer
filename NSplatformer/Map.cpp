@@ -6,11 +6,10 @@ Map::Map() {
 	m_map.setPrimitiveType(sf::Quads);
 }
 
-void Map::importTileset(const std::string& tilesetPath) {
-	m_tileset.loadFromFile("./Tilesets/" + tilesetPath + ".png");
-
-	int tileNumX = m_tileset.getSize().x / Data::tileSize;
-	int tileNumY = m_tileset.getSize().y / Data::tileSize;
+void Map::importTileset(const std::string& tilesetName) {
+	m_tilesetName = tilesetName;
+	int tileNumX = Resources::textures.get(m_tilesetName).getSize().x / Data::tileSize;
+	int tileNumY = Resources::textures.get(m_tilesetName).getSize().y / Data::tileSize;
 
 	for (int y = 0; y < tileNumY; y++) {
 		for (int x = 0; x < tileNumX; x++) {
@@ -79,7 +78,7 @@ void Map::load() {
 }
 
 void Map::render(sf::RenderWindow& window) {
-	window.draw(m_map, &m_tileset);
+	window.draw(m_map, &Resources::textures.get(m_tilesetName));
 }
 
 void Map::handleCollisions(Entity* entity) {

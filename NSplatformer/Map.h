@@ -1,5 +1,5 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#include "Resources.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -16,7 +16,7 @@ public:
 	Map();
 	~Map();
 public:
-	void importTileset(const std::string& tilesetPath);
+	void importTileset(const std::string& tilesetName);
 	void importLevel(const std::string& levelPath);
 	void load();
 	void render(sf::RenderWindow& window);
@@ -24,10 +24,10 @@ public:
 	void handleCollisions(Entity* entity);
 private:
 	sf::VertexArray m_map;
-	sf::Texture m_tileset;
 	std::vector<Tile> m_tiles;
 	std::vector<int> m_lvl;
 	std::ifstream m_levelFl;
 	sf::Vector2i m_mapDims;
+	std::string m_tilesetName;
 };
 

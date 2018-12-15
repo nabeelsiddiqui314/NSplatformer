@@ -17,6 +17,9 @@ public:
 	void update(const sf::RenderWindow& window);
 	void render(sf::RenderWindow& window);
 private:
+	void placeComponent(std::shared_ptr<Gui_obj> component);
+private:
+	sf::Text m_title;
 	sf::RectangleShape m_body;
 	std::vector<std::shared_ptr<Gui_obj>> m_components;
 };

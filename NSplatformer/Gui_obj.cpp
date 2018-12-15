@@ -3,14 +3,22 @@
 
 void Gui_obj::init() {
 	m_text.setFont(Resources::fonts.get("8bitfont"));
-	m_text.setCharacterSize(80);
-	m_text.setOutlineThickness(1);
+	m_text.setCharacterSize(40);
+	m_text.setOutlineThickness(4);
 	m_text.setOutlineColor(sf::Color::Black);
 	m_text.setFillColor(sf::Color(222, 222, 237));
 }
 
 void Gui_obj::setPos(const sf::Vector2f& pos) {
 	m_text.setPosition(pos);
+}
+
+const float Gui_obj::height() const {
+	return m_text.getGlobalBounds().height;
+}
+
+const float Gui_obj::bottomPos() const {
+	return m_text.getPosition().y + m_text.getGlobalBounds().height;
 }
 
 const sf::Vector2f& Gui_obj::getPos() const {

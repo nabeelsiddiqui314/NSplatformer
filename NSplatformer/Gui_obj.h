@@ -5,6 +5,8 @@ class Gui_obj
 {
 public:
 	void setPos(const sf::Vector2f& pos);
+	const float height() const;
+	const float bottomPos() const;
 	const sf::Vector2f& getPos() const;
 
 	void select();

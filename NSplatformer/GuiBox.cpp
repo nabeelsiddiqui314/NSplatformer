@@ -44,14 +44,34 @@ void GuiBox::addToggler(const std::string& text) {
 }
 
 void GuiBox::update(const sf::RenderWindow& window) {
-	for (auto& component : m_components) {
-		if (component->isHovering(window)) {
-			component->select();
+	for (int i = 0; i < m_components.size(); i++) {
+		if (m_components[i]->isHovering(window)) {
+			m_components[i]->select();
+			m_selectedIndex = i;
+			for (int j = 0; j < m_components.size(); j++) {
+				if (m_components[i] != m_components[j]) {
+					m_components[j]->deselect();
+				}
+			}
 		}
 		else {
-			component->deselect();
+			if (InputManager::isClicked(InputManager::ArrowUp)) {
+				if (i == m_selectedIndex && i != 0) {
+					m_components[i]->deselect();
+					m_components[i - 1]->select();
+					m_selectedIndex--;
+				}
+			}
+			if (InputManager::isClicked(InputManager::ArrowDown)) {
+				if (i == m_selectedIndex && i != m_components.size() - 1) {
+					m_components[i]->deselect();
+					m_components[i + 1]->select();
+					m_selectedIndex++;
+					break; //to prevent it from incrementing in parellel with i to cause issues.
+				}
+			}
 		}
-		component->update();
+		m_components[i]->update();
 	}
 }
 
@@ -65,6 +85,9 @@ void GuiBox::render(sf::RenderWindow& window) {
 }
 
 void GuiBox::placeComponent(std::shared_ptr<Gui_obj> component) {
+	if (m_components.size() == 0) {
+		component->select();
+	}
 	float x = m_body.getPosition().x + Data::GUI_leftSpace;
 	if (m_components.size() == 0) {
 		component->setPos({ x, m_body.getPosition().y + m_title.getPosition().y + m_title.getGlobalBounds().height + Data::GUI_titleBottomSpace });

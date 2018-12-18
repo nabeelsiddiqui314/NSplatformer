@@ -22,5 +22,6 @@ private:
 	sf::Text m_title;
 	sf::RectangleShape m_body;
 	std::vector<std::shared_ptr<Gui_obj>> m_components;
+	int m_selectedIndex = 0;
 };
 

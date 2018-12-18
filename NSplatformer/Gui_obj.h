@@ -1,5 +1,6 @@
 #pragma once
 #include "Resources.h"
+#include "Data.h"
 
 class Gui_obj
 {

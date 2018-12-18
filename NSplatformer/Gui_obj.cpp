@@ -6,7 +6,7 @@ void Gui_obj::init() {
 	m_text.setCharacterSize(40);
 	m_text.setOutlineThickness(4);
 	m_text.setOutlineColor(sf::Color::Black);
-	m_text.setFillColor(sf::Color(222, 222, 237));
+	m_text.setFillColor(Data::GUI_white.color());
 }
 
 void Gui_obj::setPos(const sf::Vector2f& pos) {

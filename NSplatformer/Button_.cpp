@@ -17,13 +17,13 @@ void Button_::setSlot(std::function<void()> slot) {
 void Button_::update() {
 	switch (isSelected()) {
 	case true:
-		setColor(sf::Color(224, 98, 35));
+		setColor(Data::GUI_highlighted.color());
 		if (InputManager::isReleased(InputManager::MouseLeft) || InputManager::isReleased(InputManager::Enter)) {
 			m_slot();
 		}
 			break;
 	case false:
-		setColor(sf::Color(222, 222, 237));
+		setColor(Data::GUI_white.color());
 			break;
 	}
 }

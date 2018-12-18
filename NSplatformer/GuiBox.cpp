@@ -5,15 +5,15 @@
 GuiBox::GuiBox() {
 	m_body.setPosition({0, 0});
 	m_body.setSize({ 400, 90 });
-	m_body.setFillColor(sf::Color(128, 255, 0, 100));
+	m_body.setFillColor(Data::GUI_box.color() - sf::Color(0, 0, 0, 155));
 	m_body.setOutlineThickness(4);
-	m_body.setOutlineColor(sf::Color::Green);
+	m_body.setOutlineColor(Data::GUI_boxBorder.color());
 
 	//m_title.setFont(Resources::fonts.get("8bitfont"));
 	m_title.setCharacterSize(60);
 	m_title.setOutlineThickness(5);
 	m_title.setOutlineColor(sf::Color::Black);
-	m_title.setFillColor(sf::Color(224, 224, 224));
+	m_title.setFillColor(Data::GUI_title.color());
 }
 
 void GuiBox::setPos(const sf::Vector2f& pos) {
@@ -26,9 +26,9 @@ void GuiBox::setPos(const sf::Vector2f& pos) {
 }
 
 void GuiBox::setTitle(const std::string& text) {
-	m_title.setFont(Resources::fonts.get("8bitfont"));
+	m_title.setFont(Resources::fonts.get("8bitfont")); //temp
 	m_title.setString(text);
-	m_title.setPosition({m_body.getPosition().x + m_body.getSize().x / 2 - m_title.getGlobalBounds().width / 2, 0});
+	m_title.setPosition({m_body.getPosition().x + m_body.getSize().x / 2 - m_title.getGlobalBounds().width / 2, m_body.getPosition().y - m_title.getGlobalBounds().height + Data::GUI_titleTopSpace});
 }
 
 void GuiBox::addButton(const std::string& text, std::function<void()> slot) {
@@ -65,12 +65,12 @@ void GuiBox::render(sf::RenderWindow& window) {
 }
 
 void GuiBox::placeComponent(std::shared_ptr<Gui_obj> component) {
-	float x = m_body.getPosition().x + 20;
+	float x = m_body.getPosition().x + Data::GUI_leftSpace;
 	if (m_components.size() == 0) {
-		component->setPos({ x, m_body.getPosition().y + m_title.getPosition().y + m_title.getGlobalBounds().height + 20 });
+		component->setPos({ x, m_body.getPosition().y + m_title.getPosition().y + m_title.getGlobalBounds().height + Data::GUI_titleBottomSpace });
 	}
 	else {
-		component->setPos({ x, m_components[m_components.size() - 1]->bottomPos() + 5});
+		component->setPos({ x, m_components[m_components.size() - 1]->bottomPos() + Data::GUI_componentSpace});
 	}
-	m_body.setSize({m_body.getSize().x, m_body.getSize().y + component->height() + 5});
+	m_body.setSize({m_body.getSize().x, m_body.getSize().y + component->height() + Data::GUI_componentSpace });
 }

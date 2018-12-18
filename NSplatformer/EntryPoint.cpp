@@ -6,14 +6,14 @@ EntryPoint::EntryPoint() {
 	m_window.create(sf::VideoMode(992, 576), "NSP");
 	InputManager::init();
 	Resources::init();
-	//stateManager.setWindow(m_window);
+	stateManager.setWindow(m_window);
 	g.setTitle("Title");
 	g.addButton("Play", [] { std::cout << "play "; });
 	g.addButton("Settings", [] {std::cout << "set "; });
 	g.addButton("Credits", [] {std::cout << "cre "; });
 	g.addButton("Quit", [] {std::cout << "qui "; });
 
-	//g.setPos({ 400, 200 });
+	g.setPos({ 400, 200 });
 }
 
 void EntryPoint::runloop() {

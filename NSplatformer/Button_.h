@@ -3,6 +3,7 @@
 #include <functional>
 #include "InputManager.h"
 #include "Gui_obj.h"
+#include "Data.h"
 
 class Button_ : public Gui_obj
 {

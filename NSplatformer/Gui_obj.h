@@ -15,7 +15,7 @@ public:
 
 	bool isHovering(const sf::RenderWindow& window);
 
-	virtual void update() {}
+	virtual void update(const sf::RenderWindow& window) {}
 	virtual void render(sf::RenderWindow& window);
 
 	virtual ~Gui_obj() {}

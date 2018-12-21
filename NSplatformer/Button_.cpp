@@ -14,11 +14,14 @@ void Button_::setSlot(std::function<void()> slot) {
 	m_slot = slot;
 }
 
-void Button_::update() {
+void Button_::update(const sf::RenderWindow& window) {
 	switch (isSelected()) {
 	case true:
 		setColor(Data::GUI_highlighted.color());
-		if (InputManager::isReleased(InputManager::MouseLeft) || InputManager::isReleased(InputManager::Enter)) {
+		if (isHovering(window) && InputManager::isReleased(InputManager::MouseLeft)) {
+			m_slot();
+		}
+		if (InputManager::isReleased(InputManager::Enter)) {
 			m_slot();
 		}
 			break;

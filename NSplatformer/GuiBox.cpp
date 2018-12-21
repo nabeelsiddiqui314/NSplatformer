@@ -71,7 +71,7 @@ void GuiBox::update(const sf::RenderWindow& window) {
 				}
 			}
 		}
-		m_components[i]->update();
+		m_components[i]->update(window);
 	}
 }
 

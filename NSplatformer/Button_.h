@@ -12,7 +12,7 @@ public:
 public:
 	void setLabel(const std::string& label);
 	void setSlot(std::function<void()> slot);
-	void update() override;
+	void update(const sf::RenderWindow& window) override;
 private:
 	std::function<void()> m_slot;
 };

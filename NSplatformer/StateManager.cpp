@@ -16,8 +16,7 @@ void StateManager::setState(State* state) {
 }
 
 void StateManager::update() {
-	m_state->handleInput();
-	m_state->update();
+	m_state->update(*m_window);
 }
 
 void StateManager::render() {

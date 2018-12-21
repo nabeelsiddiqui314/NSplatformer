@@ -7,9 +7,6 @@ public:
 	State() {}
 	virtual ~State() {}
 public:
-	virtual void handleInput ()                         {};
-	virtual void update      ()                         {};
-	virtual void render      (sf::RenderWindow& window) {};
+	virtual void update (const sf::RenderWindow& window) {};
+	virtual void render (sf::RenderWindow& window) {};
 };
-
-

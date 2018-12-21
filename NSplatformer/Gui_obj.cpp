@@ -8,6 +8,7 @@ void Gui_obj::init() {
 	m_text.setOutlineColor(sf::Color::Black);
 	m_text.setFillColor(Data::GUI_white.color());
 	m_selectSound.setBuffer(Resources::soundBuffers.get("guiselect"));
+	m_selectSound.setVolume(50);
 }
 
 void Gui_obj::setPos(const sf::Vector2f& pos) {

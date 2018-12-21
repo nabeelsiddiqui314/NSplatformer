@@ -1,19 +1,12 @@
 #include "stdafx.h"
 #include "EntryPoint.h"
-#include <iostream>
 
 EntryPoint::EntryPoint() {
-	m_window.create(sf::VideoMode(992, 576), "NSP");
+	m_window.create(sf::VideoMode(Data::windowWidth, Data::windowHeight), "NSP");
 	InputManager::init();
 	Resources::init();
 	stateManager.setWindow(m_window);
-	g.setTitle("Spaget Title");
-	g.addButton("Play", [] { std::cout << "play "; });
-	g.addButton("Settings", [] {std::cout << "set "; });
-	g.addButton("Credits", [] {std::cout << "cre "; });
-	g.addButton("Quit", [] {std::cout << "qui "; });
-
-	g.setPos({ 400, 200 });
+	stateManager.setState(new Menu());
 }
 
 void EntryPoint::runloop() {
@@ -28,14 +21,12 @@ void EntryPoint::runloop() {
 		while (m_accumulator > m_ups) {
 			m_accumulator -= m_ups;
 			InputManager::getInput();
-			//stateManager.update();
-			g.update(m_window);
+			stateManager.update();
 			InputManager::updateOldInput();
 		}
 		m_accumulator += m_clock.restart();
 
-		g.render(m_window);
-		//stateManager.render();
+		stateManager.render();
 		m_window.display();
 	}
 }

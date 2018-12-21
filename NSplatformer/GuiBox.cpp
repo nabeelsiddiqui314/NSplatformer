@@ -4,12 +4,12 @@
 
 GuiBox::GuiBox() {
 	m_body.setPosition({0, 0});
-	m_body.setSize({ 400, 90 });
+	m_body.setSize({ 300, 120 });
 	m_body.setFillColor(Data::GUI_box.color() - sf::Color(0, 0, 0, 155));
 	m_body.setOutlineThickness(4);
 	m_body.setOutlineColor(Data::GUI_boxBorder.color());
 
-	//m_title.setFont(Resources::fonts.get("8bitfont"));
+	m_title.setFont(Resources::fonts.get("8bitfont"));
 	m_title.setCharacterSize(60);
 	m_title.setOutlineThickness(5);
 	m_title.setOutlineColor(sf::Color::Black);
@@ -25,8 +25,11 @@ void GuiBox::setPos(const sf::Vector2f& pos) {
 	}
 }
 
+const sf::Vector2f& GuiBox::getSize() const {
+	return m_body.getSize();
+}
+
 void GuiBox::setTitle(const std::string& text) {
-	m_title.setFont(Resources::fonts.get("8bitfont")); //temp
 	m_title.setString(text);
 	m_title.setPosition({m_body.getPosition().x + m_body.getSize().x / 2 - m_title.getGlobalBounds().width / 2, m_body.getPosition().y - m_title.getGlobalBounds().height + Data::GUI_titleTopSpace});
 }

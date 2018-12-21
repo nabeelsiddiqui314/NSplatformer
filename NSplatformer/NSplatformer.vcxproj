@@ -162,6 +162,7 @@
     <ClInclude Include="Gui_obj.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="ResourceLoader.h" />
     <ClInclude Include="Resources.h" />
     <ClInclude Include="State.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="Gui_obj.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="NSplatformer.cpp" />
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="StateManager.cpp" />

@@ -9,6 +9,7 @@ public:
 	GuiBox();
 public:
 	void setPos(const sf::Vector2f& pos);
+	const sf::Vector2f& getSize() const;
 
 	void setTitle(const std::string& text);
 	void addButton(const std::string& text, std::function<void()> slot);

@@ -11,5 +11,6 @@ void Resources::init() {
 	soundBuffers.init("audio", "wav");
 
 	fonts.add("thinPix", "8bitfont");
+	soundBuffers.add("guiselect");
 }
 

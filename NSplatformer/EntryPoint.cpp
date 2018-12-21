@@ -7,7 +7,7 @@ EntryPoint::EntryPoint() {
 	InputManager::init();
 	Resources::init();
 	stateManager.setWindow(m_window);
-	g.setTitle("Title");
+	g.setTitle("Spaget Title");
 	g.addButton("Play", [] { std::cout << "play "; });
 	g.addButton("Settings", [] {std::cout << "set "; });
 	g.addButton("Credits", [] {std::cout << "cre "; });

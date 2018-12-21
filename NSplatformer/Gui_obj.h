@@ -24,8 +24,12 @@ protected:
 	void setString(const std::string& string);
 	void setColor(const sf::Color& color);
 	bool isSelected();
+protected:
+	sf::Sound m_interactSound;
 private:
 	sf::Text m_text;
+	sf::Sound m_selectSound;
 	bool m_selected = false;
+	bool m_selectedLastFrame = false;
 };
 

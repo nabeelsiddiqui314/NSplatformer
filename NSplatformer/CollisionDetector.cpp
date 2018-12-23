@@ -9,8 +9,8 @@ void CollisionDetector::Collide(Entity* body, const sf::Vector2i& origin) {
 		body->stopFall(origin.y - body->getSize().y - 1); // -1 is pushes he tile up so it falls back
 	}
 
-	float y = body->getPos().y - origin.y;
-	float oldY = body->getOldPos().y - origin.y;
+	y = body->getPos().y - origin.y;
+	oldY = body->getOldPos().y - origin.y;
 
 	if (y < Data::tileSize && oldY > Data::tileSize) {
 		body->stopJump(origin.y + Data::tileSize + 1);
@@ -23,8 +23,8 @@ void CollisionDetector::Collide(Entity* body, const sf::Vector2i& origin) {
 		body->stopLateral(origin.x + 0 - body->getSize().x - 1);
 	}
 
-	float x = body->getPos().x - origin.x;
-	float oldX = body->getOldPos().x - origin.x;
+	x = body->getPos().x - origin.x;
+	oldX = body->getOldPos().x - origin.x;
 
 	if (x < Data::tileSize && oldX > Data::tileSize) {
 		body->stopLateral(origin.x + Data::tileSize + 1);

@@ -43,7 +43,7 @@ void Entity::stopLateral(float xPos) {
 	m_body.setPosition(xPos, m_body.getPosition().y);
 }
 
-void Entity::update() {
+void Entity::generalUpdate() {
 	m_oldPos = m_body.getPosition();
 	m_body.move(m_velocity);
 	m_velocity.x *= m_friction;

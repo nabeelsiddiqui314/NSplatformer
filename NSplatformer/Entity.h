@@ -14,9 +14,10 @@ public:
 	void stopFall(float yPos);
 	void stopJump(float yPos);
 	void stopLateral(float xPos);
-	void update();
+	virtual void update() {}
 	void render(sf::RenderWindow& window);
 protected:
+	void generalUpdate();
 	void setSize(const sf::Vector2f& size);
 	void walkRight();
 	void walkLeft();

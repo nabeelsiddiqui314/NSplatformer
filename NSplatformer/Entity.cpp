@@ -2,16 +2,11 @@
 #include "Entity.h"
 
 
-Entity::Entity() 
-	: m_velocity({0,0})
-	, m_isJumping(true)
-	, m_acceleration(4.8)
-	, m_friction(0.5)
-	, m_jumpPower(20) {
-	m_body.setFillColor(sf::Color::Red);
+Entity::Entity() {
+	m_animation.setRect(&m_body);
 }
 
-void Entity::setPos(const sf::Vector2f & pos) {
+void Entity::setPos(const sf::Vector2f& pos) {
 	m_body.setPosition(pos);
 }
 
@@ -54,17 +49,22 @@ void Entity::render(sf::RenderWindow& window) {
 	window.draw(m_body);
 }
 
+void Entity::setTexture(const std::string& name) {
+	m_body.setTexture(&Resources::textures.get(name));
+}
+
 void Entity::setSize(const sf::Vector2f& size) {
 	m_body.setSize(size);
 }
 
 void Entity::walkLeft() {
 	m_velocity.x -= m_acceleration;
+	m_direction = Left;
 }
-
 
 void Entity::walkRight() {
 	m_velocity.x += m_acceleration;
+	m_direction = Right;
 }
 
 void Entity::jump() {

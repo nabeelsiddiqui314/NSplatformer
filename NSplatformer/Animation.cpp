@@ -1,10 +1,16 @@
 #include "stdafx.h"
 #include "Animation.h"
 
-void Animation::init(sf::RectangleShape* rect, const sf::Vector2i& size, const sf::Vector2i& defaultFrame) {
+void Animation::setRect(sf::RectangleShape* rect) {
 	m_rect = rect;
+}
+
+void Animation::setSize(const sf::Vector2i& size) {
 	m_size = size;
-	m_rect->setTextureRect({m_size.x * defaultFrame.x, m_size.y * defaultFrame.y, m_size.x, m_size.y });
+}
+
+void Animation::setFrame(int row, int frame) {
+	m_rect->setTextureRect({ m_size.x * row, m_size.y * frame, m_size.x, m_size.y });
 }
 
 void Animation::animate(int row, int frames, int dt) {

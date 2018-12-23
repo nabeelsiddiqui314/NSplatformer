@@ -1,10 +1,12 @@
 #pragma once
-#include "Resources.h"
+#include <SFML/Graphics.hpp>
 
 class Animation
 {
 public:
-	void init(sf::RectangleShape* rect, const sf::Vector2i& size, const sf::Vector2i& defaultFrame);
+	void setRect(sf::RectangleShape* rect);
+	void setSize(const sf::Vector2i& size);
+	void setFrame(int row, int frame);
 	void animate(int row, int frames, int dt);
 private:
 	sf::RectangleShape* m_rect;

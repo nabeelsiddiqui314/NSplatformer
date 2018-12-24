@@ -81,7 +81,7 @@ void Map::render(sf::RenderWindow& window) {
 	window.draw(m_map, &Resources::textures.get(m_tilesetName));
 }
 
-void Map::handleCollisions(Entity* entity) {
+void Map::handleCollisions(Entity* entity) const {
 	if (entity->getPos().y + entity->getSize().y > Data::tileSize * m_mapDims.y
 		|| entity->getPos().x + entity->getSize().x > Data::tileSize * m_mapDims.x
 		|| entity->getPos().y < 0

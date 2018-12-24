@@ -21,7 +21,7 @@ public:
 	void load();
 	void render(sf::RenderWindow& window);
 
-	void handleCollisions(Entity* entity);
+	void handleCollisions(Entity* entity) const;
 private:
 	sf::VertexArray m_map;
 	std::vector<Tile> m_tiles;

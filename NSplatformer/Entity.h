@@ -12,6 +12,7 @@ protected:
 	};
 public:
 	Entity();
+	virtual ~Entity() {}
 public:
 	void setPos(const sf::Vector2f& pos);
 	const sf::Vector2f& getPos() const;
@@ -20,8 +21,11 @@ public:
 	void stopFall(float yPos);
 	void stopJump(float yPos);
 	void stopLateral(float xPos);
+	bool isCollidingWith(Entity* entity) const;
+
 	virtual void update() = 0;
 	virtual void render(sf::RenderWindow& window);
+	virtual void interact(Entity* entity) {}
 protected:
 	void setTexture(const std::string& name);
 	void generalUpdate();
@@ -36,6 +40,7 @@ protected:
 	double m_friction = 0.5;
 	double m_jumpPower = 20;
 	bool m_isJumping = true;
+	int m_id;
 private:
 	sf::RectangleShape m_body;
 	sf::Vector2f m_velocity = {0,0};

@@ -38,6 +38,10 @@ void Entity::stopLateral(float xPos) {
 	m_body.setPosition(xPos, m_body.getPosition().y);
 }
 
+bool Entity::isCollidingWith(Entity* entity) const {
+	return m_body.getGlobalBounds().intersects(entity->m_body.getGlobalBounds());
+}
+
 void Entity::generalUpdate() {
 	m_oldPos = m_body.getPosition();
 	m_body.move(m_velocity);

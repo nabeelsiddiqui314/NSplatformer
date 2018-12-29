@@ -14,10 +14,10 @@ private:
 	};
 public:
 	Map();
-	~Map();
 public:
+	void getDimensions(const sf::Vector2i& dim);
 	void importTileset(const std::string& tilesetName);
-	void importLevel(const std::string& levelPath);
+	void importLevel(std::vector<int>& level);
 	void load();
 	void render(sf::RenderWindow& window);
 
@@ -25,9 +25,8 @@ public:
 private:
 	sf::VertexArray m_map;
 	std::vector<Tile> m_tiles;
-	std::vector<int> m_lvl;
-	std::ifstream m_levelFl;
-	sf::Vector2i m_mapDims;
+	std::vector<int>* m_lvl;
+	sf::Vector2i m_dimensions;
 	std::string m_tilesetName;
 };
 

@@ -6,7 +6,7 @@ Map::Map() {
 	m_map.setPrimitiveType(sf::Quads);
 }
 
-void Map::getDimensions(const sf::Vector2i& dim) {
+void Map::setDimensions(const sf::Vector2i& dim) {
 	m_dimensions = dim;
 }
 

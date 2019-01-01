@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "LevelParser.h"
 
-void LevelParser::parseMap(const std::string& filepath) {
-	m_mapFile.open("./Maps/" + filepath + ".txt");
+void LevelParser::parseMap(const std::string& name) {
+	m_mapFile.open("./Levels/" + name + "/map.txt");
 	std::string temp;
 	std::getline(m_mapFile, temp);
 	m_dimensions.x = std::stoi(temp, nullptr);
@@ -35,8 +35,46 @@ void LevelParser::parseMap(const std::string& filepath) {
 	}
 }
 
-void LevelParser::parseObjects(const std::string& filepath) {
+void LevelParser::parseObjects(const std::string& name) {
+	m_objFile.open("Levels/" + name + "/obj.txt");
+	std::string temp;
 
+	auto setValue = [&](int line, int& val) { 
+		for (int i = 0; i < line; i++) { // gets line
+			std::getline(m_objFile, temp);
+		}
+
+		val = 0;
+		for (int i = 0; i < temp.size() - 1; i++) { // reads the value no matter how big
+			val += (temp[0] - '0') * (temp.size() - 1 - i);
+		}
+	};
+
+		int id;
+		int parameter;
+		int x, y;
+	while (std::getline(m_objFile, temp)) {
+		sf::Vector2f pos = {0,0};
+		if (temp == "\"properties\":[") {
+			setValue(4, id);
+			setValue(5, parameter);
+			setValue(6, x);
+			setValue(1, y);
+
+			ObjectInfo inf;
+			inf.id = id;
+			inf.parameter = parameter;
+			inf.pos = {static_cast<float>(x), static_cast<float>(y)};
+		}
+	}
+}
+
+const std::string& LevelParser::getTilesetName() const {
+	return m_tilesetname;
+}
+
+const sf::Vector2i& LevelParser::getDimensions() const {
+	return m_dimensions;
 }
 
 std::vector<int>& LevelParser::getMap() {

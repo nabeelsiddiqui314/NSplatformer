@@ -2,7 +2,7 @@
 #include "DynamicManager.h"
 
 
-void DynamicManager::setMap(const Map* map) {
+void DynamicManager::setMap(std::shared_ptr<const Map> map) {
 	m_map = map;
 }
 

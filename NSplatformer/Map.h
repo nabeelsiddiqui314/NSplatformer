@@ -15,7 +15,7 @@ private:
 public:
 	Map();
 public:
-	void getDimensions(const sf::Vector2i& dim);
+	void setDimensions(const sf::Vector2i& dim);
 	void importTileset(const std::string& tilesetName);
 	void importLevel(std::vector<int>& level);
 	void load();

@@ -7,16 +7,16 @@ class LevelParser
 {
 public:
 	struct ObjectInfo {
-		std::string type;
-		std::string parameter;
+		int id;
+		int parameter;
 		sf::Vector2f pos;
 	};
 public:
-	void parseMap(const std::string& filepath);
-	void parseObjects(const std::string& filepath);
+	void parseMap(const std::string& name);
+	void parseObjects(const std::string& name);
 
 	const std::string& getTilesetName() const;
-	const sf::Vector2i& dimensions() const;
+	const sf::Vector2i& getDimensions() const;
 	std::vector<int>& getMap();
 	const std::vector<ObjectInfo>& getObjects() const;
 private:

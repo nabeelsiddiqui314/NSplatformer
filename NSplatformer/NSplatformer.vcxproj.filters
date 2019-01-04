@@ -84,6 +84,9 @@
     <ClInclude Include="LevelParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IDmanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -144,6 +147,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LevelParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IDmanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -161,6 +161,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntryPoint.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameView.h" />
     <ClInclude Include="GuiBox.h" />
     <ClInclude Include="Gui_obj.h" />
     <ClInclude Include="IDmanager.h" />
@@ -186,6 +187,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntryPoint.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameView.cpp" />
     <ClCompile Include="GuiBox.cpp" />
     <ClCompile Include="Gui_obj.cpp" />
     <ClCompile Include="IDmanager.cpp" />

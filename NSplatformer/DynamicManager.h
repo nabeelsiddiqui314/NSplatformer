@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "WorldObj.h"
 #include "Map.h"
+#include "GameView.h"
 
 class DynamicManager
 {
@@ -12,7 +13,7 @@ public:
 	void addEntity(Entity* entity, const sf::Vector2f& pos);
 	void addWordObj(WorldObj* worldobj, const sf::Vector2f& pos);
 	void update();
-	void render(sf::RenderWindow& window);
+	void render(sf::RenderWindow& window, const GameView& view);
 private:
 	std::shared_ptr<const Map> m_map;
 	std::vector<Entity*> m_entities;

@@ -7,7 +7,7 @@ class GameView
 public:
 	void setSize(const sf::Vector2f& size);
 	void setWorldSize(const sf::Vector2f& size);
-	void moveCamera(const sf::Vector2f& deltaPos);
+	void moveCamera(const sf::Vector2f& pos, const sf::Vector2f& deltaPos);
 	void setView(sf::RenderWindow& window);
 	bool isInView(const sf::Vector2f& pos, const sf::Vector2f& size) const;
 private:

@@ -1,10 +1,13 @@
 #include "stdafx.h"
 #include "GameView.h"
 
+void GameView::setPos(const sf::Vector2f& pos) {
+	m_view.setCenter(pos);
+}
+
 void GameView::setSize(const sf::Vector2f& size) {
 	m_size = size;
 	m_view.setSize(size);
-	m_view.setCenter({600, 500});
 }
 
 void GameView::setWorldSize(const sf::Vector2f& size) {

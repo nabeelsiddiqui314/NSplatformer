@@ -5,6 +5,7 @@
 class GameView
 {
 public:
+	void setPos(const sf::Vector2f& pos);
 	void setSize(const sf::Vector2f& size);
 	void setWorldSize(const sf::Vector2f& size);
 	void moveCamera(const sf::Vector2f& pos, const sf::Vector2f& deltaPos);

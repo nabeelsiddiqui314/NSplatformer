@@ -1,20 +1,20 @@
 #include "stdafx.h"
 #include "IDmanager.h"
 
-const int IDmanager::getObject(const Objects& obj) const {
+const IDmanager::Type& IDmanager::getObjectType(int id) {
+	return 0; //temp
+}
+
+const int IDmanager::getObjectName(const Objects& obj) {
 	return static_cast<int>(obj);
 }
 
-Entity* IDmanager::createEntity(int id, int parameter) {
-	switch (id) {
-		
-	}
-	return nullptr; // temp
+Entity* IDmanager::getNewEntity(int id, int parameter) {
+	return nullptr; //temp
 }
 
-WorldObj* IDmanager::createWorldobj(int id, int parameter) {
-	switch (id) {
-
-	}
-	return nullptr;
+WorldObj* IDmanager::getNewWorldObj(int id, int parameter) {
+	return nullptr; //temp
 }
+
+

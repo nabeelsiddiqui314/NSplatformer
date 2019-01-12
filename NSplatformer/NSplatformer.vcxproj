@@ -166,7 +166,6 @@
     <ClInclude Include="Gui_obj.h" />
     <ClInclude Include="IDmanager.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="Level.h" />
     <ClInclude Include="LevelParser.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Menu.h" />
@@ -192,7 +191,6 @@
     <ClCompile Include="Gui_obj.cpp" />
     <ClCompile Include="IDmanager.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelParser.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Menu.cpp" />

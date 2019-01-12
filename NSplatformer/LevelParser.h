@@ -12,11 +12,13 @@ public:
 		sf::Vector2f pos;
 	};
 public:
+	~LevelParser();
 	void parseMap(const std::string& name);
 	void parseObjects(const std::string& name);
 
 	const std::string& getTilesetName() const;
 	const sf::Vector2i& getDimensions() const;
+	const sf::FloatRect& getGoalRegion() const;
 	std::vector<int>& getMap();
 	const std::vector<ObjectInfo>& getObjects() const;
 private:
@@ -28,5 +30,6 @@ private:
 
 	std::string m_tilesetname;
 	sf::Vector2i m_dimensions;
+	sf::FloatRect m_goal;
 };
 

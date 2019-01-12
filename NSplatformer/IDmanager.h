@@ -6,12 +6,17 @@ class IDmanager
 {
 	IDmanager() = delete;
 public:
+	enum Type {
+		ENTITY = 0,
+		WORLDOBJ
+	};
 	enum Objects { //enum values represent id of all objects
-		Player = 0
+		PLAYER = 0
 	};
 public:
-	const int getObject(const Objects& obj) const;
-	Entity* createEntity(int id, int parameter);
-	WorldObj* createWorldobj(int id, int parameter);
+	static const Type& getObjectType(int id);
+	static const int getObjectName(const Objects& obj);
+	static Entity* getNewEntity(int id, int parameter);
+	static WorldObj* getNewWorldObj(int id, int parameter);
 };
 

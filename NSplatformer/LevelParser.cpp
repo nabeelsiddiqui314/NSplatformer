@@ -1,9 +1,12 @@
 #include "stdafx.h"
 #include "LevelParser.h"
 
+
 void LevelParser::parseMap(const std::string& name) {
 	m_mapFile.open("./Levels/" + name + "/map.txt");
 	std::string temp;
+	std::getline(m_mapFile, temp);
+	m_tilesetname = temp;
 	std::getline(m_mapFile, temp);
 	m_dimensions.x = std::stoi(temp, nullptr);
 	std::getline(m_mapFile, temp);
@@ -83,10 +86,19 @@ const sf::Vector2i& LevelParser::getDimensions() const {
 	return m_dimensions;
 }
 
+const sf::FloatRect& LevelParser::getGoalRegion() const {
+	// TODO: insert return statement here
+}
+
 std::vector<int>& LevelParser::getMap() {
 	return m_map;
 }
 
 const std::vector<LevelParser::ObjectInfo>& LevelParser::getObjects() const {
 	return m_objects;
+}
+
+LevelParser::~LevelParser() {
+	m_mapFile.close();
+	m_objFile.close();
 }

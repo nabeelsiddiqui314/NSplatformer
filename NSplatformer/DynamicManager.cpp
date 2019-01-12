@@ -33,14 +33,14 @@ void DynamicManager::update() {
 }
 
 void DynamicManager::render(sf::RenderWindow& window, const GameView& view) {
-	for (WorldObj* worldobj : m_worldobjs) {
-		if (view.isInView(worldobj->getPos(), worldobj->getSize())) {
-			worldobj->render(window);
-		}
-	}
 	for (Entity* entity : m_entities) {
 		if (view.isInView(entity->getPos(), entity->getSize())) {
 			entity->render(window);
+		}
+	}
+	for (WorldObj* worldobj : m_worldobjs) {
+		if (view.isInView(worldobj->getPos(), worldobj->getSize())) {
+			worldobj->render(window);
 		}
 	}
 }

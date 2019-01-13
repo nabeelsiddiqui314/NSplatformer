@@ -5,7 +5,7 @@ const IDmanager::Type& IDmanager::getObjectType(int id) {
 	return Type::ENTITY; //temp
 }
 
-const int IDmanager::getObjectName(const Objects& obj) {
+const int IDmanager::getObjectID(const Objects& obj) {
 	return static_cast<int>(obj);
 }
 

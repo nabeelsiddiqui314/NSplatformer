@@ -45,6 +45,10 @@ void DynamicManager::render(sf::RenderWindow& window, const GameView& view) {
 	}
 }
 
+const Entity* DynamicManager::getEntityAt(int index) const {
+	return m_entities[index];
+}
+
 DynamicManager::~DynamicManager() {
 	for (WorldObj* worldobj : m_worldobjs) {
 		delete worldobj;

@@ -10,7 +10,7 @@ void GameView::setSize(const sf::Vector2f& size) {
 	m_view.setSize(size);
 }
 
-void GameView::setWorldSize(const sf::Vector2f& size) {
+void GameView::setWorldSize(const sf::Vector2i& size) {
 	m_worldSize = size;
 }
 

@@ -15,7 +15,7 @@ public:
 	};
 public:
 	static const Type& getObjectType(int id);
-	static const int getObjectName(const Objects& obj);
+	static const int getObjectID(const Objects& obj);
 	static Entity* getNewEntity(int id, int parameter);
 	static WorldObj* getNewWorldObj(int id, int parameter);
 };

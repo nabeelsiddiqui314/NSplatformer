@@ -22,5 +22,6 @@ private:
 	std::unique_ptr<DynamicManager> m_objects;
 	std::shared_ptr<Map> m_map;
 	GameView m_gameView;
+	const Entity* m_playerPtr;
 };
 

@@ -2,7 +2,7 @@
 #include "EntryPoint.h"
 
 EntryPoint::EntryPoint() {
-	m_window.create(sf::VideoMode(Data::windowWidth, Data::windowHeight), "NSP");
+	m_window.create(sf::VideoMode(Data::window::width, Data::window::height), "NSP");
 	InputManager::init();
 	Resources::init();
 	stateManager.setWindow(m_window);

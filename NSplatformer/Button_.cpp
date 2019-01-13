@@ -17,7 +17,7 @@ void Button_::setSlot(std::function<void()> slot) {
 void Button_::update(const sf::RenderWindow& window) {
 	switch (isSelected()) {
 	case true:
-		setColor(Data::GUI_highlighted.color());
+		setColor(Data::Gui::highlighted.color());
 		if (isHovering(window) && InputManager::isReleased(InputManager::MouseLeft)) {
 			m_slot();
 		}
@@ -26,7 +26,7 @@ void Button_::update(const sf::RenderWindow& window) {
 		}
 			break;
 	case false:
-		setColor(Data::GUI_white.color());
+		setColor(Data::Gui::white.color());
 			break;
 	}
 }

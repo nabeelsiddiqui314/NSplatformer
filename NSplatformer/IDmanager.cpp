@@ -2,7 +2,7 @@
 #include "IDmanager.h"
 
 const IDmanager::Type& IDmanager::getObjectType(int id) {
-	return 0; //temp
+	return Type::ENTITY; //temp
 }
 
 const int IDmanager::getObjectName(const Objects& obj) {

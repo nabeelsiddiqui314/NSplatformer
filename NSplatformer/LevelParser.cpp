@@ -87,7 +87,7 @@ const sf::Vector2i& LevelParser::getDimensions() const {
 }
 
 const sf::FloatRect& LevelParser::getGoalRegion() const {
-	// TODO: insert return statement here
+	return { 0,0,0,0 };
 }
 
 std::vector<int>& LevelParser::getMap() {

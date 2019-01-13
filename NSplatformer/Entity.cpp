@@ -46,7 +46,7 @@ void Entity::generalUpdate() {
 	m_oldPos = m_body.getPosition();
 	m_body.move(m_velocity);
 	m_velocity.x *= m_friction;
-	m_velocity.y += Data::gravity;
+	m_velocity.y += Data::physConsts::gravity;
 }
 
 void Entity::render(sf::RenderWindow& window) {

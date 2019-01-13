@@ -8,18 +8,26 @@ struct RGB {
 	}
 };
 
-struct Data {
-	static constexpr int windowWidth = 992;
-	static constexpr int windowHeight = 576;
-	static constexpr int tileSize = 32;
-	static constexpr float gravity = 1.2;
-	static constexpr int GUI_titleTopSpace = 8;
-	static constexpr int GUI_titleBottomSpace = 75;
-	static constexpr int GUI_leftSpace = 40;
-	static constexpr int GUI_componentSpace = 5;
-	static constexpr RGB GUI_title = { 224, 224, 224 };
-	static constexpr RGB GUI_white = { 222, 222, 237 };
-	static constexpr RGB GUI_highlighted = { 224, 98, 35 };
-	static constexpr RGB GUI_box = { 128, 255, 0 };
-	static constexpr RGB GUI_boxBorder = { 128, 235, 0 };
-};
+namespace Data {
+	struct physConsts {
+		static constexpr float gravity = 1.2;
+	};
+	struct window {
+		static constexpr int width = 992;
+		static constexpr int height = 576;
+	};
+	struct tile {
+		static constexpr int size = 32;
+	};
+	struct Gui {
+		static constexpr int titleTopSpace = 8;
+		static constexpr int titleBottomSpace = 75;
+		static constexpr int leftSpace = 40;
+		static constexpr int componentSpace = 5;
+		static constexpr RGB title = { 224, 224, 224 };
+		static constexpr RGB white = { 222, 222, 237 };
+		static constexpr RGB highlighted = { 224, 98, 35 };
+		static constexpr RGB box = { 128, 255, 0 };
+		static constexpr RGB boxBorder = { 128, 235, 0 };
+	};
+}

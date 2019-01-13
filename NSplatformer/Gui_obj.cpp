@@ -6,7 +6,7 @@ void Gui_obj::init() {
 	m_text.setCharacterSize(40);
 	m_text.setOutlineThickness(4);
 	m_text.setOutlineColor(sf::Color::Black);
-	m_text.setFillColor(Data::GUI_white.color());
+	m_text.setFillColor(Data::Gui::white.color());
 	m_selectSound.setBuffer(Resources::soundBuffers.get("guiselect"));
 	m_selectSound.setVolume(50);
 }

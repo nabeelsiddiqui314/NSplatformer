@@ -63,6 +63,7 @@ void LevelParser::parseObjects(const std::string& name) {
 		int id;
 		int parameter;
 		int x, y;
+		int width, height;
 	while (std::getline(m_objFile, temp)) {
 		if (temp.substr(1, 3) == "gid") { // it is at evry starting point of an object data section
 			setValue(0, id);
@@ -74,6 +75,18 @@ void LevelParser::parseObjects(const std::string& name) {
 			inf.id = id;
 			inf.parameter = parameter;
 			inf.pos = {static_cast<float>(x), static_cast<float>(y)};
+		}
+		else if (temp.substr() == "height") {
+			setValue(0, height);
+			for (int i = 0; i < 2; i++) {
+				std::getline(m_objFile, temp);
+			}
+			if (temp.substr(8, 4) == "Goal") {
+				setValue(4, width);
+				setValue(1, x);
+				setValue(1, y);
+				m_goal = {x, y, width, height};
+			}
 		}
 	}
 }
@@ -87,7 +100,7 @@ const sf::Vector2i& LevelParser::getDimensions() const {
 }
 
 const sf::FloatRect& LevelParser::getGoalRegion() const {
-	return { 0,0,0,0 };
+	return m_goal;
 }
 
 std::vector<int>& LevelParser::getMap() {

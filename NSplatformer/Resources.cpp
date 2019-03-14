@@ -12,5 +12,6 @@ void Resources::init() {
 
 	fonts.add("thinPix", "8bitfont");
 	soundBuffers.add("guiselect");
+	textures.add("player");
 }
 

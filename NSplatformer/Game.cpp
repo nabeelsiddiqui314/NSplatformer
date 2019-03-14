@@ -14,7 +14,7 @@ void Game::update(const sf::RenderWindow& window) {
 	m_objects->update();
 	m_gameView.moveCamera(m_playerPtr->getPos(), { m_playerPtr->getPos().x - m_playerPtr->getOldPos().x,
 		m_playerPtr->getPos().y - m_playerPtr->getOldPos().y });
-	if (sf::FloatRect(m_playerPtr->getPos(), m_playerPtr->getSize()).intersects(m_parser->getGoalRegion())) {
+	if (sf::FloatRect(m_playerPtr->getPos(), m_playerPtr->getSize()).intersects(m_goalRegion)) {
 		stateManager.setState(new Game("level_n"));
 	}
 }
@@ -33,6 +33,7 @@ inline void Game::init(const std::string& levelFolder) {
 	m_gameView.setWorldSize({m_parser->getDimensions().x * Data::tile::size,  m_parser->getDimensions().y * Data::tile::size });
 	m_gameView.setSize({static_cast<float>(Data::camera::width), static_cast<float>(Data::camera::height)});
 	m_objects->setMap(m_map);
+	m_goalRegion = m_parser->getGoalRegion();
 
 	int entityIndex = 0;
 	for (auto& info : m_parser->getObjects()) {

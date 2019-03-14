@@ -3,7 +3,7 @@
 
 
 Entity::Entity() {
-	m_animation.setRect(&m_body);
+	p_animation.setRect(&m_body);
 }
 
 void Entity::setPos(const sf::Vector2f& pos) {
@@ -45,7 +45,7 @@ bool Entity::isCollidingWith(Entity* entity) const {
 void Entity::generalUpdate() {
 	m_oldPos = m_body.getPosition();
 	m_body.move(m_velocity);
-	m_velocity.x *= m_friction;
+	m_velocity.x *= p_friction;
 	m_velocity.y += Data::physConsts::gravity;
 }
 
@@ -62,18 +62,26 @@ void Entity::setSize(const sf::Vector2f& size) {
 }
 
 void Entity::walkLeft() {
-	m_velocity.x -= m_acceleration;
+	m_velocity.x -= p_acceleration;
 	m_direction = Left;
 }
 
 void Entity::walkRight() {
-	m_velocity.x += m_acceleration;
+	m_velocity.x += p_acceleration;
 	m_direction = Right;
 }
 
 void Entity::jump() {
 	if (!m_isJumping) {
-		m_velocity.y -= m_jumpPower;
+		m_velocity.y -= p_jumpPower;
 		m_isJumping = true;
 	}
+}
+
+bool Entity::isJumping() {
+	return m_isJumping;
+}
+
+Entity::Direction Entity::getDirection() const {
+	return m_direction;
 }

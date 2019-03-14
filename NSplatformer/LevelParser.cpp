@@ -85,7 +85,7 @@ void LevelParser::parseObjects(const std::string& name) {
 				setValue(4, width);
 				setValue(1, x);
 				setValue(1, y);
-				m_goal = {x, y, width, height};
+				m_goal = {(float)x, (float)y, (float)width, (float)height};
 			}
 		}
 	}

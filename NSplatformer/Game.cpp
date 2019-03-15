@@ -3,7 +3,7 @@
 
 
 Game::Game() {
-	this->init("level_1");
+	this->init("1");
 }
 
 Game::Game(const std::string& levelFolder) {
@@ -20,16 +20,22 @@ void Game::update(const sf::RenderWindow& window) {
 }
 
 void Game::render(sf::RenderWindow& window) {
-	m_gameView.setView(window);
+	//m_gameView.setView(window);
 	m_map->render(window);
 	m_objects->render(window, m_gameView);
 }
 
 inline void Game::init(const std::string& levelFolder) {
-	m_parser->parseMap("levels/" + levelFolder + "/map.txt");
-	m_parser->parseObjects("levels/" + levelFolder + "/obj.txt");
+	m_parser = new LevelParser();
+	m_map = new Map();
+	m_objects = new DynamicManager();
+
+	m_parser->parseMap("./Levels/" + levelFolder + "/map.txt");
+	m_parser->parseObjects("./Levels/" + levelFolder + "/obj.txt");
 	m_map->importTileset(m_parser->getTilesetName());
 	m_map->importLevel(m_parser->getMap());
+	m_map->setDimensions(m_parser->getDimensions());
+	m_map->load();
 	m_gameView.setWorldSize({m_parser->getDimensions().x * Data::tile::size,  m_parser->getDimensions().y * Data::tile::size });
 	m_gameView.setSize({static_cast<float>(Data::camera::width), static_cast<float>(Data::camera::height)});
 	m_objects->setMap(m_map);
@@ -50,4 +56,10 @@ inline void Game::init(const std::string& levelFolder) {
 			m_objects->addWordObj(IDmanager::getNewWorldObj(info.id, info.parameter), info.pos);
 		}
 	}
+}
+
+Game::~Game() {
+	delete m_parser;
+	delete m_map;
+	delete m_objects;
 }

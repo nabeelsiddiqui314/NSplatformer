@@ -1,9 +1,8 @@
 #include "stdafx.h"
 #include "LevelParser.h"
 
-
 void LevelParser::parseMap(const std::string& name) {
-	m_mapFile.open("./Levels/" + name + "/map.txt");
+	m_mapFile.open(name);
 	std::string temp;
 	std::getline(m_mapFile, temp);
 	m_tilesetname = temp;
@@ -40,7 +39,7 @@ void LevelParser::parseMap(const std::string& name) {
 }
 
 void LevelParser::parseObjects(const std::string& name) {
-	m_objFile.open("Levels/" + name + "/obj.txt");
+	m_objFile.open(name);
 	std::string temp;
 
 	auto setValue = [&](int line, int& val) { 
@@ -65,7 +64,7 @@ void LevelParser::parseObjects(const std::string& name) {
 		int x, y;
 		int width, height;
 	while (std::getline(m_objFile, temp)) {
-		if (temp.substr(1, 3) == "gid") { // it is at evry starting point of an object data section
+		if (temp.size() > 4 && temp.substr(1, 3) == "gid") { // it is at evry starting point of an object data section
 			setValue(0, id);
 			setValue(8, parameter);
 			setValue(6, x);
@@ -75,8 +74,10 @@ void LevelParser::parseObjects(const std::string& name) {
 			inf.id = id;
 			inf.parameter = parameter;
 			inf.pos = {static_cast<float>(x), static_cast<float>(y)};
+
+			m_objects.push_back(inf);
 		}
-		else if (temp.substr() == "height") {
+		else if (temp.size() > 6 && temp.substr(1, 6) == "height") {
 			setValue(0, height);
 			for (int i = 0; i < 2; i++) {
 				std::getline(m_objFile, temp);

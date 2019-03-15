@@ -9,7 +9,7 @@ class DynamicManager
 public:
 	~DynamicManager();
 public:
-	void setMap(std::shared_ptr<const Map> map);
+	void setMap(const Map* map);
 	void addEntity(Entity* entity, const sf::Vector2f& pos);
 	void addWordObj(WorldObj* worldobj, const sf::Vector2f& pos);
 	void update();
@@ -17,7 +17,7 @@ public:
 
 	const Entity* getEntityAt(int index) const;
 private:
-	std::shared_ptr<const Map> m_map;
+	const Map* m_map;
 	std::vector<Entity*> m_entities;
 	std::vector<WorldObj*> m_worldobjs;
 };

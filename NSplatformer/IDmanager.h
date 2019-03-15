@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include "WorldObj.h"
+#include "Player.h"
 
 class IDmanager
 {

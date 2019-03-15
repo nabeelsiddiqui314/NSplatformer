@@ -2,7 +2,7 @@
 #include "DynamicManager.h"
 
 
-void DynamicManager::setMap(std::shared_ptr<const Map> map) {
+void DynamicManager::setMap(const Map* map) {
 	m_map = map;
 }
 
@@ -34,14 +34,14 @@ void DynamicManager::update() {
 
 void DynamicManager::render(sf::RenderWindow& window, const GameView& view) {
 	for (Entity* entity : m_entities) {
-		if (view.isInView(entity->getPos(), entity->getSize())) {
+		//if (view.isInView(entity->getPos(), entity->getSize())) {
 			entity->render(window);
-		}
+		//}
 	}
 	for (WorldObj* worldobj : m_worldobjs) {
-		if (view.isInView(worldobj->getPos(), worldobj->getSize())) {
+		//if (view.isInView(worldobj->getPos(), worldobj->getSize())) {
 			worldobj->render(window);
-		}
+		//}
 	}
 }
 

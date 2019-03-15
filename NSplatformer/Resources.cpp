@@ -12,6 +12,9 @@ void Resources::init() {
 
 	fonts.add("thinPix", "8bitfont");
 	soundBuffers.add("guiselect");
+
+	//temp
 	textures.add("player");
+	textures.add("testTileset");
 }
 

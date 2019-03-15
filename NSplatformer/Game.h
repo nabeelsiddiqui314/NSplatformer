@@ -12,15 +12,16 @@ class Game : public State
 public:
 	Game(); // if used outside the class
 	Game(const std::string& levelFolder);
+	~Game();
 public:
 	void update(const sf::RenderWindow& window) override;
 	void render(sf::RenderWindow& window) override;
 private:
 	inline void init(const std::string& levelFolder);
 private:
-	std::unique_ptr<LevelParser> m_parser;
-	std::unique_ptr<DynamicManager> m_objects;
-	std::shared_ptr<Map> m_map;
+	LevelParser* m_parser;
+	DynamicManager* m_objects;
+	Map* m_map;
 	GameView m_gameView;
 	const Entity* m_playerPtr;
 	sf::FloatRect m_goalRegion;

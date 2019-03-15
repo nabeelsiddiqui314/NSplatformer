@@ -1,0 +1,28 @@
+"gid":0,
+"height":32,
+"id":2,
+"name":"",
+"properties":[
+       {
+        "name":"parameter",
+        "type":"string",
+        "value":"herro"
+       }],
+"rotation":90,
+"type":"",
+"visible":true,
+"width":32,
+"x":12,
+"y":41,
+, 
+
+"height":33,
+"id":6,
+"name":"Goal",
+"rotation":0,
+"type":"",
+"visible":true,
+"width":22,
+"x":232,
+"y":219,
+],

@@ -15,12 +15,12 @@ void Game::update(const sf::RenderWindow& window) {
 	m_gameView.moveCamera(m_playerPtr->getPos(), { m_playerPtr->getPos().x - m_playerPtr->getOldPos().x,
 		m_playerPtr->getPos().y - m_playerPtr->getOldPos().y });
 	if (sf::FloatRect(m_playerPtr->getPos(), m_playerPtr->getSize()).intersects(m_goalRegion)) {
-		stateManager.setState(new Game("level_n"));
+		//stateManager.setState(new Game("level_n"));
 	}
 }
 
 void Game::render(sf::RenderWindow& window) {
-	//m_gameView.setView(window);
+	m_gameView.setView(window);
 	m_map->render(window);
 	m_objects->render(window, m_gameView);
 }

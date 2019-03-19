@@ -61,5 +61,6 @@ void GameView::setView(sf::RenderWindow& window) {
 }
 
 bool GameView::isInView(const sf::Vector2f& pos, const sf::Vector2f& size) const {
-	return m_view.getViewport().intersects({pos, size});
+	return sf::FloatRect( {m_view.getCenter().x - m_view.getSize().x / 2, m_view.getCenter().y - m_view.getSize().y / 2 }, 
+		                   m_view.getSize()).intersects({ pos, size });
 }

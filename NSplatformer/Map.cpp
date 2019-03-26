@@ -63,24 +63,51 @@ void Map::handleCollisions(Entity* entity) const {
 		return;
 	}
 
-	int column = floor(entity->getPos().x / Data::tile::size);
+	//Tesing the TOP
 	int row = floor(entity->getPos().y / Data::tile::size);
+	int column = floor(entity->getPos().x / Data::tile::size);
 	int tile = m_lvl->at(column + row * m_dimensions.x);
 	if (tile != 0)
-	Collider::Collide(entity, tile, row, column);
+		Collider::Collide(entity, tile, row, column);
 
 	column = floor((entity->getPos().x + entity->getSize().x) / Data::tile::size);
 	tile = m_lvl->at(column + row * m_dimensions.x);
 	if (tile != 0) 
-	Collider::Collide(entity, tile, row, column);
+		Collider::Collide(entity, tile, row, column);
 
-	column = floor(entity->getPos().x / Data::tile::size);
+	// Testing the BOTTOM
 	row = floor((entity->getPos().y + entity->getSize().y) / Data::tile::size);
+	column = floor(entity->getPos().x / Data::tile::size);
 	tile = m_lvl->at(column + row * m_dimensions.x);
 	if (tile != 0)
-	Collider::Collide(entity, tile, row, column);
+		Collider::Collide(entity, tile, row, column);
 
 	column = floor((entity->getPos().x + entity->getSize().x) / Data::tile::size);
 	tile = m_lvl->at(column + row * m_dimensions.x);
-	Collider::Collide(entity, tile, row, column);
+	if (tile != 0)
+		Collider::Collide(entity, tile, row, column);
+
+	//Testing the LEFT
+	column = column = floor(entity->getPos().x / Data::tile::size);
+	row = floor(entity->getPos().y / Data::tile::size);
+	tile = m_lvl->at(column + row * m_dimensions.x);
+	if (tile != 0)
+		Collider::Collide(entity, tile, row, column);
+
+	row = floor((entity->getPos().y + entity->getSize().y) / Data::tile::size);
+	tile = m_lvl->at(column + row * m_dimensions.x);
+	if (tile != 0)
+		Collider::Collide(entity, tile, row, column);
+
+	//Testing the RIGHT
+	column = floor((entity->getPos().x + entity->getSize().x) / Data::tile::size);
+	row = floor(entity->getPos().y / Data::tile::size);
+	tile = m_lvl->at(column + row * m_dimensions.x);
+	if (tile != 0)
+		Collider::Collide(entity, tile, row, column);
+
+	row = floor((entity->getPos().y + entity->getSize().y) / Data::tile::size);
+	tile = m_lvl->at(column + row * m_dimensions.x);
+	if (tile != 0)
+		Collider::Collide(entity, tile, row, column);
 }

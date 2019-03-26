@@ -42,9 +42,18 @@ void LevelParser::parseObjects(const std::string& name) {
 	m_objFile.open(name);
 	std::string temp;
 
+	auto getClearedLine = [&]() {
+		for (int i = 0; i < temp.size(); i ++) {
+			if (temp[i] != ' ') {
+				temp.erase(0, i);
+			}
+		}
+	};
+
 	auto setValue = [&](int line, int& val) { 
 		for (int i = 0; i < line; i++) { // gets line
 			std::getline(m_objFile, temp);
+			getClearedLine();
 		}
 
 		val = 0;
@@ -64,6 +73,7 @@ void LevelParser::parseObjects(const std::string& name) {
 		int x, y;
 		int width, height;
 	while (std::getline(m_objFile, temp)) {
+		getClearedLine();
 		if (temp.size() > 4 && temp.substr(1, 3) == "gid") { // it is at evry starting point of an object data section
 			setValue(0, id);
 			setValue(8, parameter);
@@ -81,6 +91,7 @@ void LevelParser::parseObjects(const std::string& name) {
 			setValue(0, height);
 			for (int i = 0; i < 2; i++) {
 				std::getline(m_objFile, temp);
+				getClearedLine();
 			}
 			if (temp.substr(8, 4) == "Goal") {
 				setValue(4, width);

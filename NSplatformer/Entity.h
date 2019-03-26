@@ -37,9 +37,9 @@ protected:
 	Direction getDirection() const;
 protected:
 	Animation p_animation;
-	double p_acceleration = 4.8;
+	double p_acceleration = 2.8;
 	double p_friction = 0.5;
-	double p_jumpPower = 20;
+	double p_jumpPower = 25;
 private:
 	sf::RectangleShape m_body;
 	sf::Vector2f m_velocity = {0,0};

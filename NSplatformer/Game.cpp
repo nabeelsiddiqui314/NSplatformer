@@ -12,15 +12,15 @@ Game::Game(const std::string& levelFolder) {
 
 void Game::update(const sf::RenderWindow& window) {
 	m_objects->update();
-	m_gameView.moveCamera(m_playerPtr->getPos(), { m_playerPtr->getPos().x - m_playerPtr->getOldPos().x,
+	m_gameView.moveCamera(m_playerPtr->getPos(), m_playerPtr->getSize(), { m_playerPtr->getPos().x - m_playerPtr->getOldPos().x,
 		m_playerPtr->getPos().y - m_playerPtr->getOldPos().y });
 	if (sf::FloatRect(m_playerPtr->getPos(), m_playerPtr->getSize()).intersects(m_goalRegion)) {
-		//stateManager.setState(new Game("level_n"));
+		stateManager.setState(new Game("1"));
 	}
 }
 
 void Game::render(sf::RenderWindow& window) {
-	m_gameView.setView(window);
+	window.setView(m_gameView.getView());
 	m_map->render(window);
 	m_objects->render(window, m_gameView);
 }

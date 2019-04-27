@@ -19,6 +19,8 @@ namespace Data {
 	struct camera {
 		static constexpr int width = 992/2;
 		static constexpr int height = 576 / 2;
+		static constexpr int smoothness = 20;
+		static constexpr int foresight = 50;
 	};
 	struct tile {
 		static constexpr int size = 32;

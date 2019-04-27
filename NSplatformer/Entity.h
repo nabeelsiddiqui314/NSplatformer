@@ -22,6 +22,7 @@ public:
 	void stopJump(float yPos);
 	void stopLateral(float xPos);
 	bool isCollidingWith(Entity* entity) const;
+	bool isJumping() const;
 
 	virtual void update() = 0;
 	virtual void render(sf::RenderWindow& window);
@@ -33,7 +34,6 @@ protected:
 	void walkRight();
 	void walkLeft();
 	void jump();
-	bool isJumping();
 	Direction getDirection() const;
 protected:
 	Animation p_animation;

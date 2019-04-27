@@ -79,7 +79,7 @@ void Entity::jump() {
 	}
 }
 
-bool Entity::isJumping() {
+bool Entity::isJumping() const {
 	return m_isJumping;
 }
 

@@ -12,8 +12,16 @@ Game::Game(const std::string& levelFolder) {
 
 void Game::update(const sf::RenderWindow& window) {
 	m_objects->update();
-	m_gameView.moveCamera(m_playerPtr->getPos(), m_playerPtr->getSize(), { m_playerPtr->getPos().x - m_playerPtr->getOldPos().x,
-		m_playerPtr->getPos().y - m_playerPtr->getOldPos().y });
+
+	//camera
+	if (m_playerPtr->getPos().x - m_playerPtr->getOldPos().x > 0) {
+		m_gameView.setFocus(GameView::Right);
+	}
+	else if (m_playerPtr->getPos().x - m_playerPtr->getOldPos().x < 0) {
+		m_gameView.setFocus(GameView::Left);
+	}
+
+	m_gameView.moveCamera({m_playerPtr->getPos().x + m_playerPtr->getSize().x / 2, m_playerPtr->getPos().y + m_playerPtr->getSize().y / 2}, m_playerPtr->isJumping());
 	if (sf::FloatRect(m_playerPtr->getPos(), m_playerPtr->getSize()).intersects(m_goalRegion)) {
 		stateManager.setState(new Game("1"));
 	}
@@ -38,6 +46,7 @@ inline void Game::init(const std::string& levelFolder) {
 	m_map->load();
 	m_gameView.setWorldSize({m_parser->getDimensions().x * Data::tile::size,  m_parser->getDimensions().y * Data::tile::size });
 	m_gameView.setSize({static_cast<float>(Data::camera::width), static_cast<float>(Data::camera::height)});
+	m_gameView.setFocus(GameView::Right);
 	m_objects->setMap(m_map);
 	m_goalRegion = m_parser->getGoalRegion();
 

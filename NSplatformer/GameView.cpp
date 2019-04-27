@@ -14,45 +14,26 @@ void GameView::setWorldSize(const sf::Vector2i& size) {
 	m_worldSize = size;
 }
 
-void GameView::moveCamera(const sf::Vector2f& pos, const sf::Vector2f& size, const sf::Vector2f& deltaPos) {
-	float x, y;
-	bool left = false, right = false, top = false, bottom = false;
-	if (pos.x - deltaPos.x + size.x/2 <= m_camSize.x/2) {
-		left = true;
-		x = 0;
-		
+void GameView::setFocus(const Dir & dir) {
+	m_dir = dir;
+}
+
+void GameView::moveCamera(const sf::Vector2f& playerPos, bool isJumping) {
+	float dx = 0, dy = 0;
+	if (m_dir == Left) {
+		dx = (playerPos.x - m_view.getCenter().x - Data::camera::foresight) / Data::camera::smoothness;
 	}
-	else if (m_camSize.x/2 + pos.x + deltaPos.x - size.x/2 >= m_worldSize.x) {
-		right = true;
-		x = 0;
-		
+	else if (m_dir == Right) {
+		dx = (playerPos.x - m_view.getCenter().x + Data::camera::foresight) / Data::camera::smoothness;
+	}
+	if (!isJumping) {
+		dy = (playerPos.y - m_view.getCenter().y) / Data::camera::smoothness;
 	}
 	else {
-		x = deltaPos.x;
+		dy = 0;
 	}
+	m_view.setCenter(dx + m_view.getCenter().x, dy + m_view.getCenter().y);
 
-	if (pos.y - deltaPos.y + size.x/2 <= m_camSize.y/2) {
-		top = true;
-		y = 0;
-		
-	}
-	else if(m_camSize.y/2 + pos.y + deltaPos.y - size.y/2 >= m_worldSize.y) {
-		bottom = true;
-		y = 0;
-	}
-	else {
-		y = deltaPos.y;
-	}
-	m_view.move({x, y});
-
-	 if(left)
-		 m_view.setCenter(m_camSize.x / 2, m_view.getCenter().y);
-	 if(right)
-		 m_view.setCenter(m_worldSize.x - m_camSize.x / 2, m_view.getCenter().y);
-	 if(top)
-		 m_view.setCenter(m_view.getCenter().x, m_camSize.y / 2);
-	 if(bottom)
-		 m_view.setCenter(m_view.getCenter().x, m_worldSize.y - m_camSize.y / 2);
 }
 
 const sf::View& GameView::getView() const {

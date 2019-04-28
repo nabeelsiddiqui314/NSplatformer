@@ -11,7 +11,7 @@ Player::Player() {
 }
 
 void Player::update() {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+	if (InputManager::isClicked(InputManager::W)) {
 		this->jump();
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {

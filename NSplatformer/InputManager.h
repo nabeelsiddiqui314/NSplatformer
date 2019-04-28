@@ -12,7 +12,8 @@ public:
 		ArrowUp,
 		ArrowDown,
 		ArrowLeft,
-		ArrowRight
+		ArrowRight,
+		W
 	};
 public:
 	static void init();

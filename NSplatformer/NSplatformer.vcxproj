@@ -157,6 +157,7 @@
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CollisionDetector.h" />
     <ClInclude Include="Data.h" />
+    <ClInclude Include="Direction.h" />
     <ClInclude Include="DynamicManager.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntryPoint.h" />

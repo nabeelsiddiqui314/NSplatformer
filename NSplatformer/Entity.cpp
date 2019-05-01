@@ -64,12 +64,12 @@ void Entity::setSize(const sf::Vector2f& size) {
 
 void Entity::walkLeft() {
 	m_velocity.x -= p_acceleration;
-	m_direction = Left;
+	m_direction = xDirection::LEFT;
 }
 
 void Entity::walkRight() {
 	m_velocity.x += p_acceleration;
-	m_direction = Right;
+	m_direction = xDirection::RIGHT;
 }
 
 void Entity::jump() {
@@ -83,6 +83,6 @@ bool Entity::isJumping() const {
 	return m_isJumping;
 }
 
-Entity::Direction Entity::getDirection() const {
+xDirection Entity::getDirection() const {
 	return m_direction;
 }

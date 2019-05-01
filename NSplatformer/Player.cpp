@@ -23,10 +23,10 @@ void Player::update() {
 		this->walkRight();
 	}
 	if (this->isJumping()) {
-		if (this->getDirection() == Left) {
+		if (this->getDirection() == xDirection::LEFT) {
 			p_animation.animate(0, 9, 100);
 		}
-		else if (this->getDirection() == Right) {
+		else if (this->getDirection() == xDirection::RIGHT) {
 			p_animation.animate(2, 9, 100);
 		}
 	}

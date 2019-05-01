@@ -14,16 +14,16 @@ void GameView::setWorldSize(const sf::Vector2i& size) {
 	m_worldSize = size;
 }
 
-void GameView::setFocus(const Dir & dir) {
-	m_dir = dir;
+void GameView::setFocus(const xDirection & dir) {
+	m_playerDir = dir;
 }
 
 void GameView::moveCamera(const sf::Vector2f& playerPos, bool isJumping) {
 	float dx = 0, dy = 0;
-	if (m_dir == Left) {
+	if (m_playerDir == xDirection::LEFT) {
 		dx = (playerPos.x - m_view.getCenter().x - Data::camera::foresight) / Data::camera::smoothness;
 	}
-	else if (m_dir == Right) {
+	else if (m_playerDir == xDirection::RIGHT) {
 		dx = (playerPos.x - m_view.getCenter().x + Data::camera::foresight) / Data::camera::smoothness;
 	}
 	if (!isJumping) {

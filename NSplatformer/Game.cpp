@@ -14,14 +14,9 @@ void Game::update(const sf::RenderWindow& window) {
 	m_objects->update();
 
 	//camera
-	if (m_playerPtr->getPos().x - m_playerPtr->getOldPos().x > 0) {
-		m_gameView.setFocus(GameView::Right);
-	}
-	else if (m_playerPtr->getPos().x - m_playerPtr->getOldPos().x < 0) {
-		m_gameView.setFocus(GameView::Left);
-	}
-
+	m_gameView.setFocus(m_playerPtr->getDirection());
 	m_gameView.moveCamera({m_playerPtr->getPos().x + m_playerPtr->getSize().x / 2, m_playerPtr->getPos().y + m_playerPtr->getSize().y / 2}, m_playerPtr->isJumping());
+	
 	if (sf::FloatRect(m_playerPtr->getPos(), m_playerPtr->getSize()).intersects(m_goalRegion)) {
 		stateManager.setState(new Game("1"));
 	}
@@ -46,22 +41,21 @@ inline void Game::init(const std::string& levelFolder) {
 	m_map->load();
 	m_gameView.setWorldSize({m_parser->getDimensions().x * Data::tile::size,  m_parser->getDimensions().y * Data::tile::size });
 	m_gameView.setSize({static_cast<float>(Data::camera::width), static_cast<float>(Data::camera::height)});
-	m_gameView.setFocus(GameView::Right);
 	m_objects->setMap(m_map);
 	m_goalRegion = m_parser->getGoalRegion();
 
 	int entityIndex = 0;
 	for (auto& info : m_parser->getObjects()) {
-		if (IDmanager::getObjectType(info.id) == IDmanager::ENTITY) {
+		if (IDmanager::getObjectType(info.id) == IDmanager::Type::ENTITY) {
 			m_objects->addEntity(IDmanager::getNewEntity(info.id, info.parameter), info.pos);
-			if (info.id == IDmanager::getObjectID(IDmanager::PLAYER)) {
+			if (info.id == IDmanager::getObjectID(IDmanager::Objects::PLAYER)) {
 				m_playerPtr = m_objects->getEntityAt(entityIndex);
 				m_gameView.setPos({ m_playerPtr->getPos().x + m_playerPtr->getSize().x / 2,
 								    m_playerPtr->getPos().y + m_playerPtr->getSize().y / 2 });
 			}
 			entityIndex++;
 		}
-		else if (IDmanager::getObjectType(info.id) == IDmanager::WORLDOBJ) {
+		else if (IDmanager::getObjectType(info.id) == IDmanager::Type::WORLDOBJ) {
 			m_objects->addWordObj(IDmanager::getNewWorldObj(info.id, info.parameter), info.pos);
 		}
 	}

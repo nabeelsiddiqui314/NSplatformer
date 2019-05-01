@@ -2,14 +2,10 @@
 #include "Data.h"
 #include "Resources.h"
 #include "Animation.h"
+#include "Direction.h"
 
 class Entity
 {
-protected:
-	enum Direction {
-		Right,
-		Left
-	};
 public:
 	Entity();
 	virtual ~Entity() {}
@@ -23,6 +19,7 @@ public:
 	void stopLateral(float xPos);
 	bool isCollidingWith(Entity* entity) const;
 	bool isJumping() const;
+	xDirection getDirection() const;
 
 	virtual void update() = 0;
 	virtual void render(sf::RenderWindow& window);
@@ -34,8 +31,7 @@ protected:
 	void walkRight();
 	void walkLeft();
 	void jump();
-	Direction getDirection() const;
-protected:
+protected: //defaults
 	Animation p_animation;
 	double p_acceleration = 2.8;
 	double p_friction = 0.5;
@@ -44,6 +40,6 @@ private:
 	sf::RectangleShape m_body;
 	sf::Vector2f m_velocity = {0,0};
 	sf::Vector2f m_oldPos;
-	Direction m_direction;
+	xDirection m_direction;
 	bool m_isJumping = true;
 };

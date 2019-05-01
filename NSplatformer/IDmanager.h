@@ -7,11 +7,11 @@ class IDmanager
 {
 	IDmanager() = delete;
 public:
-	enum Type {
+	enum class Type {
 		ENTITY = 0,
 		WORLDOBJ
 	};
-	enum Objects { //enum values represent id of all objects
+	enum class Objects { //enum values represent id of all objects
 		PLAYER = 0
 	};
 public:

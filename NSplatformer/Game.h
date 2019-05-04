@@ -6,6 +6,8 @@
 #include "LevelParser.h"
 #include "DynamicManager.h"
 #include "IDmanager.h"
+#include <Windows.h>
+#include "Menu.h"
 
 class Game : public State
 {
@@ -18,12 +20,15 @@ public:
 	void render(sf::RenderWindow& window) override;
 private:
 	inline void init(const std::string& levelFolder);
+	bool doesDirExist(const std::string& dir);
 private:
 	LevelParser* m_parser;
 	DynamicManager* m_objects;
 	Map* m_map;
 	GameView m_gameView;
-	const Entity* m_playerPtr;
+	const Player* m_playerPtr;
 	sf::FloatRect m_goalRegion;
+	static int s_level;
+
 };
 

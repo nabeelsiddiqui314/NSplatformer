@@ -13,6 +13,7 @@ void StateManager::setWindow(sf::RenderWindow& window) {
 void StateManager::setState(State* state) {
 	delete m_state;
 	m_state = state;
+	m_window->setView(m_window->getDefaultView());
 }
 
 void StateManager::update() {

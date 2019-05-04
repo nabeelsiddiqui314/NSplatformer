@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 
+int Game::s_level = 1;
 
 Game::Game() {
 	this->init("1");
@@ -16,9 +17,17 @@ void Game::update(const sf::RenderWindow& window) {
 	//camera
 	m_gameView.setFocus(m_playerPtr->getDirection());
 	m_gameView.moveCamera({m_playerPtr->getPos().x + m_playerPtr->getSize().x / 2, m_playerPtr->getPos().y + m_playerPtr->getSize().y / 2}, m_playerPtr->isJumping());
-	
+
+	//if the player has reached the goal
 	if (sf::FloatRect(m_playerPtr->getPos(), m_playerPtr->getSize()).intersects(m_goalRegion)) {
-		stateManager.setState(new Game("1"));
+		if (this->doesDirExist("Levels/" + std::to_string(s_level + 1))) {
+			s_level++;
+			stateManager.setState(new Game(std::to_string(s_level)));
+		}
+		else {
+			s_level = 1;
+			stateManager.setState(new Menu());
+		}
 	}
 }
 
@@ -49,7 +58,7 @@ inline void Game::init(const std::string& levelFolder) {
 		if (IDmanager::getObjectType(info.id) == IDmanager::Type::ENTITY) {
 			m_objects->addEntity(IDmanager::getNewEntity(info.id, info.parameter), info.pos);
 			if (info.id == IDmanager::getObjectID(IDmanager::Objects::PLAYER)) {
-				m_playerPtr = m_objects->getEntityAt(entityIndex);
+				m_playerPtr = dynamic_cast<const Player*>(m_objects->getEntityAt(entityIndex));
 				m_gameView.setPos({ m_playerPtr->getPos().x + m_playerPtr->getSize().x / 2,
 								    m_playerPtr->getPos().y + m_playerPtr->getSize().y / 2 });
 			}
@@ -59,6 +68,17 @@ inline void Game::init(const std::string& levelFolder) {
 			m_objects->addWordObj(IDmanager::getNewWorldObj(info.id, info.parameter), info.pos);
 		}
 	}
+}
+
+bool Game::doesDirExist(const std::string & dir) {
+	DWORD ftyp = GetFileAttributesA(dir.c_str());
+	if (ftyp == INVALID_FILE_ATTRIBUTES)
+		return false;  //something is wrong with your path!
+
+	if (ftyp & FILE_ATTRIBUTE_DIRECTORY)
+		return true;   // this is a directory!
+
+	return false;    // this is not a directory!
 }
 
 Game::~Game() {

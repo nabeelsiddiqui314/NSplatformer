@@ -32,7 +32,9 @@ void GameView::moveCamera(const sf::Vector2f& playerPos, bool isJumping) {
 	else {
 		dy = 0;
 	}
-	m_view.setCenter(dx + m_view.getCenter().x, dy + m_view.getCenter().y);
+
+	m_view.setCenter(std::clamp(dx + m_view.getCenter().x, m_camSize.x / 2, m_worldSize.x - m_camSize.x / 2), 
+		             std::clamp(dy + m_view.getCenter().y, m_camSize.y / 2, m_worldSize.y - m_camSize.y / 2));
 
 }
 

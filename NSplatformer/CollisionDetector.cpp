@@ -6,7 +6,7 @@ void CollisionDetector::Collide(Entity* body, const sf::Vector2i& origin) {
 	float oldY = body->getOldPos().y + body->getSize().y - origin.y;
 
 	if (y > 0 && oldY < 0) {
-		body->stopFall(origin.y - body->getSize().y - 1); // -1 is pushes he tile up so it falls back
+		body->stopFall(origin.y - body->getSize().y - 1); // -1 pushes it up so it falls back
 	}
 
 	y = body->getPos().y - origin.y;

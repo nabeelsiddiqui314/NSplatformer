@@ -16,7 +16,9 @@ void Game::update(const sf::RenderWindow& window) {
 
 	//camera
 	m_gameView.setFocus(m_playerPtr->getDirection());
-	m_gameView.moveCamera({m_playerPtr->getPos().x + m_playerPtr->getSize().x / 2, m_playerPtr->getPos().y + m_playerPtr->getSize().y / 2}, m_playerPtr->isJumping());
+	m_gameView.moveCamera({ m_playerPtr->getPos().x + m_playerPtr->getSize().x / 2, m_playerPtr->getPos().y + m_playerPtr->getSize().y / 2 }, m_playerPtr->isJumping());
+	m_bg->update({m_playerPtr->getPos().x + m_playerPtr->getSize().x / 2,
+		m_playerPtr->getPos().y + m_playerPtr->getSize().y / 2 }, m_gameView.getVelocity().x);
 
 	//if the player has reached the goal
 	if (sf::FloatRect(m_playerPtr->getPos(), m_playerPtr->getSize()).intersects(m_goalRegion)) {
@@ -32,6 +34,7 @@ void Game::update(const sf::RenderWindow& window) {
 }
 
 void Game::render(sf::RenderWindow& window) {
+	m_bg->render(window);
 	window.setView(m_gameView.getView());
 	m_map->render(window);
 	m_objects->render(window, m_gameView);
@@ -41,6 +44,7 @@ inline void Game::init(const std::string& levelFolder) {
 	m_parser = new LevelParser();
 	m_map = new Map();
 	m_objects = new DynamicManager();
+	m_bg = new ParallaxBG();
 
 	m_parser->parseMap("./Levels/" + levelFolder + "/map.txt");
 	m_parser->parseObjects("./Levels/" + levelFolder + "/obj.txt");
@@ -52,6 +56,7 @@ inline void Game::init(const std::string& levelFolder) {
 	m_gameView.setSize({static_cast<float>(Data::camera::width), static_cast<float>(Data::camera::height)});
 	m_objects->setMap(m_map);
 	m_goalRegion = m_parser->getGoalRegion();
+	m_bg->init(m_parser->getBGName(), m_parser->isYFixed());
 
 	int entityIndex = 0;
 	for (auto& info : m_parser->getObjects()) {
@@ -85,4 +90,5 @@ Game::~Game() {
 	delete m_parser;
 	delete m_map;
 	delete m_objects;
+	delete m_bg;
 }

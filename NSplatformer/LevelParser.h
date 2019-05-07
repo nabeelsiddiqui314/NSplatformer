@@ -17,6 +17,8 @@ public:
 	void parseObjects(const std::string& name);
 
 	const std::string& getTilesetName() const;
+	const std::string& getBGName() const;
+	const bool isYFixed() const;
 	const sf::Vector2i& getDimensions() const;
 	const sf::FloatRect& getGoalRegion() const;
 	std::vector<int>& getMap();
@@ -29,6 +31,8 @@ private:
 	std::vector<ObjectInfo> m_objects;
 
 	std::string m_tilesetname;
+	std::string m_BGname;
+	bool m_isYfixed;
 	sf::Vector2i m_dimensions;
 	sf::FloatRect m_goal;
 };

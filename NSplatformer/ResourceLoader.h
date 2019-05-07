@@ -28,8 +28,12 @@ public:
 		}
 	}
 
+	bool doesExist(const std::string& name) {
+		return !(m_resources.find(name) == m_resources.end());
+	}
+
 	Resource& get(const std::string& name) {
-		if (m_resources.find(name) == m_resources.end())
+		if (!doesExist(name))
 			return m_fail;
 		else
 			return m_resources.at(name);

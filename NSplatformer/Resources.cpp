@@ -16,5 +16,12 @@ void Resources::init() {
 	textures.add("player");
 	//temp
 	textures.add("testTileset");
+	textures.add("Forest/1");
+	textures.add("Forest/2");
+	textures.add("Forest/3");
+	textures.add("Forest/4");
+	textures.add("Forest/5");
+	textures.add("Forest/6");
+	textures.add("Forest/7");
 }
 

@@ -8,6 +8,7 @@
 #include "IDmanager.h"
 #include <Windows.h>
 #include "Menu.h"
+#include "ParallaxBG.h"
 
 class Game : public State
 {
@@ -25,10 +26,10 @@ private:
 	LevelParser* m_parser;
 	DynamicManager* m_objects;
 	Map* m_map;
+	ParallaxBG* m_bg;
 	GameView m_gameView;
 	const Player* m_playerPtr;
 	sf::FloatRect m_goalRegion;
 	static int s_level;
-
 };
 

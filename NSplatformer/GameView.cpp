@@ -32,10 +32,15 @@ void GameView::moveCamera(const sf::Vector2f& playerPos, bool isJumping) {
 	else {
 		dy = 0;
 	}
-
+	m_oldCentre = m_view.getCenter();
 	m_view.setCenter(std::clamp(dx + m_view.getCenter().x, m_camSize.x / 2, m_worldSize.x - m_camSize.x / 2), 
 		             std::clamp(dy + m_view.getCenter().y, m_camSize.y / 2, m_worldSize.y - m_camSize.y / 2));
 
+}
+
+const sf::Vector2f GameView::getVelocity() const {
+	return {m_view.getCenter().x - m_oldCentre.x,
+		    m_view.getCenter().y - m_oldCentre.y };
 }
 
 const sf::View& GameView::getView() const {

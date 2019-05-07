@@ -10,6 +10,10 @@ void LevelParser::parseMap(const std::string& name) {
 	m_dimensions.x = std::stoi(temp, nullptr);
 	std::getline(m_mapFile, temp);
 	m_dimensions.y = std::stoi(temp, nullptr);
+	std::getline(m_mapFile, temp);
+	m_BGname = temp;
+	std::getline(m_mapFile, temp);
+	m_isYfixed = temp == "true";
 	while (std::getline(m_mapFile, temp)) {
 		for (int i = 0; i < temp.length(); i++) {
 			int tileid = 0;
@@ -105,6 +109,14 @@ void LevelParser::parseObjects(const std::string& name) {
 
 const std::string& LevelParser::getTilesetName() const {
 	return m_tilesetname;
+}
+
+const std::string& LevelParser::getBGName() const {
+	return m_BGname;
+}
+
+const bool LevelParser::isYFixed() const {
+	return m_isYfixed;
 }
 
 const sf::Vector2i& LevelParser::getDimensions() const {

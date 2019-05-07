@@ -22,7 +22,7 @@ const sf::Vector2f& Entity::getSize() const {
 	return m_body.getSize();
 }
 
-const sf::Vector2f& Entity::getCentre() const {
+const sf::Vector2f Entity::getCentre() const {
 	return { m_body.getPosition().x + m_body.getSize().x / 2,
 			 m_body.getPosition().y + m_body.getSize().y / 2 };
 }

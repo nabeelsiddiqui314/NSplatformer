@@ -16,9 +16,8 @@ void Game::update(const sf::RenderWindow& window) {
 
 	//camera
 	m_gameView.setFocus(m_playerPtr->getDirection());
-	m_gameView.moveCamera({ m_playerPtr->getPos().x + m_playerPtr->getSize().x / 2, m_playerPtr->getPos().y + m_playerPtr->getSize().y / 2 }, m_playerPtr->isJumping());
-	m_bg->update({m_playerPtr->getPos().x + m_playerPtr->getSize().x / 2,
-		m_playerPtr->getPos().y + m_playerPtr->getSize().y / 2 }, m_gameView.getVelocity().x);
+	m_gameView.moveCamera(m_playerPtr->getCentre(), m_playerPtr->isJumping());
+	m_bg->update(m_playerPtr->getCentre(), m_gameView.getVelocity().x);
 
 	//if the player has reached the goal
 	if (sf::FloatRect(m_playerPtr->getPos(), m_playerPtr->getSize()).intersects(m_goalRegion)) {
@@ -64,8 +63,7 @@ inline void Game::init(const std::string& levelFolder) {
 			m_objects->addEntity(IDmanager::getNewEntity(info.id, info.parameter), info.pos);
 			if (info.id == IDmanager::getObjectID(IDmanager::Objects::PLAYER)) {
 				m_playerPtr = dynamic_cast<const Player*>(m_objects->getEntityAt(entityIndex));
-				m_gameView.setPos({ m_playerPtr->getPos().x + m_playerPtr->getSize().x / 2,
-								    m_playerPtr->getPos().y + m_playerPtr->getSize().y / 2 });
+				m_gameView.setPos(m_playerPtr->getCentre());
 			}
 			entityIndex++;
 		}

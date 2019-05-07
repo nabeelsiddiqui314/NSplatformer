@@ -14,6 +14,7 @@ public:
 	const sf::Vector2f& getPos() const;
 	const sf::Vector2f& getOldPos() const;
 	const sf::Vector2f& getSize() const;
+	const sf::Vector2f& getCentre() const;
 	void stopFall(float yPos);
 	void stopJump(float yPos);
 	void stopLateral(float xPos);

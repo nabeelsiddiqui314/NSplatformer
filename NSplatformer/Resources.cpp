@@ -23,5 +23,9 @@ void Resources::init() {
 	textures.add("Forest/5");
 	textures.add("Forest/6");
 	textures.add("Forest/7");
+	textures.add("Forest/8");
+	textures.add("Forest/9");
+	textures.add("Forest/10");
+	textures.add("Forest/11");
 }
 

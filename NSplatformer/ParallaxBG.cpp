@@ -24,7 +24,7 @@ void ParallaxBG::init(const std::string& folder, bool isFixedY) {
 }
 
 void ParallaxBG::update(const sf::Vector2f& playerPos, float xVelocity) {
-	if (true) {
+	if (xVelocity != 0) {
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < m_backgrounds[0].size(); j++) {
 				m_backgrounds[0][j].move(xVelocity / (j + 1), 0);

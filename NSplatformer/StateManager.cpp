@@ -8,6 +8,7 @@ StateManager::StateManager() {
 
 void StateManager::setWindow(sf::RenderWindow& window) {
 	m_window = &window;
+	m_window->setFramerateLimit(60);
 }
 
 void StateManager::setState(State* state) {

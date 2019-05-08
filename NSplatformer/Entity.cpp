@@ -19,8 +19,8 @@ const sf::Vector2f& Entity::getOldPos() const {
 	return m_oldPos;
 }
 
-const sf::Vector2f& Entity::getSize() const {
-	return m_body.getSize();
+const sf::Vector2f Entity::getSize() const {
+	return {m_body.getGlobalBounds().width, m_body.getGlobalBounds().height};
 }
 
 const sf::Vector2f& Entity::getVelocity() const {
@@ -28,8 +28,8 @@ const sf::Vector2f& Entity::getVelocity() const {
 }
 
 const sf::Vector2f Entity::getCentre() const {
-	return { m_body.getPosition().x + m_body.getSize().x / 2,
-			 m_body.getPosition().y + m_body.getSize().y / 2 };
+	return { m_body.getPosition().x + m_body.getGlobalBounds().width / 2,
+			 m_body.getPosition().y + m_body.getGlobalBounds().height / 2 };
 }
 
 void Entity::stopFall(float yPos) {
@@ -51,7 +51,7 @@ void Entity::stopLateral(float xPos) {
 bool Entity::isCollidingWith(Entity* entity) const {
 	return m_body.getGlobalBounds().intersects(entity->m_body.getGlobalBounds());
 }
-#include <iostream>
+
 void Entity::generalUpdate() {
 	m_oldPos = m_body.getPosition();
 	m_body.move(m_velocity);
@@ -65,11 +65,7 @@ void Entity::render(sf::RenderWindow& window) {
 }
 
 void Entity::setTexture(const std::string& name) {
-	m_body.setTexture(&Resources::textures.get(name));
-}
-
-void Entity::setSize(const sf::Vector2f& size) {
-	m_body.setSize(size);
+	m_body.setTexture(Resources::textures.get(name));
 }
 
 void Entity::walkLeft() {

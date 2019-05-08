@@ -4,7 +4,6 @@
 
 Player::Player() {
 	this->setTexture("player");
-	this->setSize({ 17, 30 });
 	p_animation.setSize({ 17, 30 });
 	p_animation.setFrame(3, 0, false);
 	p_animation.setSpacing({ 0, 0 });

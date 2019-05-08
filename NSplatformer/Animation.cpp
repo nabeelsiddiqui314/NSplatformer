@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Animation.h"
 
-void Animation::setRect(sf::RectangleShape* rect) {
+void Animation::setRect(sf::Sprite* rect) {
 	m_rect = rect;
 }
 

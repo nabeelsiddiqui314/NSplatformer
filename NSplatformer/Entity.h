@@ -13,7 +13,7 @@ public:
 	void setPos(const sf::Vector2f& pos);
 	const sf::Vector2f& getPos() const;
 	const sf::Vector2f& getOldPos() const;
-	const sf::Vector2f& getSize() const;
+	const sf::Vector2f getSize() const;
 	const sf::Vector2f& getVelocity() const;
 	const sf::Vector2f getCentre() const;
 	void stopFall(float yPos);
@@ -29,7 +29,6 @@ public:
 protected:
 	void setTexture(const std::string& name);
 	void generalUpdate();
-	void setSize(const sf::Vector2f& size);
 	void walkRight();
 	void walkLeft();
 	void jump();
@@ -39,7 +38,7 @@ protected: //defaults
 	double p_friction = 0.5;
 	double p_jumpHeight = 128;
 private:
-	sf::RectangleShape m_body;
+	sf::Sprite m_body;
 	sf::Vector2f m_velocity = {0,0};
 	sf::Vector2f m_oldPos;
 	xDirection m_direction;

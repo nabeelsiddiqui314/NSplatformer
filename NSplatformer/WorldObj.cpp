@@ -9,8 +9,8 @@ const sf::Vector2f& WorldObj::getPos() const {
 	return m_body.getPosition();
 }
 
-const sf::Vector2f& WorldObj::getSize() const {
-	return m_body.getSize();
+const sf::Vector2f WorldObj::getSize() const {
+	return {m_body.getGlobalBounds().width, m_body.getGlobalBounds().height};
 }
 
 bool WorldObj::isCollidingEntity(Entity* entity) const {
@@ -22,9 +22,5 @@ void WorldObj::render(sf::RenderWindow& window) {
 }
 
 void WorldObj::setTexture(const std::string& name) {
-	m_body.setTexture(&Resources::textures.get(name));
-}
-
-void WorldObj::setSize(const sf::Vector2f& size) {
-	m_body.setSize(size);
+	m_body.setTexture(Resources::textures.get(name));
 }

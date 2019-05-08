@@ -38,10 +38,10 @@ void Player::update() {
 	}
 	else {
 		if (this->getDirection() == xDirection::LEFT) {
-			p_animation.setFrame(3, 0, true);
+			p_animation.setFrame(0, 3, true);
 		}
 		else if (this->getDirection() == xDirection::RIGHT) {
-			p_animation.setFrame(3, 0, false);
+			p_animation.setFrame(0, 3, false);
 		}
 	}
 	this->generalUpdate();

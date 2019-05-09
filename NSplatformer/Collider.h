@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "CollisionDetector.h"
+#include "CollisionResponder.h"
 
 class Collider
 {

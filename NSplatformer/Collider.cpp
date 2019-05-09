@@ -6,6 +6,6 @@ void Collider::Collide(Entity* entity, const int tile, const int row, const int 
 	case 0:
 		break;
 	default:
-		CollisionDetector::Collide(entity, { column * Data::tile::size, row * Data::tile::size });
+		CollisionResponder::Collide(entity, { column * Data::tile::size, row * Data::tile::size });
 	}
 }

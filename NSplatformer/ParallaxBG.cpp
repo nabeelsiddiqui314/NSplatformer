@@ -39,11 +39,17 @@ void ParallaxBG::update(const sf::Vector2f& playerPos, float xVelocity) {
 																m_backgrounds[swap(i)][j].getPosition().y );
 					}
 				}
-				if (playerPos.x < m_backgrounds[i][j].getPosition().x + m_backgrounds[i][j].getGlobalBounds().width / 2 &&
+				else if (playerPos.x < m_backgrounds[i][j].getPosition().x + m_backgrounds[i][j].getGlobalBounds().width / 2 &&
 					playerPos.x < m_backgrounds[swap(i)][j].getPosition().x + m_backgrounds[swap(i)][j].getGlobalBounds().width / 2) {
 					if (m_backgrounds[i][j].getPosition().x < m_backgrounds[swap(i)][j].getPosition().x) {
 						m_backgrounds[swap(i)][j].setPosition( m_backgrounds[i][j].getPosition().x - m_backgrounds[i][j].getGlobalBounds().width,
 																m_backgrounds[swap(i)][j].getPosition().y );
+					}
+				}
+				else {
+					if (m_backgrounds[i][j].getPosition().x < m_backgrounds[swap(i)][j].getPosition().x) {
+						m_backgrounds[swap(i)][j].setPosition(m_backgrounds[i][j].getPosition().x + m_backgrounds[i][j].getGlobalBounds().width,
+							m_backgrounds[swap(i)][j].getPosition().y);
 					}
 				}
 			}

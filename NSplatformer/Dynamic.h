@@ -15,7 +15,8 @@ public:
 	const sf::Vector2f& getPos() const;
 	const sf::Vector2f getSize() const;
 
-	virtual void interact(const Dynamic* other) {}
+	virtual void interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) {}
+	virtual void interactWithOther(const Dynamic* other) {}
 	virtual void update() = 0;
 	virtual void render(sf::RenderWindow& window);
 protected:
@@ -26,4 +27,3 @@ protected:
 private:
 	sf::Sprite m_body;
 };
-

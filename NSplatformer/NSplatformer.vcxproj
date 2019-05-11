@@ -157,7 +157,6 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Button_.h" />
     <ClInclude Include="Collider.h" />
-    <ClInclude Include="CollisionResponder.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="Direction.h" />
     <ClInclude Include="Dynamic.h" />
@@ -188,7 +187,6 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Button_.cpp" />
     <ClCompile Include="Collider.cpp" />
-    <ClCompile Include="CollisionResponder.cpp" />
     <ClCompile Include="Dynamic.cpp" />
     <ClCompile Include="DynamicManager.cpp" />
     <ClCompile Include="Entity.cpp" />

@@ -55,59 +55,59 @@ void Map::render(sf::RenderWindow& window) {
 	window.draw(m_map, &Resources::textures.get(m_tilesetName));
 }
 
-void Map::handleCollisions(Entity* entity) const {
-	if (entity->getPos().y + entity->getSize().y > Data::tile::size * m_dimensions.y
-		|| entity->getPos().x + entity->getSize().x > Data::tile::size * m_dimensions.x
-		|| entity->getPos().y < 0
-		|| entity->getPos().x < 0) {
+void Map::handleCollisions(Dynamic* obj) const {
+	if (obj->getPos().y + obj->getSize().y > Data::tile::size * m_dimensions.y
+		|| obj->getPos().x + obj->getSize().x > Data::tile::size * m_dimensions.x
+		|| obj->getPos().y < 0
+		|| obj->getPos().x < 0) {
 		return;
 	}
 
 	//Tesing the TOP
-	int row = floor(entity->getPos().y / Data::tile::size);
-	int column = floor(entity->getPos().x / Data::tile::size);
+	int row = floor(obj->getPos().y / Data::tile::size);
+	int column = floor(obj->getPos().x / Data::tile::size);
 	int tile = m_lvl->at(column + row * m_dimensions.x);
 	if (tile != 0)
-		Collider::Collide(entity, tile, row, column);
+		Collider::Collide(obj, tile, row, column);
 
-	column = floor((entity->getPos().x + entity->getSize().x) / Data::tile::size);
+	column = floor((obj->getPos().x + obj->getSize().x) / Data::tile::size);
 	tile = m_lvl->at(column + row * m_dimensions.x);
 	if (tile != 0) 
-		Collider::Collide(entity, tile, row, column);
+		Collider::Collide(obj, tile, row, column);
 
 	// Testing the BOTTOM
-	row = floor((entity->getPos().y + entity->getSize().y) / Data::tile::size);
-	column = floor(entity->getPos().x / Data::tile::size);
+	row = floor((obj->getPos().y + obj->getSize().y) / Data::tile::size);
+	column = floor(obj->getPos().x / Data::tile::size);
 	tile = m_lvl->at(column + row * m_dimensions.x);
 	if (tile != 0)
-		Collider::Collide(entity, tile, row, column);
+		Collider::Collide(obj, tile, row, column);
 
-	column = floor((entity->getPos().x + entity->getSize().x) / Data::tile::size);
+	column = floor((obj->getPos().x + obj->getSize().x) / Data::tile::size);
 	tile = m_lvl->at(column + row * m_dimensions.x);
 	if (tile != 0)
-		Collider::Collide(entity, tile, row, column);
+		Collider::Collide(obj, tile, row, column);
 
 	//Testing the LEFT
-	column = column = floor(entity->getPos().x / Data::tile::size);
-	row = floor(entity->getPos().y / Data::tile::size);
+	column = column = floor(obj->getPos().x / Data::tile::size);
+	row = floor(obj->getPos().y / Data::tile::size);
 	tile = m_lvl->at(column + row * m_dimensions.x);
 	if (tile != 0)
-		Collider::Collide(entity, tile, row, column);
+		Collider::Collide(obj, tile, row, column);
 
-	row = floor((entity->getPos().y + entity->getSize().y) / Data::tile::size);
+	row = floor((obj->getPos().y + obj->getSize().y) / Data::tile::size);
 	tile = m_lvl->at(column + row * m_dimensions.x);
 	if (tile != 0)
-		Collider::Collide(entity, tile, row, column);
+		Collider::Collide(obj, tile, row, column);
 
 	//Testing the RIGHT
-	column = floor((entity->getPos().x + entity->getSize().x) / Data::tile::size);
-	row = floor(entity->getPos().y / Data::tile::size);
+	column = floor((obj->getPos().x + obj->getSize().x) / Data::tile::size);
+	row = floor(obj->getPos().y / Data::tile::size);
 	tile = m_lvl->at(column + row * m_dimensions.x);
 	if (tile != 0)
-		Collider::Collide(entity, tile, row, column);
+		Collider::Collide(obj, tile, row, column);
 
-	row = floor((entity->getPos().y + entity->getSize().y) / Data::tile::size);
+	row = floor((obj->getPos().y + obj->getSize().y) / Data::tile::size);
 	tile = m_lvl->at(column + row * m_dimensions.x);
 	if (tile != 0)
-		Collider::Collide(entity, tile, row, column);
+		Collider::Collide(obj, tile, row, column);
 }

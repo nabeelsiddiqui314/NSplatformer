@@ -19,16 +19,17 @@ void DynamicManager::addWordObj(WorldObj* worldobj, const sf::Vector2f& pos) {
 void DynamicManager::update() {
 	for (Dynamic* worldobj : m_worldobjs) {
 		for (Dynamic* entity : m_entities) {
-			worldobj->interact(entity);
+			worldobj->interactWithOther(entity);
 		}
 		worldobj->update();
+		m_map->handleCollisions(worldobj);
 	}
 	for (Dynamic* entity1 : m_entities) {
 		for (Dynamic* entity2 : m_entities) {
-			entity1->interact(entity2);
+			entity1->interactWithOther(entity2);
 		}
 		entity1->update();
-		m_map->handleCollisions(dynamic_cast<Entity*>(entity1));
+		m_map->handleCollisions(entity1);
 	}
 }
 

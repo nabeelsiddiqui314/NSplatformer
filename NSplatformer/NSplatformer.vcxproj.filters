@@ -96,9 +96,6 @@
     <ClInclude Include="ParallaxBG.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionResponder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Dynamic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -168,9 +165,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ParallaxBG.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionResponder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Dynamic.cpp">

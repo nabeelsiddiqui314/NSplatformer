@@ -1,12 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "CollisionResponder.h"
+#include "Data.h"
+#include "Dynamic.h"
 
 class Collider
 {
 public:
 	Collider() = delete;
 public:
-	static void Collide(Entity* entity, const int tile, const int row, const int column);
+	static void Collide(Dynamic* obj, const int tile, const int row, const int column);
 };
 

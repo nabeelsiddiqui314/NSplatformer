@@ -6,8 +6,42 @@ Entity::Entity() {
 	m_jumpPower = sqrt(2 * Data::physConsts::gravity * p_jumpHeight);
 }
 
-const sf::Vector2f& Entity::getOldPos() const {
-	return m_oldPos;
+void Entity::interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) {
+	float x = this->getPos().x + this->getSize().x - tilePos.x;
+
+	float y = this->getPos().y + this->getSize().y - tilePos.y;
+	float oldY = m_oldPos.y + this->getSize().y - tilePos.y;
+
+	if (y > 1 && oldY <= 1 && x != 0) {
+		m_velocity.y = 0;
+		this->setPos(this->getPos().x, tilePos.y - this->getSize().y);
+		m_isJumping = false;
+	}
+
+	y = this->getPos().y - tilePos.y;
+	oldY = m_oldPos.y - tilePos.y;
+
+	if (y < tileSize.y && oldY >= tileSize.y && x != 0) {
+		m_velocity.y = 0;
+		this->setPos(this->getPos().x, tilePos.y + tileSize.y);
+	}
+
+	float oldX = m_oldPos.x + this->getSize().x - tilePos.x;
+
+	y = this->getPos().y + this->getSize().y - tilePos.y;
+
+	if (x > 1 && oldX <= 1 && y != 0) {
+		m_velocity.x = 0;
+		this->setPos(tilePos.x - this->getSize().x, this->getPos().y);
+	}
+
+	x = this->getPos().x - tilePos.x;
+	oldX = m_oldPos.x - tilePos.x;
+
+	if (x < tileSize.x && oldX >= tileSize.x && y != 0) {
+		m_velocity.x = 0;
+		this->setPos(tilePos.x + tileSize.x, this->getPos().y);
+	}
 }
 
 const sf::Vector2f& Entity::getVelocity() const {
@@ -17,22 +51,6 @@ const sf::Vector2f& Entity::getVelocity() const {
 const sf::Vector2f Entity::getCentre() const {
 	return { this->getPos().x + this->getSize().x / 2,
 			 this->getPos().y + this->getSize().y / 2 };
-}
-
-void Entity::stopFall(float yPos) {
-	m_velocity.y = 0;
-	this->setPos(this->getPos().x, yPos);
-	m_isJumping = false;
-}
-
-void Entity::stopJump(float yPos) {
-	m_velocity.y = 0;
-	this->setPos(this->getPos().x, yPos);
-}
-
-void Entity::stopLateral(float xPos) {
-	m_velocity.x = 0;
-	this->setPos(xPos, this->getPos().y);
 }
 
 void Entity::generalUpdate() {

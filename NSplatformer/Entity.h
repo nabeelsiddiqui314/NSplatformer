@@ -9,16 +9,12 @@ public:
 	Entity();
 	virtual ~Entity() {}
 public:
-	const sf::Vector2f& getOldPos() const;
+	void interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) override;
+
 	const sf::Vector2f& getVelocity() const;
 	const sf::Vector2f getCentre() const;
-	void stopFall(float yPos);
-	void stopJump(float yPos);
-	void stopLateral(float xPos);
 	bool isJumping() const;
 	xDirection getDirection() const;
-
-	virtual void update() = 0;
 protected:
 	void generalUpdate();
 	void walkRight();

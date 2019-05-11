@@ -3,24 +3,11 @@
 
 
 Entity::Entity() {
-	p_animation.setRect(&m_body);
 	m_jumpPower = sqrt(2 * Data::physConsts::gravity * p_jumpHeight);
-}
-
-void Entity::setPos(const sf::Vector2f& pos) {
-	m_body.setPosition(pos);
-}
-
-const sf::Vector2f& Entity::getPos() const {
-	return m_body.getPosition();
 }
 
 const sf::Vector2f& Entity::getOldPos() const {
 	return m_oldPos;
-}
-
-const sf::Vector2f Entity::getSize() const {
-	return {m_body.getGlobalBounds().width, m_body.getGlobalBounds().height};
 }
 
 const sf::Vector2f& Entity::getVelocity() const {
@@ -28,44 +15,32 @@ const sf::Vector2f& Entity::getVelocity() const {
 }
 
 const sf::Vector2f Entity::getCentre() const {
-	return { m_body.getPosition().x + m_body.getGlobalBounds().width / 2,
-			 m_body.getPosition().y + m_body.getGlobalBounds().height / 2 };
+	return { this->getPos().x + this->getSize().x / 2,
+			 this->getPos().y + this->getSize().y / 2 };
 }
 
 void Entity::stopFall(float yPos) {
 	m_velocity.y = 0;
-	m_body.setPosition(m_body.getPosition().x, yPos);
+	this->setPos(this->getPos().x, yPos);
 	m_isJumping = false;
 }
 
 void Entity::stopJump(float yPos) {
 	m_velocity.y = 0;
-	m_body.setPosition(m_body.getPosition().x, yPos);
+	this->setPos(this->getPos().x, yPos);
 }
 
 void Entity::stopLateral(float xPos) {
 	m_velocity.x = 0;
-	m_body.setPosition(xPos, m_body.getPosition().y);
-}
-
-bool Entity::isCollidingWith(Entity* entity) const {
-	return m_body.getGlobalBounds().intersects(entity->m_body.getGlobalBounds());
+	this->setPos(xPos, this->getPos().y);
 }
 
 void Entity::generalUpdate() {
-	m_oldPos = m_body.getPosition();
-	m_body.move(m_velocity);
+	m_oldPos = this->getPos();
+	this->move(m_velocity);
 	m_velocity.x *= p_friction;
 	m_velocity.y += Data::physConsts::gravity;
 	m_velocity.y = std::min(m_velocity.y, 10.0f);
-}
-
-void Entity::render(sf::RenderWindow& window) {
-	window.draw(m_body);
-}
-
-void Entity::setTexture(const std::string& name) {
-	m_body.setTexture(Resources::textures.get(name));
 }
 
 void Entity::walkLeft() {

@@ -18,7 +18,7 @@ public:
 	const Entity* getEntityAt(int index) const;
 private:
 	const Map* m_map;
-	std::vector<Entity*> m_entities;
-	std::vector<WorldObj*> m_worldobjs;
+	std::vector<Dynamic*> m_entities;
+	std::vector<Dynamic*> m_worldobjs;
 };
 

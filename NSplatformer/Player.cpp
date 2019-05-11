@@ -45,3 +45,20 @@ void Player::update() {
 	}
 	this->generalUpdate();
 }
+
+const sf::Vector2f& Player::getVel() const {
+	return Entity::getVelocity();
+}
+
+bool Player::isInJump() const {
+	return Entity::isJumping();;
+}
+
+const xDirection& Player::getDir() const {
+	return Entity::getDirection();
+}
+
+const sf::Vector2f Player::getCentre() const {
+	return {this->getPos().x + this->getSize().x / 2,
+		    this->getPos().y + this->getSize().y / 2 };
+}

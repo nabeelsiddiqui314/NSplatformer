@@ -10,16 +10,15 @@ public:
 	virtual ~Entity() {}
 public:
 	void interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) override;
-
-	const sf::Vector2f& getVelocity() const;
-	const sf::Vector2f getCentre() const;
-	bool isJumping() const;
-	xDirection getDirection() const;
 protected:
 	void generalUpdate();
 	void walkRight();
 	void walkLeft();
 	void jump();
+
+	const sf::Vector2f& getVelocity() const;
+	bool isJumping() const;
+	const xDirection& getDirection() const;
 protected: //defaults
 	double p_acceleration = 2.8;
 	double p_friction = 0.5;

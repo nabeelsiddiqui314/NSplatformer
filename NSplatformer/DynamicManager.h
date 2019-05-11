@@ -1,6 +1,5 @@
 #pragma once
-#include "Entity.h"
-#include "WorldObj.h"
+#include "Player.h"
 #include "Map.h"
 #include "GameView.h"
 
@@ -10,15 +9,14 @@ public:
 	~DynamicManager();
 public:
 	void setMap(const Map* map);
-	void addEntity(Entity* entity, const sf::Vector2f& pos);
-	void addWordObj(WorldObj* worldobj, const sf::Vector2f& pos);
+	void addObject(Dynamic* obj, const sf::Vector2f& pos);
 	void update();
 	void render(sf::RenderWindow& window, const GameView& view);
 
-	const Entity* getEntityAt(int index) const;
+	const Player* getPlayer() const;
 private:
 	const Map* m_map;
-	std::vector<Dynamic*> m_entities;
-	std::vector<Dynamic*> m_worldobjs;
+	std::vector<Dynamic*> m_objects;
+	int m_playerIndex;
 };
 

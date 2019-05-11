@@ -48,11 +48,6 @@ const sf::Vector2f& Entity::getVelocity() const {
 	return m_velocity;
 }
 
-const sf::Vector2f Entity::getCentre() const {
-	return { this->getPos().x + this->getSize().x / 2,
-			 this->getPos().y + this->getSize().y / 2 };
-}
-
 void Entity::generalUpdate() {
 	m_oldPos = this->getPos();
 	this->move(m_velocity);
@@ -82,6 +77,6 @@ bool Entity::isJumping() const {
 	return m_isJumping;
 }
 
-xDirection Entity::getDirection() const {
+const xDirection& Entity::getDirection() const {
 	return m_direction;
 }

@@ -15,8 +15,8 @@ void Game::update(const sf::RenderWindow& window) {
 	m_objects->update();
 
 	//camera
-	m_gameView.setFocus(m_playerPtr->getDirection());
-	m_gameView.moveCamera(m_playerPtr->getCentre(), m_playerPtr->isJumping());
+	m_gameView.setFocus(m_playerPtr->getDir());
+	m_gameView.moveCamera(m_playerPtr->getCentre(), m_playerPtr->isInJump());
 	m_bg->update(m_playerPtr->getCentre(), m_gameView.getVelocity().x);
 
 	//if the player has reached the goal
@@ -57,20 +57,11 @@ inline void Game::init(const std::string& levelFolder) {
 	m_goalRegion = m_parser->getGoalRegion();
 	m_bg->init(m_parser->getBGName(), m_parser->isYFixed());
 
-	int entityIndex = 0;
 	for (auto& info : m_parser->getObjects()) {
-		if (IDmanager::getObjectType(info.id) == IDmanager::Type::ENTITY) {
-			m_objects->addEntity(IDmanager::getNewEntity(info.id, info.parameter), info.pos);
-			if (info.id == IDmanager::getObjectID(IDmanager::Objects::PLAYER)) {
-				m_playerPtr = dynamic_cast<const Player*>(m_objects->getEntityAt(entityIndex));
-				m_gameView.setPos(m_playerPtr->getCentre());
-			}
-			entityIndex++;
-		}
-		else if (IDmanager::getObjectType(info.id) == IDmanager::Type::WORLDOBJ) {
-			m_objects->addWordObj(IDmanager::getNewWorldObj(info.id, info.parameter), info.pos);
-		}
+		m_objects->addObject(IDmanager::getNewObj(info.id, info.parameter), info.pos);
 	}
+	m_playerPtr = m_objects->getPlayer();
+	m_gameView.setPos(m_playerPtr->getCentre());
 }
 
 bool Game::doesDirExist(const std::string & dir) {

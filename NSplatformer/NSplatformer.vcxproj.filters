@@ -69,9 +69,6 @@
     <ClInclude Include="Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WorldObj.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DynamicManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -144,9 +141,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WorldObj.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DynamicManager.cpp">

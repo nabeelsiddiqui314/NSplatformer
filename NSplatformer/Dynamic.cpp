@@ -2,7 +2,7 @@
 #include "Dynamic.h"
 
 Dynamic::Dynamic() {
-	p_animation.setRect(&m_body);
+	p_animation.setRect(this);
 }
 
 void Dynamic::setPos(const sf::Vector2f& pos) {
@@ -23,6 +23,14 @@ const sf::Vector2f& Dynamic::getPos() const {
 
 const sf::Vector2f Dynamic::getSize() const {
 	return { m_body.getGlobalBounds().width, m_body.getGlobalBounds().height};
+}
+
+void Dynamic::setTextureRect(const sf::IntRect& rect, const sf::Vector2f& constPoint) {
+	sf::Vector2f oldSize = this->getSize();
+	m_body.setTextureRect(rect);
+	sf::Vector2f newConstPoint = {constPoint.x / oldSize.x * this->getSize().x,
+		                          constPoint.y / oldSize.y * this->getSize().y };
+	m_body.move(constPoint.x - newConstPoint.x, constPoint.y - newConstPoint.y);
 }
 
 void Dynamic::render(sf::RenderWindow& window) {

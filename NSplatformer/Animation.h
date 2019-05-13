@@ -1,19 +1,30 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+class Dynamic;
+
 class Animation
 {
-public:
-	void setRect(sf::Sprite* rect);
-	void setSize(const sf::Vector2i& size);
-	void setSpacing(const sf::Vector2i& spacing);
-	void setFrame(int row, int frame, bool lateralinversion);
-	void animate(int row, int frames, int dt, bool lateralinversion);
 private:
-	sf::Sprite* m_rect;
-	sf::Vector2i m_size;
+	struct Frame{
+		int x;
+		sf::Vector2i size;
+	};
+public:
+	void setRect(Dynamic* obj);
+	void setRowSpacing(int rowSpacing);
+	void addRow();
+	void AddFrame(const sf::Vector2i& size);
+	void setFrame(int row, int frame, bool lateralinversion, const sf::Vector2f& constPoint);
+	void animate(int row, int dt, bool lateralinversion, const sf::Vector2f& constPoint);
+private:
+	Dynamic* m_obj;
+	std::vector<std::vector<Frame>> m_rows;
+	std::vector<int> m_xValues;
+	int m_rowSpacing = 0;
 	sf::Clock m_animationClock;
-	int m_column = 0;
-	sf::Vector2i m_spacing = {0,0};
+	int m_rowCount = 0;
+	int m_animColumn = 0;
+	int m_widthSum = 0;
 };
 

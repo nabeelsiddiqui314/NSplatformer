@@ -14,6 +14,7 @@ public:
 	void move(const sf::Vector2f& dp);
 	const sf::Vector2f& getPos() const;
 	const sf::Vector2f getSize() const;
+	void setTextureRect(const sf::IntRect& rect, const sf::Vector2f& constPoint);
 
 	virtual void interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) {}
 	virtual void interactWithOther(const Dynamic* other) {}

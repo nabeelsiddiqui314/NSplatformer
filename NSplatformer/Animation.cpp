@@ -1,36 +1,51 @@
 #include "stdafx.h"
 #include "Animation.h"
+#include "Dynamic.h"
 
-void Animation::setRect(sf::Sprite* rect) {
-	m_rect = rect;
+void Animation::setRect(Dynamic* obj) {
+	m_obj = obj;
+	m_rows.emplace_back();
 }
 
-void Animation::setSize(const sf::Vector2i& size) {
-	m_size = size;
+void Animation::setRowSpacing(int rowSpacing) {
+	m_rowSpacing = rowSpacing;
 }
 
-void Animation::setSpacing(const sf::Vector2i& spacing) {
-	m_spacing = spacing;
+void Animation::addRow() {
+	m_rowCount++;
+	m_widthSum = 0;
+	m_rows.emplace_back();
 }
 
-void Animation::setFrame(int row, int frame, bool lateralinversion) {
+void Animation::AddFrame(const sf::Vector2i& size) {
+	m_rows[m_rowCount].push_back({ m_widthSum, size });
+	m_widthSum += size.x;
+}
+
+void Animation::setFrame(int row, int frame, bool lateralinversion, const sf::Vector2f& constPoint) {
 	if (!lateralinversion) {
-		m_rect->setTextureRect({ m_size.x * frame + frame * m_spacing.x, m_size.y * row + row * m_spacing.y,
-								 m_size.x, m_size.y });
+		m_obj->setTextureRect({ m_rows[row][frame].x, 
+			                    m_rowSpacing * row,
+			                    m_rows[row][frame].size.x, 
+			                    m_rows[row][frame].size.y}, 
+			                    constPoint);
 	}
 	else {
-		m_rect->setTextureRect({ m_size.x + m_size.x * frame + frame * m_spacing.x, m_size.y * row + row * m_spacing.y,
-			-m_size.x, m_size.y });
+		m_obj->setTextureRect({ m_rows[row][frame].x + m_rows[row][frame].size.x, 
+			                    m_rowSpacing * row,
+			                   -m_rows[row][frame].size.x,
+			                    m_rows[row][frame].size.y},
+			                    constPoint);
 	}
 }
 
-void Animation::animate(int row, int frames, int dt, bool lateralinversion) {
-	if (m_column > frames - 1) {
-		m_column = 0;
+void Animation::animate(int row, int dt, bool lateralinversion, const sf::Vector2f& constPoint) {
+	if (m_animColumn > m_rows[row].size() - 1) {
+		m_animColumn = 0;
 	}
 	if (m_animationClock.getElapsedTime().asMilliseconds() > dt) {
-		setFrame(row, m_column, lateralinversion);
-		m_column++;
+		setFrame(row, m_animColumn, lateralinversion, constPoint);
+		m_animColumn++;
 		m_animationClock.restart();
 	}
 }

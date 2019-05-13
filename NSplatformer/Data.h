@@ -24,7 +24,7 @@ namespace Data {
 		static constexpr int foresight = 50;
 	};
 	struct tile {
-		static constexpr int size = 32;
+		static constexpr int size = 64;
 	};
 	struct Gui {
 		static constexpr int titleTopSpace = 8;

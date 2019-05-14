@@ -70,6 +70,11 @@ void Map::handleCollisions(Dynamic* obj) const {
 	if (tile != 0)
 		Collider::Collide(obj, tile, row, column);
 
+	column = floor((obj->getPos().x + obj->getSize().x / 2) / Data::tile::size);
+	tile = m_lvl->at(column + row * m_dimensions.x);
+	if (tile != 0)
+		Collider::Collide(obj, tile, row, column);
+
 	column = floor((obj->getPos().x + obj->getSize().x) / Data::tile::size);
 	tile = m_lvl->at(column + row * m_dimensions.x);
 	if (tile != 0) 
@@ -78,6 +83,11 @@ void Map::handleCollisions(Dynamic* obj) const {
 	// Testing the BOTTOM
 	row = floor((obj->getPos().y + obj->getSize().y) / Data::tile::size);
 	column = floor(obj->getPos().x / Data::tile::size);
+	tile = m_lvl->at(column + row * m_dimensions.x);
+	if (tile != 0)
+		Collider::Collide(obj, tile, row, column);
+
+	column = floor((obj->getPos().x + obj->getSize().x / 2) / Data::tile::size);
 	tile = m_lvl->at(column + row * m_dimensions.x);
 	if (tile != 0)
 		Collider::Collide(obj, tile, row, column);
@@ -94,6 +104,11 @@ void Map::handleCollisions(Dynamic* obj) const {
 	if (tile != 0)
 		Collider::Collide(obj, tile, row, column);
 
+	row = floor((obj->getPos().y + obj->getSize().y / 2) / Data::tile::size);
+	tile = m_lvl->at(column + row * m_dimensions.x);
+	if (tile != 0)
+		Collider::Collide(obj, tile, row, column);
+
 	row = floor((obj->getPos().y + obj->getSize().y) / Data::tile::size);
 	tile = m_lvl->at(column + row * m_dimensions.x);
 	if (tile != 0)
@@ -102,6 +117,11 @@ void Map::handleCollisions(Dynamic* obj) const {
 	//Testing the RIGHT
 	column = floor((obj->getPos().x + obj->getSize().x) / Data::tile::size);
 	row = floor(obj->getPos().y / Data::tile::size);
+	tile = m_lvl->at(column + row * m_dimensions.x);
+	if (tile != 0)
+		Collider::Collide(obj, tile, row, column);
+
+	row = floor((obj->getPos().y + obj->getSize().y / 2) / Data::tile::size);
 	tile = m_lvl->at(column + row * m_dimensions.x);
 	if (tile != 0)
 		Collider::Collide(obj, tile, row, column);

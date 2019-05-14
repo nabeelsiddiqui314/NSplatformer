@@ -7,17 +7,19 @@ Player::Player() {
 
 	p_animation.setRowSpacing(60);
 
-	p_animation.AddFrame({ 25, 48 });
-	p_animation.AddFrame({ 25, 51 });
-	p_animation.AddFrame({ 31, 49 });
-	p_animation.AddFrame({ 23, 52 });
-	p_animation.AddFrame({ 23, 51 });
-	p_animation.AddFrame({ 32, 49 });
+	p_animation.AddFrame({ 28, 49 });
+	p_animation.AddFrame({28, 44});
 
 	p_animation.addRow();
-	p_animation.AddFrame({ 24, 45 });
+	p_animation.AddFrame({ 30, 47 });
+	p_animation.AddFrame({ 29, 49 });
+	p_animation.AddFrame({ 32, 44 });
+	p_animation.AddFrame({ 30, 49 });
+	p_animation.AddFrame({ 32, 50 });
+	p_animation.AddFrame({ 32, 44 });
 
 	p_animation.setFrame(0, 0, false, { 0, this->getSize().y });
+	p_jumpHeight = 4 * 32;
 }
 
 void Player::update() {
@@ -34,17 +36,18 @@ void Player::update() {
 
 	if (this->isJumping()) {
 		if (this->getDirection() == xDirection::LEFT) {
-			p_animation.setFrame(1, 0, true, { 0, 0 });
+			p_animation.setFrame(0, 1, true, { 0, 0 });
 		}
 		else if (this->getDirection() == xDirection::RIGHT) {
-			p_animation.setFrame(1, 0, false, { this->getSize().x, 0 });
+			p_animation.setFrame(0, 1, false, { this->getSize().x, 0 });
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		p_animation.animate(0, 70, true, { 0, this->getSize().y });
+		p_animation.animate(1, 100, true, { 0, this->getSize().y });
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		p_animation.animate(0, 70, false, this->getSize());
+		p_animation.animate(1, 100, false, this->getSize());
+		
 	}
 	else {
 		if (this->getDirection() == xDirection::LEFT) {

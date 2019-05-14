@@ -1,11 +1,6 @@
 #include "stdafx.h"
 #include "Entity.h"
 
-
-Entity::Entity() {
-	m_jumpPower = sqrt(2 * Data::physConsts::gravity * p_jumpHeight);
-}
-
 void Entity::interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) {
 	float x = this->getPos().x + this->getSize().x - tilePos.x;
 
@@ -68,7 +63,7 @@ void Entity::walkRight() {
 
 void Entity::jump() {
 	if (!m_isJumping) {
-		m_velocity.y -= m_jumpPower;
+		m_velocity.y -= this->calculateJumpPower();
 		m_isJumping = true;
 	}
 }
@@ -79,4 +74,8 @@ bool Entity::isJumping() const {
 
 const xDirection& Entity::getDirection() const {
 	return m_direction;
+}
+
+float Entity::calculateJumpPower() {
+	return sqrt(2 * Data::physConsts::gravity * p_jumpHeight);
 }

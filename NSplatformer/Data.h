@@ -17,14 +17,14 @@ namespace Data {
 		static constexpr int height = 576;
 	};
 	struct camera {
-		static constexpr int width = 992/2;
+		static constexpr int width = 992 / 2;
 		static constexpr int height = 576 / 2;
 		static constexpr int smoothness = 10;
 		static constexpr float smallestMovement = 0.6f;
 		static constexpr int foresight = 50;
 	};
 	struct tile {
-		static constexpr int size = 64;
+		static constexpr int size = 32;
 	};
 	struct Gui {
 		static constexpr int titleTopSpace = 8;

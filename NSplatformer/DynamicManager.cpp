@@ -8,6 +8,7 @@ void DynamicManager::setMap(const Map* map) {
 
 void DynamicManager::addObject(Dynamic* obj, const sf::Vector2f& pos) {
 	obj->setPos(pos);
+	obj->setDynamicManager(this);
 	m_objects.emplace_back(obj);
 
 	if (Player* p = dynamic_cast<Player*>(obj)) {
@@ -22,6 +23,9 @@ void DynamicManager::update() {
 		}
 		obj1->update();
 		m_map->handleCollisions(obj1);
+		if (obj1->isDestroyed()) {
+			delete obj1;
+		}
 	}
 }
 

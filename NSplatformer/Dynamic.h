@@ -3,6 +3,8 @@
 #include "Animation.h"
 #include "Direction.h"
 
+class DynamicManager;
+
 class Dynamic
 {
 public:
@@ -15,6 +17,9 @@ public:
 	const sf::Vector2f& getPos() const;
 	const sf::Vector2f getSize() const;
 	void setTextureRect(const sf::IntRect& rect, const sf::Vector2f& constPoint);
+	void setDynamicManager(DynamicManager* dm);
+	void addObject(Dynamic* newObj, const sf::Vector2f& pos);
+	bool isDestroyed() const;
 
 	virtual void interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) {}
 	virtual void interactWithOther(const Dynamic* other) {}
@@ -23,8 +28,11 @@ public:
 protected:
 	void setTexture(const std::string& name);
 	bool isCollidingOther(const Dynamic* other) const;
+	void destroy();
 protected:
 	Animation p_animation;
 private:
 	sf::Sprite m_body;
+	DynamicManager* m_dynamicManager;
+	bool m_isDestroyed = false;
 };

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Dynamic.h"
+#include "DynamicManager.h"
 
 Dynamic::Dynamic() {
 	p_animation.setRect(this);
@@ -33,6 +34,18 @@ void Dynamic::setTextureRect(const sf::IntRect& rect, const sf::Vector2f& constP
 	m_body.move(constPoint.x - newConstPoint.x, constPoint.y - newConstPoint.y);
 }
 
+void Dynamic::setDynamicManager(DynamicManager* dm) {
+	m_dynamicManager = dm;
+}
+
+void Dynamic::addObject(Dynamic* newObj, const sf::Vector2f& pos) {
+	m_dynamicManager->addObject(newObj, pos);
+}
+
+bool Dynamic::isDestroyed() const {
+	return m_isDestroyed;
+}
+
 void Dynamic::render(sf::RenderWindow& window) {
 	window.draw(m_body);
 }
@@ -43,4 +56,8 @@ void Dynamic::setTexture(const std::string& name) {
 
 bool Dynamic::isCollidingOther(const Dynamic* other) const {
 	return sf::FloatRect(this->getPos(), this->getSize()).intersects({ other->getPos(), other->getSize() });
+}
+
+void Dynamic::destroy() {
+	m_isDestroyed = true;
 }

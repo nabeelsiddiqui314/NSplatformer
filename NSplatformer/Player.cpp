@@ -57,6 +57,19 @@ void Player::update() {
 			p_animation.setFrame(0, 0, false, this->getSize());
 		}
 	}
+
+	if (InputManager::isClicked(InputManager::MouseLeft)) {
+		Projectile* prj = new Projectile();
+		prj->init("Beam", 10, 50, true);
+		prj->setDirection(this->getDirection());
+		if (this->getDirection() == xDirection::RIGHT) {
+			this->addObject(prj, { this->getPos().x + this->getSize().x, this->getPos().y + this->getSize().y / 2 });
+		}
+		else {
+			this->addObject(prj, { this->getPos().x - this->getSize().x, this->getPos().y + this->getSize().y / 2 });
+		}
+	}
+
 	this->generalUpdate();
 }
 

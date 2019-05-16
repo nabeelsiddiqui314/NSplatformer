@@ -17,14 +17,15 @@ void DynamicManager::addObject(Dynamic* obj, const sf::Vector2f& pos) {
 }
 
 void DynamicManager::update() {
-	for (Dynamic* obj1 : m_objects) {
+	for (int i = 0; i < m_objects.size(); i++) {
 		for (Dynamic* obj2 : m_objects) {
-			obj1->interactWithOther(obj2);
+			m_objects[i]->interactWithOther(obj2);
 		}
-		obj1->update();
-		m_map->handleCollisions(obj1);
-		if (obj1->isDestroyed()) {
-			delete obj1;
+		m_objects[i]->update();
+		m_map->handleCollisions(m_objects[i]);
+		if (m_objects[i]->isDestroyed()) {
+			delete m_objects[i];
+			m_objects.erase(m_objects.begin() + i);
 		}
 	}
 }

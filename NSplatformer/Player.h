@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include "InputManager.h"
+#include "Projectile.h"
 
 class Player : public Entity
 {

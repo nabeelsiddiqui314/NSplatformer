@@ -14,6 +14,10 @@ void Resources::init() {
 	soundBuffers.add("guiselect");
 
 	textures.add("player");
+	
+	textures.add("Projectiles/Arrow");
+	textures.add("Projectiles/Dagger");
+	textures.add("Projectiles/Beam");
 	//temp
 	textures.add("testTileset");
 	textures.add("Forest/1");

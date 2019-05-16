@@ -1,31 +1,37 @@
 #include "stdafx.h"
 #include "Projectile.h"
 
-
-Projectile::Projectile() {
-
+void Projectile::init(const std::string& name, float velocity, int damage, bool friendly) {
+	this->setTexture("Projectiles/" + name);
+	m_translation = velocity;
+	p_isFriendly = friendly;
+	m_damage = damage;
 }
 
-void Projectile::setType(const ProjectileType& type) {
-	m_type = type;
-	switch (type) {
-		
+void Projectile::setDirection(const xDirection& dir) {
+	if (dir == xDirection::RIGHT) {
+		this->setTextureRect({ 0,0, (int)getSize().x, (int)getSize().y }, { 0,0 });
 	}
-}
+	else {
+		this->setTextureRect({ (int)getSize().x, 0, -(int)getSize().x, (int)getSize().y }, { 0,0 });
+		m_translation *= -1;
+	}
 
-void Projectile::setTranslation(const xDirection& xDir, const yDirection& yDir, float velocity) {
-	m_translation.x = static_cast<int>(xDir) * velocity;
-	m_translation.y = static_cast<int>(yDir) * velocity;
-}
-
-const Projectile::ProjectileType& Projectile::getType() const {
-	return m_type;
 }
 
 void Projectile::interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) {
 	this->destroy();
 }
 
+void Projectile::interactWithOther(Dynamic* other) {
+	if (this->isFriendly() != other->isFriendly()) {
+		if (this->isCollidingOther(other)) {
+			other->takeDamage(m_damage);
+			this->destroy();
+		}
+	}
+}
+
 void Projectile::update() {
-	this->move(m_translation);
+	this->move({ m_translation, 0 });
 }

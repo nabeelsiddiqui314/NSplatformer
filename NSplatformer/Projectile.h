@@ -1,24 +1,20 @@
 #pragma once
 #include "Dynamic.h"
 #include "Direction.h"
+#include "Data.h"
 
 class Projectile : public Dynamic
 {
 public:
-	enum ProjectileType {
-
-	};
+	virtual ~Projectile() {}
 public:
-	Projectile();
-public:
-	void setType(const ProjectileType& type);
-	void setTranslation(const xDirection& xDir, const yDirection& yDir, float velocity);
-	const ProjectileType& getType() const;
+	void init(const std::string& name, float velocity, int damage, bool friendly);
+	void setDirection(const xDirection& dir);
 
 	void interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) override;
+	void interactWithOther(Dynamic* other) override;
 	void update() override;
 private:
-	sf::Vector2f m_translation;
-	ProjectileType m_type;
-	float m_baseDamage;
+	float m_translation;
+	int m_damage;
 };

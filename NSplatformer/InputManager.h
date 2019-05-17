@@ -14,6 +14,9 @@ public:
 		ArrowLeft,
 		ArrowRight,
 		W,
+		A,
+		S,
+		D,
 		Ctrl
 	};
 public:

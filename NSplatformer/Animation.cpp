@@ -64,7 +64,7 @@ void Animation::update() {
 			break;
 		}
 		if (m_animationClock.getElapsedTime().asMilliseconds() > m_currentInfo.dt) {
-			setSingleFrame(m_currentInfo.row, m_playOnceColumn, m_currentInfo.lateralInversion, m_currentInfo.constPoint);
+			this->setSingleFrame(m_currentInfo.row, m_playOnceColumn, m_currentInfo.lateralInversion, m_currentInfo.constPoint);
 			m_playOnceColumn += m_playOnceIncrement;
 			m_animationClock.restart();
 		}
@@ -74,12 +74,16 @@ void Animation::update() {
 			m_repeatColumn = 0;
 		}
 		if (m_animationClock.getElapsedTime().asMilliseconds() > m_currentInfo.dt) {
-			setSingleFrame(m_currentInfo.row, m_repeatColumn, m_currentInfo.lateralInversion, m_currentInfo.constPoint);
+			this->setSingleFrame(m_currentInfo.row, m_repeatColumn, m_currentInfo.lateralInversion, m_currentInfo.constPoint);
 			m_repeatColumn++;
 			m_animationClock.restart();
 		}
 		break;
 	}
+}
+
+bool Animation::isPlayingOnce() const {
+	return m_state == PlayingOnce;
 }
 
 void Animation::setSingleFrame(int row, int frame, bool lateralinversion, const sf::Vector2f & constPoint) {

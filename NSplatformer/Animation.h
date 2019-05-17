@@ -29,6 +29,7 @@ public:
 	void repeat(int row, int dt, bool lateralinversion, const sf::Vector2f& constPoint);
 	void playOnce(int row, int dt, bool lateralinversion, const sf::Vector2f& constPoint, bool reverse = false);
 	void update();
+	bool isPlayingOnce() const;
 private:
 	void setSingleFrame(int row, int frame, bool lateralinversion, const sf::Vector2f& constPoint);
 private:

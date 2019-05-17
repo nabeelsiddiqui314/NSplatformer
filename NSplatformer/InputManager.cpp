@@ -5,7 +5,7 @@ std::vector<bool> InputManager::s_oldInput;
 std::vector<bool> InputManager::s_currentInput;
 
 void InputManager::init() {
-	int buttons = 8;
+	int buttons = 9;
 	for (int i = 0; i < buttons; i++) {
 		s_oldInput.emplace_back(false);
 		s_currentInput.emplace_back(false);
@@ -21,6 +21,7 @@ void InputManager::getInput() {
 	detectCurrentInput(ArrowLeft, sf::Keyboard::isKeyPressed(sf::Keyboard::Left));
 	detectCurrentInput(ArrowRight, sf::Keyboard::isKeyPressed(sf::Keyboard::Right));
 	detectCurrentInput(W, sf::Keyboard::isKeyPressed(sf::Keyboard::W));
+	detectCurrentInput(Ctrl, sf::Keyboard::isKeyPressed(sf::Keyboard::LControl));
 }
 
 void InputManager::updateOldInput() {
@@ -32,6 +33,7 @@ void InputManager::updateOldInput() {
 	updateInputFor(ArrowLeft);
 	updateInputFor(ArrowRight);
 	updateInputFor(W);
+	updateInputFor(Ctrl);
 }
 
 bool InputManager::isClicked(const Button& button) {

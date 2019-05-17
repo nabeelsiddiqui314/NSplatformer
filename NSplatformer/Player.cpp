@@ -3,12 +3,16 @@
 
 
 Player::Player() {
+	p_id = static_cast<int>(IDmanager::Objects::PLAYER);
+	p_isFriendly = true;
 	this->setTexture("player");
 
 	p_animation.setRowSpacing(60);
 
 	p_animation.AddFrame({ 28, 49 });
-	p_animation.AddFrame({28, 44});
+	p_animation.AddFrame({ 28, 44});
+	p_animation.AddFrame({ 27, 38 });
+	p_animation.AddFrame({ 27, 38 });
 
 	p_animation.addRow();
 	p_animation.AddFrame({ 30, 47 });
@@ -23,14 +27,33 @@ Player::Player() {
 }
 
 void Player::update() {
+	if (InputManager::isClicked(InputManager::Ctrl) && !this->isJumping()) {
+		if (this->getDirection() == xDirection::LEFT) {
+			p_animation.playOnce(0, 50, true, { 0, this->getSize().y });
+		}
+		else if (this->getDirection() == xDirection::RIGHT) {
+			p_animation.playOnce(0, 50, false, this->getSize());
+		}
+		m_isCrouching = true;
+	}
+	else if (InputManager::isReleased(InputManager::Ctrl) && !this->isJumping()) {
+		if (this->getDirection() == xDirection::LEFT) {
+			p_animation.playOnce(0, 50, true, { 0, this->getSize().y }, true);
+		}
+		else if (this->getDirection() == xDirection::RIGHT) {
+			p_animation.playOnce(0, 50, false, this->getSize(), true);
+		}
+		m_isCrouching = false;
+	}
+
 	if (InputManager::isClicked(InputManager::W)) {
 		this->jump();
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !m_isCrouching) {
 		this->walkLeft();
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !m_isCrouching) {
 		this->walkRight();
 	}
 
@@ -43,18 +66,30 @@ void Player::update() {
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		p_animation.animate(1, 100, true, { 0, this->getSize().y });
+		if (m_isCrouching)
+			;
+		else
+			p_animation.repeat(1, 100, true, { 0, this->getSize().y });
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		p_animation.animate(1, 100, false, this->getSize());
+		if (m_isCrouching)
+			;
+		else
+			p_animation.repeat(1, 100, false, this->getSize());
 		
 	}
 	else {
 		if (this->getDirection() == xDirection::LEFT) {
-			p_animation.setFrame(0, 0, true, { 0, this->getSize().y });
+			if (m_isCrouching)
+				p_animation.setFrame(0, 3, true, { 0, this->getSize().y });
+			else
+				p_animation.setFrame(0, 0, true, { 0, this->getSize().y });
 		}
 		else if (this->getDirection() == xDirection::RIGHT) {
-			p_animation.setFrame(0, 0, false, this->getSize());
+			if (m_isCrouching)
+				p_animation.setFrame(0, 3, false, this->getSize());
+			else
+				p_animation.setFrame(0, 0, false, this->getSize());
 		}
 	}
 
@@ -69,7 +104,7 @@ void Player::update() {
 			this->addObject(prj, { this->getPos().x - this->getSize().x, this->getPos().y + this->getSize().y / 2 });
 		}
 	}
-
+	p_animation.update();
 	this->generalUpdate();
 }
 

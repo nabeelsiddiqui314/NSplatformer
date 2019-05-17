@@ -6,8 +6,6 @@
 class Projectile : public Dynamic
 {
 public:
-	virtual ~Projectile() {}
-public:
 	void init(const std::string& name, float velocity, int damage, bool friendly);
 	void setDirection(const xDirection& dir);
 

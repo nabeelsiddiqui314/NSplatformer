@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "InputManager.h"
 #include "Projectile.h"
+#include "IDmanager.h"
 
 class Player : public Entity
 {
@@ -14,5 +15,7 @@ public:
 	bool isInJump() const;
 	const xDirection& getDir() const;
 	const sf::Vector2f getCentre() const;
+private:
+	bool m_isCrouching = false;
 };
 

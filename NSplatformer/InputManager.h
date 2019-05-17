@@ -13,7 +13,8 @@ public:
 		ArrowDown,
 		ArrowLeft,
 		ArrowRight,
-		W
+		W,
+		Ctrl
 	};
 public:
 	static void init();

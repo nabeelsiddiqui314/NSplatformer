@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationParser.h" />
     <ClInclude Include="Button_.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Data.h" />
@@ -185,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationParser.cpp" />
     <ClCompile Include="Button_.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Dynamic.cpp" />

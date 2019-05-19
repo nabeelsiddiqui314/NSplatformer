@@ -7,23 +7,8 @@ Player::Player() {
 	p_isFriendly = true;
 	this->setTexture("player");
 
-	p_animation.setRowSpacing(60);
-
-	p_animation.AddFrame({ 28, 49 });
-	p_animation.AddFrame({ 28, 44});
-	p_animation.AddFrame({ 27, 38 });
-	p_animation.AddFrame({ 27, 38 });
-
-	p_animation.addRow();
-	p_animation.AddFrame({ 30, 47 });
-	p_animation.AddFrame({ 29, 49 });
-	p_animation.AddFrame({ 32, 44 });
-	p_animation.AddFrame({ 30, 49 });
-	p_animation.AddFrame({ 32, 50 });
-	p_animation.AddFrame({ 32, 44 });
-
-	p_animation.addRow();
-	p_animation.AddFrame({ 25, 43 });
+	m_animParser.setAnimator(p_animation);
+	m_animParser.parseFile("animations/player");
 
 	p_animation.setFrame(0, 0, false, { 0, this->getSize().y });
 	p_jumpHeight = 4 * 32;
@@ -51,7 +36,7 @@ void Player::update() {
 		}
 	}
 
-	if (InputManager::isClicked(InputManager::W)) {
+	if (InputManager::isClicked(InputManager::W) && !m_isCrouching) {
 		this->jump();
 	}
 
@@ -93,18 +78,6 @@ void Player::update() {
 	}
 	p_animation.update();
 	this->generalUpdate();
-}
-
-const sf::Vector2f& Player::getVel() const {
-	return Entity::getVelocity();
-}
-
-bool Player::isInJump() const {
-	return Entity::isJumping();;
-}
-
-const xDirection& Player::getDir() const {
-	return Entity::getDirection();
 }
 
 const sf::Vector2f Player::getCentre() const {

@@ -13,11 +13,11 @@ void Resources::init() {
 	fonts.add("thinPix", "8bitfont");
 	soundBuffers.add("guiselect");
 
-	textures.add("player");
+	textures.add("objects/player");
 	
-	textures.add("Projectiles/Arrow");
-	textures.add("Projectiles/Dagger");
-	textures.add("Projectiles/Beam");
+	textures.add("objects/Arrow");
+	textures.add("objects/Dagger");
+	textures.add("objects/Beam");
 	//temp
 	textures.add("testTileset");
 	textures.add("Forest/1");

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Entity.h"
 
+Entity::Entity(const std::string& name) : Dynamic(name) {}
+
 void Entity::interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) {
 	float x = this->getPos().x + this->getSize().x - tilePos.x;
 

@@ -6,26 +6,18 @@ void AnimationParser::setAnimator(Animation& animator) {
 }
 
 void AnimationParser::parseFile(const std::string& filename) {
-	m_filePtr = std::make_unique<std::ifstream>();
-	m_filePtr->open(filename + ".txt");
-	this->parse();
-}
-
-void AnimationParser::parseFile(std::unique_ptr<std::ifstream> file) {
-	m_filePtr = std::move(file);
-	this->parse();
-}
-
-void AnimationParser::parse() {
+	m_file.open(filename + ".txt");
+	if (!m_file.is_open())
+		return;
 	std::string temp;
-	std::getline(*m_filePtr, temp);
+	std::getline(m_file, temp);
 	m_animPtr->setRowSpacing(std::stoi(temp));
 
 	std::string x;
 	std::string y;
 	std::string* current;
 
-	while (std::getline(*m_filePtr, temp)) {
+	while (std::getline(m_file, temp)) {
 		if (temp == "row") {
 			m_animPtr->addRow();
 		}

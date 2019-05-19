@@ -2,13 +2,10 @@
 #include "Player.h"
 
 
-Player::Player() {
+Player::Player() 
+	: Entity("player") {
 	p_id = static_cast<int>(IDmanager::Objects::PLAYER);
 	p_isFriendly = true;
-	this->setTexture("player");
-
-	m_animParser.setAnimator(p_animation);
-	m_animParser.parseFile("animations/player");
 
 	p_animation.setFrame(0, 0, false, { 0, this->getSize().y });
 	p_jumpHeight = 4 * 32;

@@ -2,8 +2,11 @@
 #include "Dynamic.h"
 #include "DynamicManager.h"
 
-Dynamic::Dynamic() {
+Dynamic::Dynamic(const std::string& name) {
+	m_body.setTexture(Resources::textures.get("objects/" + name));
 	p_animation.setRect(this);
+	m_animParser.setAnimator(p_animation);
+	m_animParser.parseFile("animations/" + name);
 }
 
 void Dynamic::setPos(const sf::Vector2f& pos) {
@@ -56,10 +59,6 @@ int Dynamic::getID() const {
 
 void Dynamic::render(sf::RenderWindow& window) {
 	window.draw(m_body);
-}
-
-void Dynamic::setTexture(const std::string& name) {
-	m_body.setTexture(Resources::textures.get(name));
 }
 
 bool Dynamic::isCollidingOther(const Dynamic* other) const {

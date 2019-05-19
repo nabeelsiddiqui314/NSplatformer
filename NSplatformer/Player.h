@@ -3,7 +3,6 @@
 #include "InputManager.h"
 #include "Projectile.h"
 #include "IDmanager.h"
-#include "AnimationParser.h"
 
 class Player : public Entity
 {
@@ -15,6 +14,5 @@ public:
 	const sf::Vector2f getCentre() const;
 private:
 	bool m_isCrouching = false;
-	AnimationParser m_animParser;
 };
 

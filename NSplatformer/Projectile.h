@@ -6,7 +6,7 @@
 class Projectile : public Dynamic
 {
 public:
-	void init(const std::string& name, float velocity, int damage, bool friendly);
+	Projectile(const std::string& name, float velocity, int damage, bool friendly);
 	void setDirection(const xDirection& dir);
 
 	void interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) override;

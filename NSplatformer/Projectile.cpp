@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Projectile.h"
 
-void Projectile::init(const std::string& name, float velocity, int damage, bool friendly) {
-	this->setTexture("Projectiles/" + name);
+Projectile::Projectile(const std::string& name, float velocity, int damage, bool friendly) 
+	: Dynamic(name) {
 	m_translation = velocity;
 	p_isFriendly = friendly;
 	m_damage = damage;

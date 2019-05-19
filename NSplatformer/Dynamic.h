@@ -1,6 +1,7 @@
 #pragma once
 #include "Resources.h"
 #include "Animation.h"
+#include "AnimationParser.h"
 #include "Direction.h"
 
 class DynamicManager;
@@ -8,7 +9,7 @@ class DynamicManager;
 class Dynamic
 {
 public:
-	Dynamic();
+	Dynamic(const std::string& name);
 	virtual ~Dynamic() {};
 public:
 	void setPos(const sf::Vector2f& pos);
@@ -29,7 +30,6 @@ public:
 	virtual void update() = 0;
 	virtual void render(sf::RenderWindow& window);
 protected:
-	void setTexture(const std::string& name);
 	bool isCollidingOther(const Dynamic* other) const;
 	void destroy();
 protected:
@@ -39,5 +39,6 @@ protected:
 private:
 	sf::Sprite m_body;
 	DynamicManager* m_dynamicManager;
+	AnimationParser m_animParser;
 	bool m_isDestroyed = false;
 };

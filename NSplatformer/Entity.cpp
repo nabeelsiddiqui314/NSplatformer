@@ -1,7 +1,24 @@
 #include "stdafx.h"
 #include "Entity.h"
 
-Entity::Entity(const std::string& name) : Dynamic(name) {}
+Entity::Entity(const std::string& name) : Dynamic(name) {
+	m_attributeFile.open("data/attributes/" + name + ".txt");
+	std::string temp;
+	while (std::getline(m_attributeFile, temp)) {
+		if (temp == "health") {
+			std::getline(m_attributeFile, temp);
+			m_attr.health = std::stoi(temp);
+		}
+		else if (temp == "damage") {
+			std::getline(m_attributeFile, temp);
+			m_attr.damage = std::stoi(temp);
+		}
+		else if (temp == "agility") {
+			std::getline(m_attributeFile, temp);
+			m_attr.agility = std::stoi(temp);
+		}
+	}
+}
 
 void Entity::interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) {
 	float x = this->getPos().x + this->getSize().x - tilePos.x;
@@ -48,19 +65,19 @@ const sf::Vector2f& Entity::getVelocity() const {
 void Entity::generalUpdate() {
 	m_oldPos = this->getPos();
 	this->move(m_velocity);
-	m_velocity.x *= p_friction;
+	m_velocity.x = 0;
 	m_velocity.y += Data::physConsts::gravity;
 	m_velocity.y = std::min(m_velocity.y, 10.0f);
 }
 
-void Entity::walkLeft() {
-	m_velocity.x -= p_acceleration;
-	m_direction = xDirection::LEFT;
-}
-
-void Entity::walkRight() {
-	m_velocity.x += p_acceleration;
-	m_direction = xDirection::RIGHT;
+void Entity::walk(const xDirection& dir) {
+	if (dir == xDirection::RIGHT) {
+		m_velocity.x = m_attr.agility;
+	}
+	else {
+		m_velocity.x = -m_attr.agility;
+	}
+	m_direction = dir;
 }
 
 void Entity::jump() {

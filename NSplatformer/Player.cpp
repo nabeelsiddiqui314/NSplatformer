@@ -38,10 +38,10 @@ void Player::update() {
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && !m_isCrouching && !p_animation.isPlayingOnce()) {
-		this->walkLeft();
+		this->walk(xDirection::LEFT);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !m_isCrouching && !p_animation.isPlayingOnce()) {
-		this->walkRight();
+		this->walk(xDirection::RIGHT);
 	}
 
 	if (this->isJumping()) {

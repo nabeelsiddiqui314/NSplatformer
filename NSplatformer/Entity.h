@@ -5,12 +5,12 @@
 
 class Entity : public Dynamic
 {
-protected:
+private:
 	struct Attributes {
-		int health = 100;
-		int damage = 10;
-		int agility = 10;
-	} p_attr;
+		int health;
+		int damage;
+		int agility;
+	} m_attr;
 public:
 	Entity(const std::string& name);
 	virtual ~Entity() {}
@@ -22,8 +22,7 @@ public:
 	const xDirection& getDirection() const;
 protected:
 	void generalUpdate();
-	void walkRight();
-	void walkLeft();
+	void walk(const xDirection& dir);
 	void jump();
 
 private:
@@ -33,6 +32,7 @@ protected: //defaults
 	double p_friction = 0.5;
 	double p_jumpHeight = 128;
 private:
+	std::ifstream m_attributeFile;
 	sf::Vector2f m_velocity = {0,0};
 	sf::Vector2f m_oldPos;
 	xDirection m_direction;

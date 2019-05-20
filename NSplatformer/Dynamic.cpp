@@ -6,7 +6,7 @@ Dynamic::Dynamic(const std::string& name) {
 	m_body.setTexture(Resources::textures.get("objects/" + name));
 	p_animation.setRect(this);
 	m_animParser.setAnimator(p_animation);
-	m_animParser.parseFile("animations/" + name);
+	m_animParser.parseFile("data/animations/" + name);
 }
 
 void Dynamic::setPos(const sf::Vector2f& pos) {

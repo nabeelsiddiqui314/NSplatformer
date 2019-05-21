@@ -23,9 +23,10 @@ public:
 
 	void add(const std::string& name) {
 		Resource r;
-		if (r.loadFromFile(getFilename(name))) {
+		if (r.loadFromFile(getFilename(name)))
 			m_resources.insert(std::make_pair(name, r));
-		}
+		else
+			m_resources.insert(std::make_pair(name, m_fail));
 	}
 
 	bool doesExist(const std::string& name) {
@@ -33,8 +34,10 @@ public:
 	}
 
 	Resource& get(const std::string& name) {
-		if (!doesExist(name))
-			return m_fail;
+		if (!doesExist(name)) {
+			add(name);
+			return m_resources.at(name);
+		}
 		else
 			return m_resources.at(name);
 	}

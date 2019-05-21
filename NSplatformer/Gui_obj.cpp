@@ -2,7 +2,7 @@
 #include "Gui_obj.h"
 
 void Gui_obj::init() {
-	m_text.setFont(Resources::fonts.get("8bitfont"));
+	m_text.setFont(Resources::fonts.get("thinPix"));
 	m_text.setCharacterSize(40);
 	m_text.setOutlineThickness(4);
 	m_text.setOutlineColor(sf::Color::Black);

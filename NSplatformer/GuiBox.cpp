@@ -9,7 +9,7 @@ GuiBox::GuiBox() {
 	m_body.setOutlineThickness(4);
 	m_body.setOutlineColor(Data::Gui::boxBorder.color());
 
-	m_title.setFont(Resources::fonts.get("8bitfont"));
+	m_title.setFont(Resources::fonts.get("thinPix"));
 	m_title.setCharacterSize(60);
 	m_title.setOutlineThickness(5);
 	m_title.setOutlineColor(sf::Color::Black);

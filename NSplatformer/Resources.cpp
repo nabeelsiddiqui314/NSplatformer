@@ -10,17 +10,7 @@ void Resources::init() {
 	fonts.init("fonts", "ttf");
 	soundBuffers.init("audio", "wav");
 
-	fonts.add("thinPix", "8bitfont");
-	soundBuffers.add("guiselect");
-
-	textures.add("objects/player");
-	textures.add("objects/lionMan");
-	
-	textures.add("objects/Arrow");
-	textures.add("objects/Dagger");
-	textures.add("objects/Beam");
 	//temp
-	textures.add("testTileset");
 	textures.add("Forest/1");
 	textures.add("Forest/2");
 	textures.add("Forest/3");

@@ -1,0 +1,6 @@
+health
+200
+damage
+75
+agility
+2

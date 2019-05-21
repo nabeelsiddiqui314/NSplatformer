@@ -10,5 +10,8 @@ Dynamic* IDmanager::getNewObj(int id, int parameter) {
 	case 0:
 		return new Player();
 		break;
+	case 1:
+		return new Swordsman("lionMan");
+		break;
 	}
 }

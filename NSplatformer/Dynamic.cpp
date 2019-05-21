@@ -53,10 +53,6 @@ bool Dynamic::isFriendly() const {
 	return p_isFriendly;
 }
 
-int Dynamic::getID() const {
-	return p_id;
-}
-
 void Dynamic::render(sf::RenderWindow& window) {
 	window.draw(m_body);
 }

@@ -37,12 +37,13 @@ void Animation::repeat(int row, int dt, bool lateralinversion, const sf::Vector2
 	}
 }
 
-void Animation::playOnce(int row, int dt, bool lateralinversion, const sf::Vector2f& constPoint, bool reverse) {
+void Animation::playOnce(int row, int dt, bool lateralinversion, const sf::Vector2f& constPoint, const PlayOnceType& type) {
 	if (m_state != PlayingOnce) {
 		m_state = PlayingOnce;
+		m_playOnceType = type;
 		m_currentInfo = {row, 0, dt, lateralinversion, constPoint};
 		m_animationClock.restart();
-		if (reverse) {
+		if (type == Reverse) {
 			m_playOnceColumn = m_rows[row].size() - 1;
 			m_playOnceIncrement = -1;
 		}
@@ -59,12 +60,20 @@ void Animation::update() {
 		this->setSingleFrame(m_currentInfo.row, m_currentInfo.frame, m_currentInfo.lateralInversion, m_currentInfo.constPoint);
 		break;
 	case PlayingOnce:
-		if (m_playOnceColumn > m_rows[m_currentInfo.row].size() - 1 || m_playOnceColumn < 0) {
+		if (m_playOnceType == Cycle && m_playOnceColumn > m_rows[m_currentInfo.row].size() - 1) {
+			m_playOnceType = Reverse;
+			m_playOnceColumn = m_rows[m_currentInfo.row].size() - 1;
+			m_playOnceIncrement = -1;
+		}
+		else if (m_playOnceColumn > m_rows[m_currentInfo.row].size() - 1 || m_playOnceColumn < 0) {
 			m_state = Still;
 			break;
 		}
 		if (m_animationClock.getElapsedTime().asMilliseconds() > m_currentInfo.dt) {
+			sf::Vector2f oldSize = m_obj->getSize();
 			this->setSingleFrame(m_currentInfo.row, m_playOnceColumn, m_currentInfo.lateralInversion, m_currentInfo.constPoint);
+			m_currentInfo.constPoint = { m_currentInfo.constPoint.x / oldSize.x * m_obj->getSize().x,
+										 m_currentInfo.constPoint.y / oldSize.y * m_obj->getSize().y };
 			m_playOnceColumn += m_playOnceIncrement;
 			m_animationClock.restart();
 		}
@@ -84,6 +93,11 @@ void Animation::update() {
 
 bool Animation::isPlayingOnce() const {
 	return m_state == PlayingOnce;
+}
+
+const sf::Vector2f& Animation::getFrameSize(int row, int column) const {
+	return { static_cast<float>(m_rows[row][column].size.x),
+		     static_cast<float>(m_rows[row][column].size.y) };
 }
 
 void Animation::setSingleFrame(int row, int frame, bool lateralinversion, const sf::Vector2f & constPoint) {

@@ -19,6 +19,10 @@ void Projectile::setDirection(const xDirection& dir) {
 
 }
 
+int Projectile::getID() const {
+	return -1;
+}
+
 void Projectile::interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) {
 	this->destroy();
 }

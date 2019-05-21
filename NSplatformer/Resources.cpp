@@ -14,6 +14,7 @@ void Resources::init() {
 	soundBuffers.add("guiselect");
 
 	textures.add("objects/player");
+	textures.add("objects/lionMan");
 	
 	textures.add("objects/Arrow");
 	textures.add("objects/Dagger");

@@ -21,15 +21,22 @@ private:
 		Repeat
 	} m_state;
 public:
+	enum PlayOnceType {
+		Normal,
+		Reverse,
+		Cycle
+	} m_playOnceType;
+public:
 	void setRect(Dynamic* obj);
 	void setRowSpacing(int rowSpacing);
 	void addRow();
 	void AddFrame(const sf::Vector2i& size);
 	void setFrame(int row, int frame, bool lateralinversion, const sf::Vector2f& constPoint);
 	void repeat(int row, int dt, bool lateralinversion, const sf::Vector2f& constPoint);
-	void playOnce(int row, int dt, bool lateralinversion, const sf::Vector2f& constPoint, bool reverse = false);
+	void playOnce(int row, int dt, bool lateralinversion, const sf::Vector2f& constPoint, const PlayOnceType& type = Normal);
 	void update();
 	bool isPlayingOnce() const;
+	const sf::Vector2f& getFrameSize(int row, int column) const;
 private:
 	void setSingleFrame(int row, int frame, bool lateralinversion, const sf::Vector2f& constPoint);
 private:

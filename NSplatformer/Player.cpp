@@ -4,16 +4,20 @@
 
 Player::Player() 
 	: Entity("player") {
-	p_id = static_cast<int>(IDmanager::Objects::PLAYER);
 	p_isFriendly = true;
 
 	p_animation.setFrame(0, 0, false, { 0, this->getSize().y });
+	p_animation.update();
 	p_jumpHeight = 4 * 32;
+}
+
+int Player::getID() const {
+	return static_cast<int>(IDmanager::Objects::PLAYER);
 }
 
 void Player::update() {
 	if (!this->isJumping()) {
-		if (InputManager::isClicked(InputManager::Ctrl)) {
+		if (InputManager::isClicked(InputManager::Ctrl) && !m_isCrouching) {
 			if (this->getDirection() == xDirection::LEFT) {
 				p_animation.playOnce(0, 50, true, { 0, this->getSize().y });
 			}
@@ -24,10 +28,10 @@ void Player::update() {
 		}
 		else if (InputManager::isReleased(InputManager::Ctrl) && m_isCrouching) {
 			if (this->getDirection() == xDirection::LEFT) {
-				p_animation.playOnce(0, 50, true, { 0, this->getSize().y }, true);
+				p_animation.playOnce(0, 50, true, { 0, this->getSize().y }, Animation::Reverse);
 			}
 			else if (this->getDirection() == xDirection::RIGHT) {
-				p_animation.playOnce(0, 50, false, this->getSize(), true);
+				p_animation.playOnce(0, 50, false, this->getSize(), Animation::Reverse);
 			}
 			m_isCrouching = false;
 		}
@@ -57,7 +61,7 @@ void Player::update() {
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !m_isCrouching) {
 		p_animation.repeat(1, 100, false, this->getSize());
-		
+
 	}
 	else {
 		if (this->getDirection() == xDirection::LEFT) {
@@ -68,7 +72,7 @@ void Player::update() {
 		}
 		else if (this->getDirection() == xDirection::RIGHT) {
 			if (m_isCrouching)
-				p_animation.setFrame(0, 3, false, { 0, this->getSize().y });
+				p_animation.setFrame(0, 3, false, this->getSize());
 			else
 				p_animation.setFrame(0, 0, false, this->getSize());
 		}

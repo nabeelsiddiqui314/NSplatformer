@@ -9,6 +9,7 @@ class Player : public Entity
 public:
 	Player();
 public:
+	int getID() const override;
 	void update() override;
 
 	const sf::Vector2f getCentre() const;

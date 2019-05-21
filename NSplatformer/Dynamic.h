@@ -22,8 +22,8 @@ public:
 	void addObject(Dynamic* newObj, const sf::Vector2f& pos);
 	bool isDestroyed() const;
 	bool isFriendly() const;
-	int getID() const;
-
+	
+	virtual int getID() const = 0;
 	virtual void interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) {}
 	virtual void interactWithOther(Dynamic* other) {}
 	virtual void takeDamage(int amount) {}
@@ -35,7 +35,6 @@ protected:
 protected:
 	Animation p_animation;
 	bool p_isFriendly = true;
-	int p_id;
 private:
 	sf::Sprite m_body;
 	DynamicManager* m_dynamicManager;

@@ -14,9 +14,27 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":32,
-                 "y":0,
+                 "x":520,
+                 "y":200,
                 }, 
+{
+                 "gid":1,
+                 "height":32,
+                 "id":2,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"parameter",
+                         "type":"string",
+                         "value":"herro"
+                        }],
+                 "rotation":90,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":520,
+                 "y":0,
+                },
                 {
                  "height":81,
                  "id":6,

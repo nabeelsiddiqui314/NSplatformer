@@ -8,7 +8,7 @@ Swordsman::Swordsman(const std::string& name) : Entity(name) {
 }
 
 int Swordsman::getID() const {
-	return static_cast<int>(IDmanager::Objects::SWORDSMAN);
+	return IDmanager::getObjectID(IDmanager::Objects::SWORDSMAN);
 }
 
 void Swordsman::interactWithOther(Dynamic* other) {
@@ -35,6 +35,10 @@ void Swordsman::interactWithOther(Dynamic* other) {
 			else if (other->getPos().x + other->getSize().x < this->getPos().x)
 				m_direction = xDirection::LEFT;
 	}
+}
+
+void Swordsman::takeDamage(int damage) {
+	this->destroy();
 }
 
 void Swordsman::update() {

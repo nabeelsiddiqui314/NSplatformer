@@ -12,7 +12,7 @@ Player::Player()
 }
 
 int Player::getID() const {
-	return static_cast<int>(IDmanager::Objects::PLAYER);
+	return IDmanager::getObjectID(IDmanager::Objects::PLAYER);
 }
 
 void Player::update() {
@@ -35,6 +35,27 @@ void Player::update() {
 			}
 			m_isCrouching = false;
 		}
+		if (InputManager::isClicked(InputManager::MouseLeft) && !m_isAttacking) {
+			if (!m_isCrouching) {
+				if (this->getDirection() == xDirection::LEFT) {
+					p_animation.playOnce(4, 50, true, this->getSize(), Animation::Cycle);
+				}
+				else if (this->getDirection() == xDirection::RIGHT) {
+					p_animation.playOnce(4, 50, false, { 0, this->getSize().y }, Animation::Cycle);
+				}
+			}
+			else {
+				if (this->getDirection() == xDirection::LEFT) {
+					p_animation.playOnce(5, 50, true, this->getSize(), Animation::Cycle);
+				}
+				else if (this->getDirection() == xDirection::RIGHT) {
+					p_animation.playOnce(5, 50, false, { 0, this->getSize().y }, Animation::Cycle);
+				}
+			}
+			m_isAttacking = true;
+		}
+		else if (m_isAttacking && !p_animation.isPlayingOnce())
+			m_isAttacking = false;
 	}
 
 	if (InputManager::isClicked(InputManager::W) && !m_isCrouching) {
@@ -79,6 +100,17 @@ void Player::update() {
 	}
 	p_animation.update();
 	this->generalUpdate();
+}
+
+void Player::interactWithOther(Dynamic* other) {
+	if (other->getID() == IDmanager::getObjectID(IDmanager::Objects::SWORDSMAN)) {
+		if (m_isAttacking && this->isCollidingOther(other)) {
+			if (other->getPos().x > this->getPos().x && this->getDirection() == xDirection::RIGHT)
+				other->takeDamage(50);
+			else if (other->getPos().x + other->getSize().x < this->getPos().x + this->getSize().x && this->getDirection() == xDirection::LEFT)
+				other->takeDamage(50);
+		}
+	}
 }
 
 const sf::Vector2f Player::getCentre() const {

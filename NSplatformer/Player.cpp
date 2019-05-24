@@ -104,13 +104,17 @@ void Player::update() {
 
 void Player::interactWithOther(Dynamic* other) {
 	if (other->getID() == IDmanager::getObjectID(IDmanager::Objects::SWORDSMAN)) {
-		if (m_isAttacking && this->isCollidingOther(other)) {
-			if (other->getPos().x > this->getPos().x && this->getDirection() == xDirection::RIGHT)
-				other->takeDamage(50);
-			else if (other->getPos().x + other->getSize().x < this->getPos().x + this->getSize().x && this->getDirection() == xDirection::LEFT)
-				other->takeDamage(50);
+		if (m_isAttacking  && this->isCollidingOther(other)) {
+			if ((other->getPos().x > this->getPos().x && this->getDirection() == xDirection::RIGHT) ||
+				(other->getPos().x + other->getSize().x < this->getPos().x + this->getSize().x && this->getDirection() == xDirection::LEFT)) {
+				this->damageOther(other);
+			}
 		}
 	}
+}
+
+void Player::takeDamage(int damage) {
+	this->loseHealth(damage);
 }
 
 const sf::Vector2f Player::getCentre() const {

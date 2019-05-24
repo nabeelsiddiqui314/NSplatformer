@@ -68,6 +68,8 @@ void Entity::generalUpdate() {
 	m_velocity.x = 0;
 	m_velocity.y += Data::physConsts::gravity;
 	m_velocity.y = std::min(m_velocity.y, 10.0f);
+	if (m_attr.health <= 0)
+		this->destroy();
 }
 
 void Entity::walk(const xDirection& dir) {
@@ -85,6 +87,14 @@ void Entity::jump() {
 		m_velocity.y -= this->calculateJumpPower();
 		m_isJumping = true;
 	}
+}
+
+void Entity::damageOther(Dynamic* other) {
+	other->takeDamage(m_attr.damage);
+}
+
+void Entity::loseHealth(int damage) {
+	m_attr.health -= damage;
 }
 
 bool Entity::isJumping() const {

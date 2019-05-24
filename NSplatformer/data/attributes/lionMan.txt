@@ -1,6 +1,6 @@
 health
 200
 damage
-75
+10
 agility
 2

@@ -12,10 +12,11 @@ public:
 	int getID() const override;
 	void update() override;
 	void interactWithOther(Dynamic* other) override;
+	void takeDamage(int damage) override;
 
 	const sf::Vector2f getCentre() const;
 private:
-	bool m_isCrouching = false;
 	bool m_isAttacking = false;
+	bool m_isCrouching = false;
 };
 

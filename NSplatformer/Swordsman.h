@@ -15,5 +15,7 @@ private:
 	xDirection m_direction;
 	float m_swordDistance;
 	bool m_stop = true;
+	bool m_isAttacking = false;
+	bool m_didHit = false;
 };
 

@@ -24,7 +24,8 @@ protected:
 	void generalUpdate();
 	void walk(const xDirection& dir);
 	void jump();
-
+	void damageOther(Dynamic* other);
+	void loseHealth(int damage);
 private:
 	float calculateJumpPower();
 protected: //defaults

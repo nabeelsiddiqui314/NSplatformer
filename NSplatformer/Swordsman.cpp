@@ -20,25 +20,35 @@ void Swordsman::interactWithOther(Dynamic* other) {
 		else
 			m_stop = false;
 
-			if (this->getDirection() == xDirection::RIGHT &&
-				this->getPos().x + this->getSize().x + m_swordDistance > other->getPos().x &&
-				this->getPos().x + this->getSize().x + m_swordDistance < other->getPos().x + other->getSize().x) {
-				p_animation.playOnce(1, 50, true, { 0, this->getSize().y }, Animation::Cycle);
-			}
-			else if (this->getDirection() == xDirection::LEFT &&
-				this->getPos().x - m_swordDistance < other->getPos().x + other->getSize().x &&
-				this->getPos().x - m_swordDistance > other->getPos().x) {
-				p_animation.playOnce(1, 50, false, this->getSize(), Animation::Cycle);
-			}
-			if (other->getPos().x > this->getPos().x + this->getSize().x)
-				m_direction = xDirection::RIGHT;
-			else if (other->getPos().x + other->getSize().x < this->getPos().x)
-				m_direction = xDirection::LEFT;
+		if (this->getDirection() == xDirection::RIGHT &&
+			this->getPos().x + this->getSize().x + m_swordDistance > other->getPos().x &&
+			this->getPos().x + this->getSize().x + m_swordDistance < other->getPos().x + other->getSize().x) {
+			p_animation.playOnce(1, 50, true, { 0, this->getSize().y }, Animation::Cycle);
+			m_isAttacking = true;
+		}
+		else if (this->getDirection() == xDirection::LEFT &&
+			this->getPos().x - m_swordDistance < other->getPos().x + other->getSize().x &&
+			this->getPos().x - m_swordDistance > other->getPos().x) {
+			p_animation.playOnce(1, 50, false, this->getSize(), Animation::Cycle);
+			m_isAttacking = true;
+		}
+		else {
+			m_isAttacking = false;
+		}
+		if (m_isAttacking && this->isCollidingOther(other) && !m_didHit) {
+			this->damageOther(other);
+		}
+		m_didHit = m_isAttacking;
+
+		if (other->getPos().x > this->getPos().x + this->getSize().x)
+			m_direction = xDirection::RIGHT;
+		else if (other->getPos().x + other->getSize().x < this->getPos().x)
+			m_direction = xDirection::LEFT;
 	}
 }
 
 void Swordsman::takeDamage(int damage) {
-	this->destroy();
+	this->loseHealth(damage);
 }
 
 void Swordsman::update() {

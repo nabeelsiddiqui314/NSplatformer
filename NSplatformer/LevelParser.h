@@ -7,8 +7,12 @@ class LevelParser
 {
 public:
 	struct ObjectInfo {
+		ObjectInfo(int id_, const std::string& param_, const sf::Vector2f& pos_) : 
+			id(id_), 
+		    parameter(param_),
+		    pos(pos_) {}
 		int id;
-		int parameter;
+		std::string parameter;
 		sf::Vector2f pos;
 	};
 public:

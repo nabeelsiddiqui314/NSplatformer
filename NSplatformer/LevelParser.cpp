@@ -46,62 +46,76 @@ void LevelParser::parseObjects(const std::string& name) {
 	std::string temp;
 
 	auto getClearedLine = [&]() {
-		for (int i = 0; i < temp.size(); i ++) {
-			if (temp[i] != ' ') {
-				temp.erase(0, i);
-			}
-		}
+		temp.erase(std::remove(temp.begin(), temp.end(), ' '), temp.end());
 	};
 
-	auto setValue = [&](int line, int& val) { 
-		for (int i = 0; i < line; i++) { // gets line
-			std::getline(m_objFile, temp);
-			getClearedLine();
+	auto doesContain = [&](const std::string& str) {
+		return temp.find(str) != std::string::npos;
+	};
+
+	auto setValue = [&](int& val) { 
+		getClearedLine();
+		val = 0;
+		std::string val_str;
+
+		for (int i = 0; i < temp.size(); i++) {
+			if (isdigit(temp[i])) {
+				val_str += temp[i];
+			}
+		}
+		if (val_str.size() == 0) {
+			val = 0;
+			return;
 		}
 
-		val = 0;
-		int digitPlace = 1; //indicates the position of a digit 
-		for (int i = temp.size() - 2; i > 0; i--) { // reads the value no matter how big
-			if (isdigit(temp[i])) {
-				val += (temp[i] - '0') * digitPlace;
-				digitPlace *= 10;
-			}
-			else
-				break;
-		}
+		val = std::stoi(val_str);
 	};
 
 		int id;
-		int parameter;
+		std::string parameter;
 		int x, y;
-		int width, height;
+		int gWidth, gHeight;
 	while (std::getline(m_objFile, temp)) {
-		getClearedLine();
-		if (temp.size() > 4 && temp.substr(1, 3) == "gid") { // it is at evry starting point of an object data section
-			setValue(0, id);
-			setValue(8, parameter);
-			setValue(6, x);
-			setValue(1, y);
-
-			ObjectInfo inf;
-			inf.id = id;
-			inf.parameter = parameter;
-			inf.pos = {static_cast<float>(x), static_cast<float>(y)};
-
-			m_objects.push_back(inf);
-		}
-		else if (temp.size() > 6 && temp.substr(1, 6) == "height") {
-			setValue(0, height);
-			for (int i = 0; i < 2; i++) {
-				std::getline(m_objFile, temp);
+		if (doesContain("}"))
+			continue;
+		std::string type;
+		if (doesContain("{")) {
+			std::getline(m_objFile, temp);
+			if (doesContain("gid")) {
+				type = "obj";
+				setValue(id);
+			}
+			else if (doesContain("height")) {
+				type = "goal";
+				setValue(gHeight);
+			}
+			else
+				continue;
+			while (std::getline(m_objFile, temp)) {
+				if (doesContain("}"))
+					break;
 				getClearedLine();
+				if (type == "obj") {
+					if (doesContain("name")) //name is used as the parameter
+						parameter = temp.substr(8, temp.size() - 10);
+					else if (doesContain("x"))
+						setValue(x);
+					else if (doesContain("y"))
+						setValue(y);
+				}
+				else if (type == "goal") {
+					if (doesContain("width"))
+						setValue(gWidth);
+					else if (doesContain("x"))
+						setValue(x);
+					else if (doesContain("y"))
+						setValue(y);
+				}
 			}
-			if (temp.substr(8, 4) == "Goal") {
-				setValue(4, width);
-				setValue(1, x);
-				setValue(1, y);
-				m_goal = {(float)x, (float)y, (float)width, (float)height};
-			}
+			if (type == "obj")
+				m_objects.emplace_back(id, parameter, sf::Vector2f(x, y));
+			else if (type == "goal")
+				m_goal = {(float)x, (float)y, (float)gWidth, (float)gHeight};
 		}
 	}
 }

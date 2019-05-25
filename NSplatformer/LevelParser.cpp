@@ -28,8 +28,7 @@ void LevelParser::parseMap(const std::string& name) {
 						tileid = temp[i] - '0';
 					i++;
 				}
-				tileid--; // because tiled represents first tile as 1 rather than 0
-				if (tileid < 1 || tileid > m_map.size() - 1)  // checks whether the id is valid
+				if (tileid < 0 || tileid > m_map.size() - 1)  // checks whether the id is valid
 					tileid = 0;
 				m_map.emplace_back(tileid);
 			}

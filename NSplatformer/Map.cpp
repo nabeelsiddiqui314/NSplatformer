@@ -39,7 +39,17 @@ void Map::load() {
 			m_map[i + 2].position = sf::Vector2f( x * Data::tile::size + Data::tile::size, y * Data::tile::size + Data::tile::size );
 			m_map[i + 3].position = sf::Vector2f( x * Data::tile::size, y * Data::tile::size + Data::tile::size );
 
-			sf::Vector2f texCoord = m_tiles[m_lvl->at(x + y * m_dimensions.x)].texPos; //index of the tile is it's id
+			if (m_lvl->at(x + y * m_dimensions.x) == 0) {
+				m_map[i].color = sf::Color::Transparent;
+				m_map[i + 1].color = sf::Color::Transparent;
+				m_map[i + 2].color = sf::Color::Transparent;
+				m_map[i + 3].color = sf::Color::Transparent;
+				i += 4;
+				continue;
+			}
+
+
+			sf::Vector2f texCoord = m_tiles[m_lvl->at(x + y * m_dimensions.x) - 1].texPos; //index of the tile is it's id
 
 			m_map[i].texCoords     = sf::Vector2f( texCoord.x, texCoord.y);
 			m_map[i + 1].texCoords = sf::Vector2f( texCoord.x + Data::tile::size, texCoord.y);

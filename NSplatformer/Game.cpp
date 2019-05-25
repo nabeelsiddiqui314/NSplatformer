@@ -17,7 +17,7 @@ void Game::update(const sf::RenderWindow& window) {
 	//camera
 	m_gameView.setFocus(m_playerPtr->getDirection());
 	m_gameView.moveCamera(m_playerPtr->getCentre(), m_playerPtr->isJumping());
-	m_bg->update(m_playerPtr->getCentre(), m_gameView.getVelocity().x);
+	m_bg->update(m_gameView.getView().getCenter(), m_gameView.getVelocity().x);
 
 	//if the player has reached the goal
 	if (sf::FloatRect(m_playerPtr->getPos(), m_playerPtr->getSize()).intersects(m_goalRegion)) {

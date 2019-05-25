@@ -108,6 +108,7 @@ void Player::interactWithOther(Dynamic* other) {
 			if ((other->getPos().x > this->getPos().x && this->getDirection() == xDirection::RIGHT) ||
 				(other->getPos().x + other->getSize().x < this->getPos().x + this->getSize().x && this->getDirection() == xDirection::LEFT)) {
 				this->damageOther(other);
+				m_isAttacking = false;
 			}
 		}
 	}

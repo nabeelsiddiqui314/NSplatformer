@@ -7,10 +7,10 @@ const int IDmanager::getObjectID(const Objects& obj) {
 
 Dynamic* IDmanager::getNewObj(int id, const std::string& parameter) {
 	switch (id) {
-	case 0:
+	case 61:
 		return new Player();
 		break;
-	case 1:
+	case 62:
 		return new Swordsman(parameter);
 		break;
 	}

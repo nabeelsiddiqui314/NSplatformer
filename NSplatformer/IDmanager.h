@@ -8,7 +8,7 @@ class IDmanager
 	IDmanager() = delete;
 public:
 	enum class Objects { //enum values represent id of all objects
-		PLAYER = 0,
+		PLAYER = 61,
 		SWORDSMAN
 	};
 public:

@@ -58,7 +58,7 @@ inline void Game::init(const std::string& levelFolder) {
 	m_bg->init(m_parser->getBGName(), m_parser->isYFixed());
 
 	for (auto& info : m_parser->getObjects()) {
-		m_objects->addObject(IDmanager::getNewObj(info.id, info.parameter), info.pos);
+		m_objects->addObject(IDmanager::getNewObj(info.id, info.name, info.parameter), info.pos);
 	}
 	m_playerPtr = m_objects->getPlayer();
 	m_gameView.setPos(m_playerPtr->getCentre());

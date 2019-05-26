@@ -72,6 +72,7 @@ void LevelParser::parseObjects(const std::string& name) {
 	};
 
 		int id;
+		std::string obj_name;
 		std::string parameter;
 		int x, y;
 		int gWidth, gHeight;
@@ -96,8 +97,16 @@ void LevelParser::parseObjects(const std::string& name) {
 					break;
 				getClearedLine();
 				if (type == "obj") {
-					if (doesContain("name")) //name is used as the parameter
-						parameter = temp.substr(8, temp.size() - 10);
+					if (doesContain("name"))
+						obj_name = temp.substr(8, temp.size() - 10);
+					if (doesContain("properties")) {
+						while (std::getline(m_objFile, temp)) {
+							if (doesContain("}"))
+								break;
+							else if (doesContain("value"))
+								parameter = temp.substr(9, temp.size() - 10);
+						}
+					}
 					else if (doesContain("x"))
 						setValue(x);
 					else if (doesContain("y"))
@@ -113,7 +122,7 @@ void LevelParser::parseObjects(const std::string& name) {
 				}
 			}
 			if (type == "obj")
-				m_objects.emplace_back(id, parameter, sf::Vector2f(x, y));
+				m_objects.emplace_back(id, obj_name, parameter, sf::Vector2f(x, y));
 			else if (type == "goal")
 				m_goal = {(float)x, (float)y, (float)gWidth, (float)gHeight};
 		}

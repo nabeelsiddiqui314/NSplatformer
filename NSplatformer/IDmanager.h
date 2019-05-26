@@ -13,5 +13,5 @@ public:
 	};
 public:
 	static const int getObjectID(const Objects& obj);
-	static Dynamic* getNewObj(int id, const std::string& parameter);
+	static Dynamic* getNewObj(int id, const std::string& name, const std::string& parameter);
 };

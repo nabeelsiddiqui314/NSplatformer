@@ -6,11 +6,12 @@ const int IDmanager::getObjectID(const Objects& obj) {
 }
 
 Dynamic* IDmanager::getNewObj(int id, const std::string& parameter) {
-	switch (id) {
-	case 61:
+	Objects obj = static_cast<Objects>(id);
+	switch (obj) {
+	case Objects::PLAYER:
 		return new Player();
 		break;
-	case 62:
+	case Objects::SWORDSMAN:
 		return new Swordsman(parameter);
 		break;
 	}

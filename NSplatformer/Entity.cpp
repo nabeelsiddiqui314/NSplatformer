@@ -1,23 +1,10 @@
 #include "stdafx.h"
 #include "Entity.h"
 
-Entity::Entity(const std::string& name) : Dynamic(name) {
-	m_attributeFile.open("data/attributes/" + name + ".txt");
-	std::string temp;
-	while (std::getline(m_attributeFile, temp)) {
-		if (temp == "health") {
-			std::getline(m_attributeFile, temp);
-			m_attr.health = std::stoi(temp);
-		}
-		else if (temp == "damage") {
-			std::getline(m_attributeFile, temp);
-			m_attr.damage = std::stoi(temp);
-		}
-		else if (temp == "agility") {
-			std::getline(m_attributeFile, temp);
-			m_attr.agility = std::stoi(temp);
-		}
-	}
+Entity::Entity(const std::string& name) : Dynamic(name), m_attrParser(name) {
+	m_attr.agility = std::stoi(m_attrParser.getValue("agility"));
+	m_attr.health = std::stoi(m_attrParser.getValue("health"));
+	m_attr.damage = std::stoi(m_attrParser.getValue("damage"));
 }
 
 void Entity::interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) {

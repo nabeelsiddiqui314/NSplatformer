@@ -2,6 +2,7 @@
 #include "Dynamic.h"
 #include "Data.h"
 #include "Direction.h"
+#include "ObjectDataParser.h"
 
 class Entity : public Dynamic
 {
@@ -33,7 +34,7 @@ protected: //defaults
 	double p_friction = 0.5;
 	double p_jumpHeight = 128;
 private:
-	std::ifstream m_attributeFile;
+	ObjectDataParser m_attrParser;
 	sf::Vector2f m_velocity = {0,0};
 	sf::Vector2f m_oldPos;
 	xDirection m_direction;

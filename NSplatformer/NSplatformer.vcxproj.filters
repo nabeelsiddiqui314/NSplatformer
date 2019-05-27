@@ -105,6 +105,9 @@
     <ClInclude Include="Swordsman.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectDataParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -180,6 +183,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Swordsman.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectDataParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

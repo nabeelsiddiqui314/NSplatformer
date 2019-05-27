@@ -173,6 +173,7 @@
     <ClInclude Include="LevelParser.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="ObjectDataParser.h" />
     <ClInclude Include="ParallaxBG.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />
@@ -204,6 +205,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="NSplatformer.cpp" />
+    <ClCompile Include="ObjectDataParser.cpp" />
     <ClCompile Include="ParallaxBG.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />

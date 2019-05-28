@@ -179,6 +179,7 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ResourceLoader.h" />
     <ClInclude Include="Resources.h" />
+    <ClInclude Include="Spawner.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="Stats.h" />
@@ -210,6 +211,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Resources.cpp" />
+    <ClCompile Include="Spawner.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

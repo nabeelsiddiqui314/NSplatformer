@@ -11,6 +11,7 @@ Spawner::Spawner(const std::string& name)
 	m_triggerTile.x = std::stoi(m_parser.getValue("tileX"));
 	m_triggerTile.y = std::stoi(m_parser.getValue("tileY"));
 	m_direction = m_parser.getValue("direction");
+	m_isDestructible = m_parser.getValue("destructible") == "true";
 	p_isFriendly = false;
 	p_animation.setFrame(0,0, false, { this->getSize().x / 2, this->getSize().y });
 	p_animation.update();
@@ -21,6 +22,12 @@ void Spawner::interactWithOther(Dynamic* other) {
 		if (floor((other->getPos().x + other->getSize().x / 2) / Data::tile::size) == floor((this->getPos().x + (m_triggerTile.x * Data::tile::size)) / Data::tile::size) &&
 			floor((other->getPos().y + other->getSize().y / 2) / Data::tile::size) == floor((this->getPos().y + (m_triggerTile.y * Data::tile::size)) / Data::tile::size))
 			m_isInTile = true;
+	}
+}
+
+void Spawner::takeDamage(int damage) {
+	if (m_isDestructible) {
+		this->destroy();
 	}
 }
 

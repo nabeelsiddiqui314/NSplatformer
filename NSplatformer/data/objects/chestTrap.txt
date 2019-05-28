@@ -6,3 +6,4 @@ name:arrow
 tileX:-2
 tileY:0
 direction:left
+destructible:true

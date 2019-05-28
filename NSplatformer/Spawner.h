@@ -9,6 +9,7 @@ public:
 	Spawner(const std::string& name);
 public:
 	void interactWithOther(Dynamic* other) override;
+	void takeDamage(int damage) override;
 	int getID() const override;
 	void update() override;
 private:
@@ -21,4 +22,5 @@ private:
 	std::string m_direction;
 	sf::Vector2i m_triggerTile;
 	bool m_isInTile = false;
+	bool m_isDestructible;
 };

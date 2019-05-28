@@ -25,7 +25,7 @@ void Projectile::interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2
 void Projectile::interactWithOther(Dynamic* other) {
 	if (this->isFriendly() != other->isFriendly()) {
 		if (this->isCollidingOther(other)) {
-			//other->takeDamage(m_damage);
+			other->takeDamage(m_damage);
 			this->destroy();
 		}
 	}

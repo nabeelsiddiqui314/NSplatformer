@@ -100,6 +100,14 @@ const sf::Vector2f& Animation::getFrameSize(int row, int column) const {
 		     static_cast<float>(m_rows[row][column].size.y) };
 }
 
+const int Animation::getLastFrame(int row) const {
+	return m_rows[row].size() - 1;
+}
+
+const int Animation::getCurrentFrame() const {
+	return m_repeatColumn - 1;
+}
+
 void Animation::setSingleFrame(int row, int frame, bool lateralinversion, const sf::Vector2f & constPoint) {
 	if (!lateralinversion) {
 		m_obj->setTextureRect({ m_rows[row][frame].x,

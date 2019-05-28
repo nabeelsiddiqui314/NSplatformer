@@ -2,6 +2,7 @@
 #include "Dynamic.h"
 #include "Player.h"
 #include "Swordsman.h"
+#include "Spawner.h"
 
 class IDmanager
 {
@@ -9,7 +10,9 @@ class IDmanager
 public:
 	enum class Objects { //enum values represent id of all objects
 		PLAYER = 61,
-		SWORDSMAN
+		SWORDSMAN,
+		SPAWNER,
+		PROJECTILE
 	};
 public:
 	static const int getObjectID(const Objects& obj);

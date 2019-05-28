@@ -12,16 +12,16 @@
                  "y":524
                 }, 
                 {
-                 "gid":62,
+                 "gid":63,
                  "height":32,
                  "id":2,
-                 "name":"lionMan",
+                 "name":"chestTrap",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":882,
-                 "y":360
+                 "x":737,
+                 "y":389
                 }, 
                 {
                  "gid":62,

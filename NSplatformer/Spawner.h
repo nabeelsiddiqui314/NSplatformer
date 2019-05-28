@@ -6,16 +6,17 @@
 class Spawner : public Dynamic
 {
 public:
-	Spawner(const std::string& name, const std::string& parameter);
+	Spawner(const std::string& name);
 public:
 	void interactWithOther(Dynamic* other) override;
+	int getID() const override;
 	void update() override;
 private:
 	ObjectDataParser m_parser;
-	sf::Clock m_spawnClock;
 	sf::Vector2f m_spawnPos;
-	int m_spawnFrequency;
+	int m_dt;
 	unsigned int m_gid;
+	int m_lastFrame = 0;
 	std::string m_objName;
 	std::string m_direction;
 	sf::Vector2i m_triggerTile;

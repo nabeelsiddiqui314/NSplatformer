@@ -14,5 +14,11 @@ Dynamic* IDmanager::getNewObj(int id, const std::string& name, const std::string
 	case Objects::SWORDSMAN:
 		return new Swordsman(name);
 		break;
+	case Objects::SPAWNER:
+		return new Spawner(name);
+		break;
+	case Objects::PROJECTILE:
+		return new Projectile(name, parameter);
+		break;
 	}
 }

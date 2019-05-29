@@ -16,21 +16,13 @@ void LevelParser::parseMap(const std::string& name) {
 	m_isYfixed = temp == "true";
 	while (std::getline(m_mapFile, temp)) {
 		for (int i = 0; i < temp.length(); i++) {
-			int tileid = 0;
-			if (isdigit(temp[i])) {
-				if (i + 1 != temp.length()) {
-					if (isdigit(temp[i + 1])) {
-						int digit1 = temp[i] - '0';
-						int digit2 = temp[i + 1] - '0';
-						tileid = digit1 * 10 + digit2;
-					}
-					else
-						tileid = temp[i] - '0';
-					i++;
-				}
-				if (tileid < 0 || tileid > m_map.size() - 1)  // checks whether the id is valid
-					tileid = 0;
-				m_map.emplace_back(tileid);
+			std::string tileid;
+			while (isdigit(temp[i])) {
+				tileid += temp[i];
+				i++;
+			}
+			if (tileid != "") {
+				m_map.emplace_back(std::stoi(tileid));
 			}
 		}
 		if (m_map.size() < m_dimensions.x * m_dimensions.y) {

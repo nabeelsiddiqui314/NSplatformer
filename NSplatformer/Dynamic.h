@@ -26,7 +26,7 @@ public:
 	virtual int getID() const = 0;
 	virtual void interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) {}
 	virtual void interactWithOther(Dynamic* other) {}
-	virtual void takeDamage(int amount) {}
+	virtual void recieveInt(int amount) {}
 	virtual void update() = 0;
 	virtual void render(sf::RenderWindow& window);
 protected:

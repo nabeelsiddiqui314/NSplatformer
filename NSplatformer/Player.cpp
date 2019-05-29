@@ -112,8 +112,8 @@ void Player::interactWithOther(Dynamic* other) {
 	}
 }
 
-void Player::takeDamage(int damage) {
-	this->loseHealth(damage);
+void Player::recieveInt(int amount) {
+	this->loseHealth(amount);
 }
 
 const sf::Vector2f Player::getCentre() const {

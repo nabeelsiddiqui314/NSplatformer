@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Swordsman.h"
 #include "Spawner.h"
+#include "Door.h"
 
 class IDmanager
 {
@@ -12,6 +13,8 @@ public:
 		PLAYER = 61,
 		SWORDSMAN,
 		SPAWNER,
+		DOOR,
+		KEY,
 		PROJECTILE
 	};
 public:

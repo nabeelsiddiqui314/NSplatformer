@@ -1,3 +1,3 @@
 health:100
-damage:50
+damage:5000
 agility:5

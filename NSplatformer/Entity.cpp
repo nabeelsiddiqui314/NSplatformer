@@ -77,7 +77,7 @@ void Entity::jump() {
 }
 
 void Entity::damageOther(Dynamic* other) {
-	other->takeDamage(m_attr.damage);
+	other->recieveInt(m_attr.damage);
 }
 
 void Entity::loseHealth(int damage) {

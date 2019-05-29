@@ -47,8 +47,8 @@ void Swordsman::interactWithOther(Dynamic* other) {
 	}
 }
 
-void Swordsman::takeDamage(int damage) {
-	this->loseHealth(damage);
+void Swordsman::recieveInt(int amount) {
+	this->loseHealth(amount);
 }
 
 void Swordsman::update() {

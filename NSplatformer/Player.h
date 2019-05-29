@@ -12,7 +12,7 @@ public:
 	int getID() const override;
 	void update() override;
 	void interactWithOther(Dynamic* other) override;
-	void takeDamage(int damage) override;
+	void recieveInt(int amount) override;
 
 	const sf::Vector2f getCentre() const;
 private:

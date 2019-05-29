@@ -1,7 +1,7 @@
 posX:0
 posY:15
 dt:200
-type:64
+type:66
 name:arrow
 tileX:-2
 tileY:0

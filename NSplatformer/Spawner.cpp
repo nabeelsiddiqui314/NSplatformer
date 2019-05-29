@@ -25,14 +25,14 @@ void Spawner::interactWithOther(Dynamic* other) {
 	}
 }
 
-void Spawner::takeDamage(int damage) {
+void Spawner::recieveInt(int amount) {
 	if (m_isDestructible) {
 		this->destroy();
 	}
 }
 
 int Spawner::getID() const {
-	return static_cast<int>(IDmanager::Objects::SPAWNER);
+	return IDmanager::getObjectID(IDmanager::Objects::SPAWNER);
 }
 
 void Spawner::update() {

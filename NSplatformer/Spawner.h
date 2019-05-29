@@ -9,7 +9,7 @@ public:
 	Spawner(const std::string& name);
 public:
 	void interactWithOther(Dynamic* other) override;
-	void takeDamage(int damage) override;
+	void recieveInt(int amount) override;
 	int getID() const override;
 	void update() override;
 private:

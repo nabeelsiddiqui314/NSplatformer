@@ -101,6 +101,7 @@ void LevelParser::parseObjects(const std::string& name) {
 						obj_name = temp.substr(8, temp.size() - 10);
 					if (doesContain("properties")) {
 						while (std::getline(m_objFile, temp)) {
+							getClearedLine();
 							if (doesContain("}"))
 								break;
 							else if (doesContain("value"))

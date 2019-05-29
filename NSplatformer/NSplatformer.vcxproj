@@ -92,6 +92,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Libraries\SFML-2.4.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,6 +161,8 @@
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="Direction.h" />
+    <ClInclude Include="Door.h" />
+    <ClInclude Include="DoorKey.h" />
     <ClInclude Include="Dynamic.h" />
     <ClInclude Include="DynamicManager.h" />
     <ClInclude Include="Entity.h" />
@@ -192,6 +195,8 @@
     <ClCompile Include="AnimationParser.cpp" />
     <ClCompile Include="Button_.cpp" />
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="Door.cpp" />
+    <ClCompile Include="DoorKey.cpp" />
     <ClCompile Include="Dynamic.cpp" />
     <ClCompile Include="DynamicManager.cpp" />
     <ClCompile Include="Entity.cpp" />

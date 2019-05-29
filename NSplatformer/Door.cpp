@@ -11,15 +11,18 @@ int Door::getID() const {
 }
 
 void Door::interactWithOther(Dynamic* other) {
-	if (m_isLocked) {
-		if (other->getID() == IDmanager::getObjectID(IDmanager::Objects::PLAYER)) {
-			if (this->isCollidingOther(other))
+	if (other->getID() == IDmanager::getObjectID(IDmanager::Objects::PLAYER)) {
+		if (m_isLocked) {
+			if (this->isCollidingOther(other)) {
 				other->interactWithTile(this->getPos(), this->getSize());
+				p_animation.setFrame(0, 0, false, { 0, 0 });
+			}
 		}
-	}
-	else {
-		if (sqrt(pow(this->getPos().x - other->getPos().x, 2) + pow(this->getPos().y - other->getPos().y, 2)) < 2 * Data::tile::size) {
-			p_animation.setFrame(0, 1, false, { 0, 0 });
+		else {
+			if (sqrt(pow(this->getPos().x - other->getPos().x, 2) + pow(this->getPos().y - other->getPos().y, 2)) < 2 * Data::tile::size)
+				p_animation.setFrame(0, 1, false, { 0, 0 });
+			else
+				p_animation.setFrame(0, 0, false, { 0, 0 });
 		}
 	}
 }

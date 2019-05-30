@@ -13,6 +13,7 @@ void DoorKey::interactWithOther(Dynamic* other) {
 	}
 	if (m_isObtained && other->getID() == IDmanager::getObjectID(IDmanager::Objects::DOOR)) {
 		other->recieveInt(m_key);
+		this->destroy();
 	}
 }
 

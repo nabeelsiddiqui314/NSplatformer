@@ -20,7 +20,7 @@ namespace Data {
 		static constexpr int width = 992 / 2;
 		static constexpr int height = 576 / 2;
 		static constexpr int smoothness = 10;
-		static constexpr float smallestMovement = 0.6f;
+		static constexpr float smallestMovement = 1.0f;
 		static constexpr int foresight = 50;
 	};
 	struct tile {

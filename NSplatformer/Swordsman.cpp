@@ -19,7 +19,18 @@ void Swordsman::interactWithOther(Dynamic* other) {
 		}
 		else
 			m_stop = false;
+	}
+	else if (other->getID() == IDmanager::getObjectID(IDmanager::Objects::SWORDSMAN)) {
+		if (this->getPos().y + this->getSize().y == other->getPos().y + other->getSize().y) {
+			if ((m_direction == xDirection::RIGHT && this->getPos().x + this->getSize().x > other->getPos().x && this->getPos().x + this->getSize().x < other->getPos().x + other->getSize().x) ||
+				(m_direction == xDirection::LEFT && this->getPos().x < other->getPos().x + other->getSize().x && this->getPos().x > other->getPos().x)) {
+				m_stop = true;
+				return;
+			}
+		}
+	}
 
+	if (other->getID() == IDmanager::getObjectID(IDmanager::Objects::PLAYER)) {
 		if (this->getDirection() == xDirection::RIGHT &&
 			this->getPos().x + this->getSize().x + m_swordDistance > other->getPos().x &&
 			this->getPos().x + this->getSize().x + m_swordDistance < other->getPos().x + other->getSize().x) {
@@ -68,4 +79,5 @@ void Swordsman::update() {
 	}
 	p_animation.update();
 	this->generalUpdate();
+	m_stop = false;
 }

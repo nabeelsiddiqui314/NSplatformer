@@ -14,7 +14,6 @@ private:
 	} m_attr;
 public:
 	Entity(const std::string& name);
-	virtual ~Entity() {}
 public:
 	void interactWithTile(const sf::Vector2f& tilePos, const sf::Vector2f& tileSize) override;
 

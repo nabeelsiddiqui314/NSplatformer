@@ -46,10 +46,10 @@
                  "y":352
                 }, 
                 {
-                 "gid":62,
+                 "gid":68,
                  "height":32,
                  "id":23,
-                 "name":"lionMan",
+                 "name":"flyingDino",
                  "rotation":90,
                  "type":"",
                  "visible":true,

@@ -29,5 +29,8 @@ Dynamic* IDmanager::getNewObj(int id, const std::string& name, const std::string
 	case Objects::SPRINTER:
 		return new Sprinter(name);
 		break;
+	case Objects::FLYER:
+		return new Flyer(name);
+		break;
 	}
 }

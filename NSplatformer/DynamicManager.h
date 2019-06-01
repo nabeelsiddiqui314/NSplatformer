@@ -10,7 +10,7 @@ public:
 public:
 	void setMap(const Map* map);
 	void addObject(Dynamic* obj, const sf::Vector2f& pos);
-	void update();
+	void update(const GameView& view);
 	void render(sf::RenderWindow& window, const GameView& view);
 
 	const Player* getPlayer() const;

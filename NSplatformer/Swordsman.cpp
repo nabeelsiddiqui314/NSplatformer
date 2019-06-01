@@ -5,6 +5,7 @@ Swordsman::Swordsman(const std::string& name) : Entity(name) {
 	p_animation.setFrame(0,0, true, this->getSize());
 	p_animation.update();
 	m_swordDistance = p_animation.getFrameSize(1, 2).x - p_animation.getFrameSize(1, 0).x;
+	m_stop = true;
 }
 
 int Swordsman::getID() const {
@@ -79,5 +80,4 @@ void Swordsman::update() {
 	}
 	p_animation.update();
 	this->generalUpdate();
-	m_stop = false;
 }

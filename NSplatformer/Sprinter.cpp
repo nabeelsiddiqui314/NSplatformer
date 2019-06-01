@@ -5,6 +5,7 @@
 Sprinter::Sprinter(const std::string& name) : Entity(name) {
 	p_animation.setFrame(0, 0, true, this->getSize());
 	p_animation.update();
+	m_stop = true;
 }
 
 int Sprinter::getID() const {

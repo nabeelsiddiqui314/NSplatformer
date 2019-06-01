@@ -16,11 +16,14 @@ void DynamicManager::addObject(Dynamic* obj, const sf::Vector2f& pos) {
 	}
 }
 
-void DynamicManager::update() {
+void DynamicManager::update(const GameView& view) {
 	for (int i = 0; i < m_objects.size(); i++) {
 		for (Dynamic* obj2 : m_objects) {
-			if (m_objects[i] != obj2)
-				m_objects[i]->interactWithOther(obj2);
+			if (m_objects[i] != obj2) {
+				if (view.isInView(m_objects[i]->getPos(), m_objects[i]->getSize())) {
+					m_objects[i]->interactWithOther(obj2);
+				}
+			}
 		}
 		m_objects[i]->update();
 		m_map->handleCollisions(m_objects[i]);

@@ -12,7 +12,7 @@ Game::Game(const std::string& levelFolder) {
 }
 
 void Game::update(const sf::RenderWindow& window) {
-	m_objects->update();
+	m_objects->update(m_gameView);
 
 	//camera
 	m_gameView.setFocus(m_playerPtr->getDirection());

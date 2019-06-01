@@ -22,16 +22,16 @@
                  "y":473
                 }, 
                 {
-                 "gid":62,
+                 "gid":67,
                  "height":32,
                  "id":18,
-                 "name":"lionMan",
+                 "name":"elephantMan",
                  "rotation":90,
                  "type":"",
                  "visible":true,
                  "width":32,
                  "x":792,
-                 "y":352
+                 "y":322
                 }, 
                 {
                  "gid":62,

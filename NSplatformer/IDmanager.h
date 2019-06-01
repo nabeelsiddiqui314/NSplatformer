@@ -4,6 +4,7 @@
 #include "Swordsman.h"
 #include "Spawner.h"
 #include "Door.h"
+#include "Sprinter.h"
 
 class IDmanager
 {
@@ -15,7 +16,8 @@ public:
 		SPAWNER,
 		DOOR,
 		KEY,
-		PROJECTILE
+		PROJECTILE,
+		SPRINTER
 	};
 public:
 	static const int getObjectID(const Objects& obj);

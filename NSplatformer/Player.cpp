@@ -103,17 +103,18 @@ void Player::update() {
 }
 
 void Player::interactWithOther(Dynamic* other) {
-	if (m_isAttacking  && this->isCollidingOther(other)) {
+	if (m_isAttacking && this->isCollidingOther(other)) {
 		if ((other->getPos().x > this->getPos().x && this->getDirection() == xDirection::RIGHT) ||
 			(other->getPos().x + other->getSize().x < this->getPos().x + this->getSize().x && this->getDirection() == xDirection::LEFT)) {
 			this->damageOther(other);
-			m_isAttacking = false;
 		}
 	}
 }
-
+#include <iostream>
 void Player::recieveInt(int amount) {
-	this->loseHealth(amount);
+	if (!m_isAttacking)
+		this->loseHealth(amount);
+	std::cout << m_attr.health << std::endl;
 }
 
 const sf::Vector2f Player::getCentre() const {

@@ -36,7 +36,7 @@ public:
 	void playOnce(int row, int dt, bool lateralinversion, const sf::Vector2f& constPoint, const PlayOnceType& type = Normal);
 	void update();
 	bool isPlayingOnce() const;
-	const sf::Vector2f& getFrameSize(int row, int column) const;
+	const sf::Vector2f getFrameSize(int row, int column) const;
 	const int getLastFrame(int row) const;
 	const int getCurrentFrame() const;
 private:

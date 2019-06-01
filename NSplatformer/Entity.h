@@ -6,7 +6,7 @@
 
 class Entity : public Dynamic
 {
-private:
+protected:
 	struct Attributes {
 		int health;
 		int damage;

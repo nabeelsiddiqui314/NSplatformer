@@ -49,3 +49,7 @@ void Flyer::update() {
 	this->move(m_targetVector);
 	p_animation.update();
 }
+
+void Flyer::recieveInt(int amount) {
+	this->destroy();
+}

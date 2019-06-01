@@ -95,7 +95,7 @@ bool Animation::isPlayingOnce() const {
 	return m_state == PlayingOnce;
 }
 
-const sf::Vector2f& Animation::getFrameSize(int row, int column) const {
+const sf::Vector2f Animation::getFrameSize(int row, int column) const {
 	return { static_cast<float>(m_rows[row][column].size.x),
 		     static_cast<float>(m_rows[row][column].size.y) };
 }

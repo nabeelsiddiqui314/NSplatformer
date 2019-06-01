@@ -4,7 +4,7 @@
 Swordsman::Swordsman(const std::string& name) : Entity(name) {
 	p_animation.setFrame(0,0, true, this->getSize());
 	p_animation.update();
-	m_swordDistance = p_animation.getFrameSize(1, 2).x - p_animation.getFrameSize(1, 0).x;
+	m_swordDistance = (p_animation.getFrameSize(1, 2).x - p_animation.getFrameSize(1, 0).x) / 2;
 	m_stop = true;
 }
 
@@ -30,27 +30,21 @@ void Swordsman::interactWithOther(Dynamic* other) {
 			}
 		}
 	}
-
 	if (other->getID() == IDmanager::getObjectID(IDmanager::Objects::PLAYER)) {
 		if (this->getDirection() == xDirection::RIGHT &&
 			this->getPos().x + this->getSize().x + m_swordDistance > other->getPos().x &&
 			this->getPos().x + this->getSize().x + m_swordDistance < other->getPos().x + other->getSize().x) {
-			p_animation.playOnce(1, 50, true, { 0, this->getSize().y }, Animation::Cycle);
-			m_isAttacking = true;
+			p_animation.playOnce(1, 200, true, { 0, this->getSize().y }, Animation::Cycle);
 		}
 		else if (this->getDirection() == xDirection::LEFT &&
 			this->getPos().x - m_swordDistance < other->getPos().x + other->getSize().x &&
 			this->getPos().x - m_swordDistance > other->getPos().x) {
-			p_animation.playOnce(1, 50, false, this->getSize(), Animation::Cycle);
-			m_isAttacking = true;
+			p_animation.playOnce(1, 200, false, this->getSize(), Animation::Cycle);
 		}
-		else {
-			m_isAttacking = false;
-		}
-		if (m_isAttacking && this->isCollidingOther(other) && !m_didHit) {
+		if (p_animation.isPlayingOnce() && this->isCollidingOther(other) && !m_didHit) {
 			this->damageOther(other);
 		}
-		m_didHit = m_isAttacking;
+		m_didHit = this->isCollidingOther(other);
 
 		if (other->getPos().x > this->getPos().x + this->getSize().x)
 			m_direction = xDirection::RIGHT;

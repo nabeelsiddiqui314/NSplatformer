@@ -9,6 +9,7 @@ public:
 	int getID() const override;
 	void interactWithOther(Dynamic* other) override;
 	void update() override;
+	void recieveInt(int amount) override;
 private:
 	ObjectDataParser m_parser;
 	sf::Vector2f m_targetVector;

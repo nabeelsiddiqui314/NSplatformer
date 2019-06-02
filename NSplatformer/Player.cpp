@@ -106,15 +106,19 @@ void Player::interactWithOther(Dynamic* other) {
 	if (m_isAttacking && this->isCollidingOther(other)) {
 		if ((other->getPos().x > this->getPos().x && this->getDirection() == xDirection::RIGHT) ||
 			(other->getPos().x + other->getSize().x < this->getPos().x + this->getSize().x && this->getDirection() == xDirection::LEFT)) {
-			this->damageOther(other);
+			if (other->getPos().y > this->getPos().y / 4) {
+				if (m_isCrouching)
+					this->damageOther(other);
+			}
+			else
+				this->damageOther(other);
 		}
 	}
 }
-#include <iostream>
+
 void Player::recieveInt(int amount) {
 	if (!m_isAttacking)
 		this->loseHealth(amount);
-	std::cout << m_attr.health << std::endl;
 }
 
 const sf::Vector2f Player::getCentre() const {
